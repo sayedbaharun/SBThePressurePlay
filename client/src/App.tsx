@@ -14,6 +14,7 @@ import About from "@/pages/about";
 import Newsletter from "@/pages/newsletter";
 import Partners from "@/pages/partners";
 import Press from "@/pages/press";
+import Playbook from "@/pages/playbook";
 import Contact from "@/pages/contact";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
@@ -35,6 +36,7 @@ function Router() {
       <Route path="/listen" component={Listen} />
       <Route path="/about" component={About} />
       <Route path="/newsletter" component={Newsletter} />
+      <Route path="/playbook" component={Playbook} />
       <Route path="/partners" component={Partners} />
       <Route path="/press" component={Press} />
       <Route path="/contact" component={Contact} />
