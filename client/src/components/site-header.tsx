@@ -6,11 +6,12 @@ import ThemeToggle from "./theme-toggle";
 import { Menu, X } from "lucide-react";
 
 const navigation = [
-  { name: "About", href: "/about" },
   { name: "Episodes", href: "/episodes" },
-  { name: "Guests", href: "/guests" },
-  { name: "Listen", href: "/listen" },
-  { name: "Contact Us", href: "/contact" },
+  { name: "Champions", href: "/guests" },
+  { name: "Playbook", href: "/playbook" },
+  { name: "Live Events", href: "/events" },
+  { name: "Elite Circle", href: "/newsletter" },
+  { name: "About", href: "/about" },
 ];
 
 export default function SiteHeader() {

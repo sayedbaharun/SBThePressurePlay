@@ -2,6 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import HeroSection from "@/components/hero-section";
 import LatestEpisode from "@/components/latest-episode";
 import PresenterSection from "@/components/presenter-section";
+import ChampionsMindsetSection from "@/components/champions-mindset-section";
+import ImpactStoriesSection from "@/components/impact-stories-section";
+import EliteCircleSection from "@/components/elite-circle-section";
 import ValuePropositionStrip from "@/components/value-proposition-strip";
 import RecentEpisodes from "@/components/recent-episodes";
 import NewsletterSection from "@/components/newsletter-section";
@@ -33,15 +36,24 @@ export default function Home() {
       {/* 3. Meet the Presenters */}
       <PresenterSection />
       
-      {/* 4. Value Proposition Strip */}
+      {/* 4. Champion's Mindset */}
+      <ChampionsMindsetSection />
+      
+      {/* 5. Impact Stories */}
+      <ImpactStoriesSection />
+      
+      {/* 6. Elite Circle */}
+      <EliteCircleSection />
+      
+      {/* 7. Value Proposition Strip */}
       <ValuePropositionStrip />
       
-      {/* 5. Recent Episodes Grid */}
+      {/* 8. Recent Episodes Grid */}
       {!episodesLoading && recentEpisodes.length > 0 && (
         <RecentEpisodes episodes={recentEpisodes} guests={guests} />
       )}
       
-      {/* 6. Newsletter CTA */}
+      {/* 9. Newsletter CTA */}
       <NewsletterSection />
     </div>
   );

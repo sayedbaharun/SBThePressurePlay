@@ -35,47 +35,54 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Clean Title Hierarchy */}
+          {/* Championship Title Hierarchy */}
           <h1 className="text-display-1 font-display mb-6 text-white">
             <span className="text-white">THE PRESSURE PLAY</span>
           </h1>
           
-          <p className="text-body-large text-white/80 mb-12 max-w-2xl mx-auto">
-            Elite conversations on performance, strategy, and innovation. 
-            <br className="hidden sm:block" />
-            Where pressure creates excellence.
-          </p>
+          <div className="mb-8">
+            <p className="text-headline text-white/90 mb-4 font-medium">
+              Where the locker room meets the boardroom — and the future
+            </p>
+            <p className="text-body-large text-white/70 mb-12">
+              Championship mindset × Business mastery × AI innovation
+            </p>
+          </div>
 
-          {/* Refined CTA Buttons */}
+          {/* Championship CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link href="/episodes">
               <Button 
                 size="lg" 
-                className="px-8 py-4 bg-primary text-primary-foreground rounded-2xl font-medium hover:bg-primary/90 transition-all duration-200 shadow-xl"
-                data-testid="hero-listen-latest"
+                className="px-8 py-4 bg-primary text-primary-foreground rounded-2xl font-medium hover:bg-primary/90 transition-all duration-200 shadow-xl hover:shadow-2xl hover:scale-105"
+                data-testid="hero-latest-episode"
               >
                 <Play className="w-5 h-5 mr-3" />
                 Latest Episode
               </Button>
             </Link>
-            <Link href="/listen">
+            <Link href="/newsletter">
               <Button 
                 variant="outline" 
                 size="lg"
-                className="px-8 py-4 rounded-2xl font-medium bg-white/10 border-white/20 text-white hover:bg-white/20 transition-all duration-200 backdrop-blur-sm"
-                data-testid="hero-watch-listen"
+                className="px-8 py-4 rounded-2xl font-medium bg-white/10 border-white/20 text-white hover:bg-white/20 transition-all duration-200 backdrop-blur-sm hover:scale-105"
+                data-testid="hero-join-elite-circle"
               >
-                <Youtube className="w-5 h-5 mr-3" />
-                Watch & Listen
+                Join Elite Circle
               </Button>
             </Link>
           </div>
 
-          {/* Simplified Topics Display */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
-            {["AI Innovation", "Leadership", "Performance", "Strategy", "Sports"].map((topic) => (
-              <div key={topic} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 text-center hover:bg-white/20 transition-all duration-200">
-                <span className="text-caption text-white/90">{topic}</span>
+          {/* Championship Pillars Display */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            {[
+              "🏆 Elite Performance", 
+              "🎯 Strategic Decision Making", 
+              "🤖 AI-Powered Optimization", 
+              "🌍 Global Leadership"
+            ].map((pillar) => (
+              <div key={pillar} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 text-center hover:bg-white/20 transition-all duration-200 hover:scale-105">
+                <span className="text-caption text-white/90 font-medium">{pillar}</span>
               </div>
             ))}
           </div>

@@ -4,33 +4,34 @@
 @tailwind utilities;
 
 :root {
-  /* The Pressure Play Brand Colors */
-  --pp-midnight: hsl(248, 100%, 6%); /* Deep Midnight #0D0221 */
-  --pp-magenta: hsl(322, 100%, 55%); /* Neon Magenta #FF1B6B */
-  --pp-cyan: hsl(185, 100%, 52%); /* Electric Cyan #05F0FF */
-  --pp-coral: hsl(9, 100%, 69%); /* Hot Coral #FF6F61 */
+  /* The Pressure Play Brand Colors - Championship Edition */
+  --pp-navy: hsl(238, 67%, 15%); /* Deep Navy #0D0E40 */
+  --pp-gold: hsl(51, 100%, 50%); /* Championship Gold #FFD700 */
+  --pp-magenta: hsl(330, 100%, 50%); /* Neon Magenta #FF0080 */
+  --pp-cyan: hsl(180, 100%, 50%); /* Electric Cyan #00FFFF */
+  --pp-coral: hsl(0, 100%, 70%); /* Hot Coral #FF6B6B */
   --pp-slate: hsl(228, 21%, 35%); /* Slate Grey #4A4E69 */
 
   /* Light Theme */
   --background: hsl(0, 0%, 100%);
-  --foreground: hsl(248, 100%, 6%);
+  --foreground: hsl(238, 67%, 15%);
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(248, 100%, 6%);
+  --card-foreground: hsl(238, 67%, 15%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(248, 100%, 6%);
-  --primary: hsl(322, 100%, 55%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(185, 100%, 52%);
-  --secondary-foreground: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(238, 67%, 15%);
+  --primary: hsl(51, 100%, 50%);
+  --primary-foreground: hsl(238, 67%, 15%);
+  --secondary: hsl(238, 67%, 15%);
+  --secondary-foreground: hsl(51, 100%, 50%);
   --muted: hsl(0, 0%, 96%);
   --muted-foreground: hsl(0, 0%, 45%);
-  --accent: hsl(185, 100%, 52%);
+  --accent: hsl(330, 100%, 50%);
   --accent-foreground: hsl(0, 0%, 100%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 98%);
   --border: hsl(0, 0%, 89%);
   --input: hsl(0, 0%, 89%);
-  --ring: hsl(322, 100%, 55%);
+  --ring: hsl(51, 100%, 50%);
   --chart-1: hsl(322, 100%, 55%);
   --chart-2: hsl(185, 100%, 52%);
   --chart-3: hsl(262, 100%, 65%);
@@ -62,25 +63,25 @@
 
 .dark {
   /* Dark Theme */
-  --background: hsl(248, 100%, 6%);
-  --foreground: hsl(0, 0%, 95%);
-  --card: hsl(248, 50%, 8%);
-  --card-foreground: hsl(0, 0%, 95%);
-  --popover: hsl(248, 50%, 8%);
-  --popover-foreground: hsl(0, 0%, 95%);
-  --primary: hsl(322, 100%, 55%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(185, 100%, 52%);
-  --secondary-foreground: hsl(248, 100%, 6%);
-  --muted: hsl(248, 20%, 15%);
+  --background: hsl(238, 67%, 15%);
+  --foreground: hsl(51, 100%, 95%);
+  --card: hsl(238, 50%, 12%);
+  --card-foreground: hsl(51, 100%, 95%);
+  --popover: hsl(238, 50%, 12%);
+  --popover-foreground: hsl(51, 100%, 95%);
+  --primary: hsl(51, 100%, 50%);
+  --primary-foreground: hsl(238, 67%, 15%);
+  --secondary: hsl(238, 67%, 25%);
+  --secondary-foreground: hsl(51, 100%, 50%);
+  --muted: hsl(238, 20%, 20%);
   --muted-foreground: hsl(0, 0%, 65%);
-  --accent: hsl(185, 100%, 52%);
-  --accent-foreground: hsl(248, 100%, 6%);
+  --accent: hsl(330, 100%, 50%);
+  --accent-foreground: hsl(238, 67%, 15%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --border: hsl(248, 20%, 18%);
-  --input: hsl(248, 20%, 18%);
-  --ring: hsl(322, 100%, 55%);
+  --border: hsl(238, 20%, 25%);
+  --input: hsl(238, 20%, 25%);
+  --ring: hsl(51, 100%, 50%);
 }
 
 @layer base {
@@ -107,19 +108,22 @@
 }
 
 @layer components {
-  /* Apple-inspired subtle branding */
+  /* Championship-inspired branding */
   .brand-text {
-    color: hsl(322, 100%, 55%);
+    background: linear-gradient(135deg, hsl(51, 100%, 50%) 0%, hsl(330, 100%, 50%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: 600;
     letter-spacing: -0.025em;
   }
 
   .hero-section {
     background: linear-gradient(to bottom, 
-      hsla(248, 100%, 6%, 0.97) 0%, 
-      hsla(248, 100%, 6%, 0.95) 100%),
+      hsla(238, 67%, 15%, 0.97) 0%, 
+      hsla(238, 67%, 8%, 0.95) 100%),
       radial-gradient(ellipse at center, 
-        hsla(322, 100%, 55%, 0.05) 0%, 
+        hsla(51, 100%, 50%, 0.08) 0%, 
         transparent 50%);
   }
 
@@ -142,8 +146,8 @@
 
   .apple-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.1);
-    border-color: hsla(322, 100%, 55%, 0.2);
+    box-shadow: 0 8px 24px hsla(51, 100%, 50%, 0.15), 0 4px 12px hsla(0, 0%, 0%, 0.1);
+    border-color: hsla(51, 100%, 50%, 0.3);
   }
 
   .presenter-image {
@@ -153,7 +157,7 @@
   }
 
   .player-progress {
-    background: linear-gradient(90deg, hsl(322, 100%, 55%) 0%, hsl(185, 100%, 52%) 100%);
+    background: linear-gradient(90deg, hsl(51, 100%, 50%) 0%, hsl(330, 100%, 50%) 100%);
   }
 
   /* Custom Scrollbar */
@@ -166,7 +170,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: hsl(322, 100%, 55%);
+    background: hsl(51, 100%, 50%);
     border-radius: 3px;
   }
 

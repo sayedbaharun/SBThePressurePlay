@@ -18,10 +18,10 @@ interface Presenter {
 const presenters: Presenter[] = [
   {
     name: "Sayed Baharun",
-    role: "Co-Host & Performance Strategist",
-    bio: "Elite performance coach and business strategist with over a decade of experience working with championship athletes and Fortune 500 executives. Sayed brings cutting-edge insights from the worlds of sports psychology, business optimization, and human performance.",
+    role: "Performance Architect & Strategic Innovation Expert",
+    bio: "Performance architect with 15+ years optimizing elite athletes and Fortune 500 C-suite executives. Pioneer of the Champion's Framework methodology combining neuroscience, AI-powered analytics, and peak performance protocols. Trusted advisor to championship teams and unicorn startups.",
     headshot: sayedImage,
-    expertise: ["Performance Psychology", "Business Strategy", "Leadership Development", "Elite Mindset Training"],
+    expertise: ["Champion's Framework Methodology", "Neuroscience-Based Performance", "AI-Powered Analytics", "C-Suite Advisory", "Elite Mindset Architecture"],
     socials: {
       linkedin: "#",
       twitter: "#",
@@ -30,10 +30,10 @@ const presenters: Presenter[] = [
   },
   {
     name: "Patrice Evra",
-    role: "Co-Host & Champion Mindset Expert",
-    bio: "Former Manchester United captain and French national team legend. Patrice brings championship-level insights from the highest levels of professional sports, sharing the mindset and strategies that led to multiple Premier League titles and international success.",
+    role: "Manchester United Legend & Champion's Mindset Expert",
+    bio: "5x Premier League Champion and Manchester United Captain with 14M+ global social following. First elite athlete bridging sports excellence with business strategy and AI innovation. From Old Trafford to Silicon Valley, Patrice decodes the champion's mindset for high-pressure leadership.",
     headshot: patriceImage,
-    expertise: ["Championship Mindset", "Team Leadership", "Elite Sports Performance", "Mental Resilience"],
+    expertise: ["Championship Psychology", "High-Pressure Leadership", "Team Dynamics", "Performance Under Pressure", "Global Brand Building"],
     socials: {
       linkedin: "#",
       twitter: "#",

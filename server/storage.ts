@@ -62,12 +62,14 @@ export class MemStorage implements IStorage {
   private seedData() {
     // Seed topics
     const defaultTopics: InsertTopic[] = [
-      { slug: "ai-innovation", title: "AI Innovation", description: "Artificial intelligence and technology", color: "#FF1B6B" },
-      { slug: "leadership", title: "Leadership", description: "Leadership and management strategies", color: "#05F0FF" },
-      { slug: "high-performance", title: "High Performance", description: "Peak performance and optimization", color: "#FF6F61" },
-      { slug: "business-strategy", title: "Business Strategy", description: "Strategic business insights", color: "#4A4E69" },
-      { slug: "sports", title: "Sports", description: "Athletic performance and competition", color: "#FF1B6B" },
-      { slug: "technology", title: "Technology", description: "Technology trends and innovation", color: "#05F0FF" },
+      { slug: "championship-mindset", title: "Championship Mindset", description: "Mental strategies from elite champions", color: "#FFD700" },
+      { slug: "ai-leadership", title: "AI Leadership", description: "Leading organizations through AI transformation", color: "#FF0080" },
+      { slug: "pressure-management", title: "Pressure Management", description: "Performing under extreme pressure", color: "#00FFFF" },
+      { slug: "team-dynamics", title: "Team Dynamics", description: "Building and leading championship teams", color: "#FF6B6B" },
+      { slug: "high-performance", title: "High Performance", description: "Peak performance and optimization", color: "#FFD700" },
+      { slug: "business-strategy", title: "Business Strategy", description: "Strategic business insights", color: "#FF0080" },
+      { slug: "sports", title: "Sports", description: "Athletic performance and competition", color: "#00FFFF" },
+      { slug: "technology", title: "Technology", description: "Technology trends and innovation", color: "#FF6B6B" },
     ];
 
     defaultTopics.forEach(topic => {
@@ -85,7 +87,7 @@ export class MemStorage implements IStorage {
         headshot: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200",
         socials: { twitter: "@alexchen", linkedin: "alexchen" },
         tags: ["AI", "Technology", "Leadership"],
-        episodeSlugs: ["ai-revolution-performance"]
+        episodeSlugs: ["old-trafford-silicon-valley"]
       },
       {
         slug: "marcus-thompson",
@@ -118,23 +120,24 @@ export class MemStorage implements IStorage {
     const defaultEpisodes: InsertEpisode[] = [
       {
         number: 1,
-        slug: "ai-revolution-performance",
-        title: "The AI Revolution: How Technology is Reshaping Elite Performance",
-        description: "Join us as we dive deep with Silicon Valley's most innovative CEO on how artificial intelligence is transforming not just business, but human potential itself. From predictive analytics in sports to AI-driven leadership strategies, this conversation will change how you think about performance optimization.",
+        slug: "old-trafford-silicon-valley",
+        title: "From Old Trafford to Silicon Valley: The Champion's Guide to AI Leadership",
+        description: "Patrice Evra reveals how the same mindset that won 5 Premier League titles now applies to navigating AI disruption in business. Plus: exclusive insights from tech leaders on building championship-level organizations in the AI era. Discover pressure management in high-stakes environments, building winning cultures in tech companies, and AI's impact on team dynamics and leadership.",
         cover: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
-        duration: 58,
-        publishedAt: new Date("2024-12-15"),
+        duration: 62,
+        publishedAt: new Date("2024-12-20"),
         platforms: [
           { label: "Spotify", url: "https://spotify.com" },
           { label: "Apple", url: "https://podcasts.apple.com" },
           { label: "YouTube", url: "https://youtube.com" }
         ],
         guests: ["alex-chen"],
-        topics: ["ai-innovation", "leadership", "technology"],
+        topics: ["championship-mindset", "ai-leadership", "pressure-management", "team-dynamics"],
         transcript: "Detailed transcript would be here...",
         highlights: [
-          { time: "12:34", text: "AI is not replacing human intuition, it's amplifying it" },
-          { time: "25:18", text: "The future belongs to those who can dance with algorithms" }
+          { time: "15:42", text: "In football and business, pressure is a privilege. It's where champions are made." },
+          { time: "28:15", text: "The same principles that built championship teams at United apply to AI transformation" },
+          { time: "41:33", text: "Leadership is about making others believe they can achieve the impossible" }
         ],
         youtubeId: "dQw4w9WgXcQ",
         audioUrl: "https://example.com/audio.mp3",
