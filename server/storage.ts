@@ -121,7 +121,7 @@ export class MemStorage implements IStorage {
         slug: "ai-revolution-performance",
         title: "The AI Revolution: How Technology is Reshaping Elite Performance",
         description: "Join us as we dive deep with Silicon Valley's most innovative CEO on how artificial intelligence is transforming not just business, but human potential itself. From predictive analytics in sports to AI-driven leadership strategies, this conversation will change how you think about performance optimization.",
-        cover: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+        cover: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
         duration: 58,
         publishedAt: new Date("2024-12-15"),
         platforms: [
@@ -145,7 +145,7 @@ export class MemStorage implements IStorage {
         slug: "mental-resilience-competition",
         title: "Mental Resilience in High-Stakes Competition",
         description: "Exploring the psychological strategies that separate champions from competitors with a sports psychologist who has worked with Olympic teams.",
-        cover: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+        cover: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
         duration: 45,
         publishedAt: new Date("2024-12-08"),
         platforms: [
@@ -165,7 +165,7 @@ export class MemStorage implements IStorage {
         slug: "leadership-digital-age",
         title: "Leadership in the Digital Age: Adapting Strategy for Remote Teams",
         description: "How modern leaders are redefining management principles for distributed teams and digital-first business models.",
-        cover: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+        cover: "https://images.unsplash.com/photo-1664575602554-2087b04935a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
         duration: 52,
         publishedAt: new Date("2024-12-01"),
         platforms: [
