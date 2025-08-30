@@ -1,40 +1,41 @@
-import { Link } from "wouter";
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Linkedin, Twitter } from "lucide-react";
+import { Linkedin, Twitter, Instagram } from "lucide-react";
 
 interface Presenter {
   name: string;
   role: string;
   bio: string;
   headshot: string;
-  credentials: string[];
+  expertise: string[];
   socials: {
     linkedin?: string;
     twitter?: string;
+    instagram?: string;
   };
 }
 
 const presenters: Presenter[] = [
   {
-    name: "John Smith",
-    role: "Host & Executive Producer",
-    bio: "Former Fortune 500 CEO turned performance coach, with 20+ years scaling organizations from startup to IPO.",
-    headshot: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
-    credentials: ["Former CEO, TechCorp", "Harvard MBA", "Performance Coach"],
+    name: "Sayed Baharun",
+    role: "Co-Host & Performance Strategist",
+    bio: "Elite performance coach and business strategist with over a decade of experience working with championship athletes and Fortune 500 executives. Sayed brings cutting-edge insights from the worlds of sports psychology, business optimization, and human performance.",
+    headshot: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+    expertise: ["Performance Psychology", "Business Strategy", "Leadership Development", "Elite Mindset Training"],
     socials: {
-      linkedin: "johnsmith",
-      twitter: "@johnsmith"
+      linkedin: "#",
+      twitter: "#",
+      instagram: "#"
     }
   },
   {
-    name: "Sarah Chen",
-    role: "Co-Host & Strategic Advisor",
-    bio: "Elite sports psychologist who has worked with Olympic champions and professional athletes across 15+ sports.",
-    headshot: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
-    credentials: ["PhD Sports Psychology", "Olympic Team Advisor", "Author, 'Peak Mind'"],
+    name: "Patrice Evra",
+    role: "Co-Host & Champion Mindset Expert",
+    bio: "Former Manchester United captain and French national team legend. Patrice brings championship-level insights from the highest levels of professional sports, sharing the mindset and strategies that led to multiple Premier League titles and international success.",
+    headshot: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+    expertise: ["Championship Mindset", "Team Leadership", "Elite Sports Performance", "Mental Resilience"],
     socials: {
-      linkedin: "sarahchen",
-      twitter: "@sarahpsych"
+      linkedin: "#",
+      twitter: "#",
+      instagram: "#"
     }
   }
 ];
@@ -62,7 +63,7 @@ export default function PresenterSection() {
                 <div className="mb-6">
                   <div className="w-32 h-32 mx-auto rounded-3xl overflow-hidden">
                     <img 
-                      src={presenter.headshot} 
+                      src={presenter.headshot || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"} 
                       alt={presenter.name}
                       className="w-full h-full object-cover"
                       data-testid={`presenter-${presenter.name.toLowerCase().replace(' ', '-')}`}
@@ -79,12 +80,12 @@ export default function PresenterSection() {
                   </p>
                 </div>
 
-                {/* Credentials */}
+                {/* Expertise */}
                 <div className="mb-6">
                   <div className="flex flex-wrap justify-center gap-2">
-                    {presenter.credentials.map((credential) => (
-                      <div key={credential} className="apple-card px-3 py-1 bg-muted/50">
-                        <span className="text-small text-muted-foreground">{credential}</span>
+                    {presenter.expertise?.map((skill) => (
+                      <div key={skill} className="apple-card px-3 py-1 bg-muted/50">
+                        <span className="text-small text-muted-foreground">{skill}</span>
                       </div>
                     ))}
                   </div>
@@ -94,7 +95,7 @@ export default function PresenterSection() {
                 <div className="flex justify-center space-x-4">
                   {presenter.socials.linkedin && (
                     <button
-                      onClick={() => window.open(`https://linkedin.com/in/${presenter.socials.linkedin}`, '_blank')}
+                      onClick={() => window.open(presenter.socials.linkedin, '_blank')}
                       className="apple-card p-3 hover:bg-primary/10 transition-colors duration-200"
                       data-testid={`${presenter.name.toLowerCase().replace(' ', '-')}-linkedin`}
                     >
@@ -103,11 +104,20 @@ export default function PresenterSection() {
                   )}
                   {presenter.socials.twitter && (
                     <button
-                      onClick={() => window.open(`https://twitter.com/${presenter.socials.twitter}`, '_blank')}
+                      onClick={() => window.open(presenter.socials.twitter, '_blank')}
                       className="apple-card p-3 hover:bg-primary/10 transition-colors duration-200"
                       data-testid={`${presenter.name.toLowerCase().replace(' ', '-')}-twitter`}
                     >
                       <Twitter className="w-5 h-5" />
+                    </button>
+                  )}
+                  {presenter.socials.instagram && (
+                    <button
+                      onClick={() => window.open(presenter.socials.instagram, '_blank')}
+                      className="apple-card p-3 hover:bg-primary/10 transition-colors duration-200"
+                      data-testid={`${presenter.name.toLowerCase().replace(' ', '-')}-instagram`}
+                    >
+                      <Instagram className="w-5 h-5" />
                     </button>
                   )}
                 </div>
@@ -119,11 +129,12 @@ export default function PresenterSection() {
           <div className="text-center">
             <div className="apple-card p-8 bg-muted/50 max-w-4xl mx-auto">
               <h3 className="text-headline font-display mb-4">
-                <span className="brand-text">Why We Started The Pressure Play</span>
+                <span className="brand-text">Our Mission</span>
               </h3>
               <p className="text-body text-muted-foreground leading-relaxed">
-                We believe the highest performers in business, sports, and innovation share common principles that most people never get to hear. 
-                Our mission is to extract these insights from elite guests and present them in a way that transforms how you think about pressure, performance, and potential.
+                The Pressure Play decodes the mindset, strategies, and systems that separate good from great. 
+                We bring you exclusive conversations with championship athletes, visionary entrepreneurs, 
+                and performance experts who operate at the highest levels.
               </p>
             </div>
           </div>
