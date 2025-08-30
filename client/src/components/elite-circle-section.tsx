@@ -42,16 +42,16 @@ const socialProof = [
 
 const testimonials = [
   {
-    quote: "The weekly insights have transformed my leadership approach",
-    author: "Sarah M., Fortune 500 Executive"
+    quote: "Sayed's strategic framework combined with Patrice's championship insights transformed our entire leadership approach",
+    author: "Sarah Chen, Fortune 500 CEO"
   },
   {
-    quote: "Patrice's pressure management tips are game-changers", 
-    author: "Marcus T., Startup Founder"
+    quote: "Finally, a platform where world-class strategy meets authentic championship experience. Both Sayed and Patrice bring unique value", 
+    author: "Marcus Rodriguez, Premier League Manager"
   },
   {
-    quote: "Best business newsletter I've ever subscribed to",
-    author: "Jennifer L., Venture Capitalist"
+    quote: "The combination of Sayed's methodology and Patrice's real-world experience is unmatched",
+    author: "Jennifer Kumar, Venture Capitalist"
   }
 ];
 
@@ -171,10 +171,12 @@ export default function EliteCircleSection() {
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-caption font-medium mb-2">🏆 Pressure Point #47: "The 90th Minute Mindset"</h4>
-                  <p className="text-body text-muted-foreground mb-4">
-                    How Patrice's experience scoring crucial late goals translates to closing 
-                    high-stakes business deals. Plus: 3 AI tools that help you perform under pressure.
+                  <h4 className="text-caption font-medium mb-2">🏆 Pressure Point #47: "The Strategic Champion's Mindset"</h4>
+                  <p className="text-body text-muted-foreground mb-3">
+                    Sayed reveals the neuroscience behind pressure performance, while Patrice shares how he applied these principles in crucial Champions League moments. Plus: 3 AI tools that amplify champion-level decision making.
+                  </p>
+                  <p className="text-small text-muted-foreground/70 mb-4 italic">
+                    By Sayed Baharun & Patrice Evra
                   </p>
                   <Button variant="outline" className="text-primary border-primary hover:bg-primary/5">
                     Join Elite Circle to read full insights →

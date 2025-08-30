@@ -72,15 +72,37 @@ export default function ChampionsMindsetSection() {
             })}
           </div>
 
-          {/* Champion Quote */}
-          <div className="mt-16 text-center">
-            <div className="apple-card p-8 bg-gradient-to-r from-primary/5 to-accent/5 max-w-4xl mx-auto">
-              <blockquote className="text-headline font-display mb-4 text-foreground/90">
-                "Pressure is a privilege. It's where champions are made and legends are born."
-              </blockquote>
-              <cite className="text-caption text-muted-foreground">
-                — Patrice Evra, 5x Premier League Champion
-              </cite>
+          {/* Co-Founder Insights */}
+          <div className="mt-16 space-y-8">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="apple-card p-6 bg-gradient-to-r from-primary/5 to-accent/5">
+                <blockquote className="text-body font-medium mb-3 text-foreground/90">
+                  "Most people think pressure is the enemy. Champions know it's the catalyst. That's the difference we teach."
+                </blockquote>
+                <cite className="text-small text-muted-foreground">
+                  — Sayed Baharun, Co-Founder & Performance Architect
+                </cite>
+              </div>
+              
+              <div className="apple-card p-6 bg-gradient-to-r from-accent/5 to-primary/5">
+                <blockquote className="text-body font-medium mb-3 text-foreground/90">
+                  "Pressure is a privilege. It's where champions are made and legends are born."
+                </blockquote>
+                <cite className="text-small text-muted-foreground">
+                  — Patrice Evra, Co-Founder & Champion Validator
+                </cite>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <div className="apple-card p-6 bg-gradient-to-r from-primary/10 to-accent/10 max-w-3xl mx-auto">
+                <blockquote className="text-headline font-display mb-4 text-foreground/90 italic">
+                  "When you combine championship mindset with strategic innovation, you get breakthrough results in any field."
+                </blockquote>
+                <cite className="text-caption text-muted-foreground">
+                  — Sayed & Patrice, The Pressure Play Co-Founders
+                </cite>
+              </div>
             </div>
           </div>
         </div>

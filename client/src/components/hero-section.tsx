@@ -44,9 +44,25 @@ export default function HeroSection() {
             <p className="text-headline text-white/90 mb-4 font-medium">
               Where the locker room meets the boardroom — and the future
             </p>
-            <p className="text-body-large text-white/70 mb-12">
+            <p className="text-body-large text-white/70 mb-8">
               Championship mindset × Business mastery × AI innovation
             </p>
+            
+            {/* Co-Founders Introduction */}
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 max-w-3xl mx-auto mb-12">
+              <h3 className="text-caption font-medium text-white/90 mb-4">Founded by Champions in Their Fields</h3>
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+                <div className="text-center">
+                  <div className="text-body font-medium text-white">Sayed Baharun</div>
+                  <div className="text-small text-white/70">Performance Architect & AI Strategist</div>
+                </div>
+                <div className="text-white/60 font-bold text-xl">×</div>
+                <div className="text-center">
+                  <div className="text-body font-medium text-white">Patrice Evra</div>
+                  <div className="text-small text-white/70">Manchester United Legend</div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Championship CTA Buttons */}

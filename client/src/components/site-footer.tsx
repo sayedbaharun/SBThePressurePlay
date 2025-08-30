@@ -190,9 +190,10 @@ export default function SiteFooter() {
           {/* Bottom Bar */}
           <Separator className="mb-8" />
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-muted-foreground text-sm mb-4 md:mb-0">
-              © 2024 The Pressure Play. All rights reserved.
-            </p>
+            <div className="text-muted-foreground text-sm mb-4 md:mb-0">
+              <p>© 2024 The Pressure Play. All rights reserved.</p>
+              <p className="text-xs">Founded by Sayed Baharun & Patrice Evra</p>
+            </div>
             <div className="flex space-x-6 text-sm">
               <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
               <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms of Service</Link>

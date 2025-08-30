@@ -18,10 +18,10 @@ interface Presenter {
 const presenters: Presenter[] = [
   {
     name: "Sayed Baharun",
-    role: "Performance Architect & Strategic Innovation Expert",
-    bio: "Performance architect with 15+ years optimizing elite athletes and Fortune 500 C-suite executives. Pioneer of the Champion's Framework methodology combining neuroscience, AI-powered analytics, and peak performance protocols. Trusted advisor to championship teams and unicorn startups.",
+    role: "Co-Founder & Performance Architect",
+    bio: "🚀 Visionary behind The Pressure Play concept. Pioneer of the Champion's Framework methodology combining neuroscience, business strategy, and AI innovation. 15+ years optimizing Fortune 500 C-suite performance and championship teams. Trusted advisor to elite performers across industries who saw the opportunity to bridge three worlds that had never been connected at this level.",
     headshot: sayedImage,
-    expertise: ["Champion's Framework Methodology", "Neuroscience-Based Performance", "AI-Powered Analytics", "C-Suite Advisory", "Elite Mindset Architecture"],
+    expertise: ["Visionary Architect of The Pressure Play", "Champion's Framework Methodology", "AI Strategy Expert for Elite Performers", "C-Suite Transformation", "Neuroscience-Based Performance"],
     socials: {
       linkedin: "#",
       twitter: "#",
@@ -30,10 +30,10 @@ const presenters: Presenter[] = [
   },
   {
     name: "Patrice Evra",
-    role: "Manchester United Legend & Champion's Mindset Expert",
-    bio: "5x Premier League Champion and Manchester United Captain with 14M+ global social following. First elite athlete bridging sports excellence with business strategy and AI innovation. From Old Trafford to Silicon Valley, Patrice decodes the champion's mindset for high-pressure leadership.",
+    role: "Co-Founder & Champion Validator",
+    bio: "🏆 5x Premier League Champion and Manchester United Captain with 14M+ global social following. First elite athlete bridging sports excellence with business strategy and AI innovation. From Old Trafford to Silicon Valley, Patrice brings the championship credibility and global platform to amplify these insights to millions worldwide.",
     headshot: patriceImage,
-    expertise: ["Championship Psychology", "High-Pressure Leadership", "Team Dynamics", "Performance Under Pressure", "Global Brand Building"],
+    expertise: ["Championship Psychology", "High-Pressure Leadership", "Global Platform & Credibility", "Performance Under Pressure", "Elite Sports Validation"],
     socials: {
       linkedin: "#",
       twitter: "#",
@@ -50,11 +50,18 @@ export default function PresenterSection() {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-display-2 font-display mb-6">
-              <span className="brand-text">Meet Your Hosts</span>
+              <span className="brand-text">Meet Your Co-Founders</span>
             </h2>
-            <p className="text-body-large text-muted-foreground max-w-2xl mx-auto">
-              Two decades of combined experience in elite performance, business strategy, and human optimization.
+            <p className="text-body-large text-muted-foreground max-w-3xl mx-auto mb-8">
+              Two champions from different worlds, united by a shared mission to unlock human potential.
             </p>
+            <div className="inline-flex items-center gap-3 bg-primary/5 px-6 py-3 rounded-2xl">
+              <span className="text-body font-medium">Strategic Vision</span>
+              <span className="text-primary font-bold">×</span>
+              <span className="text-body font-medium">Championship Validation</span>
+              <span className="text-primary font-bold">=</span>
+              <span className="text-body font-medium brand-text">Global Impact</span>
+            </div>
           </div>
 
           {/* Presenters Grid */}
@@ -127,17 +134,63 @@ export default function PresenterSection() {
             ))}
           </div>
 
-          {/* Why We Started */}
-          <div className="text-center">
-            <div className="apple-card p-8 bg-muted/50 max-w-4xl mx-auto">
-              <h3 className="text-headline font-display mb-4">
-                <span className="brand-text">Our Mission</span>
-              </h3>
-              <p className="text-body text-muted-foreground leading-relaxed">
-                The Pressure Play decodes the mindset, strategies, and systems that separate good from great. 
-                We bring you exclusive conversations with championship athletes, visionary entrepreneurs, 
-                and performance experts who operate at the highest levels.
-              </p>
+          {/* Partnership Story */}
+          <div className="space-y-12">
+            <div className="text-center">
+              <div className="apple-card p-8 bg-muted/50 max-w-4xl mx-auto">
+                <h3 className="text-headline font-display mb-4">
+                  <span className="brand-text">Our Mission</span>
+                </h3>
+                <p className="text-body text-muted-foreground leading-relaxed mb-6">
+                  Sayed Baharun and Patrice Evra decode the mindset, strategies, and systems that separate good from great. 
+                  Together, we bring you exclusive conversations combining elite sports psychology, cutting-edge business strategy, and AI innovation.
+                </p>
+              </div>
+            </div>
+            
+            {/* Partnership Origin */}
+            <div className="text-center">
+              <div className="apple-card p-8 bg-gradient-to-r from-primary/5 to-accent/5 max-w-5xl mx-auto">
+                <h3 className="text-headline font-display mb-6">
+                  The Partnership That Changed Everything
+                </h3>
+                <p className="text-body text-muted-foreground leading-relaxed mb-8">
+                  When performance architect Sayed Baharun met Manchester United legend Patrice Evra, they discovered something extraordinary: 
+                  the same principles that create champions on the pitch also drive breakthrough success in business and AI innovation.
+                </p>
+                
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                      <span className="text-2xl">🧠</span>
+                    </div>
+                    <h4 className="text-caption font-medium mb-2">Sayed's Vision</h4>
+                    <p className="text-small text-muted-foreground">
+                      The strategic architect who saw the opportunity to revolutionize how we think about performance
+                    </p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                      <span className="text-2xl">⚡</span>
+                    </div>
+                    <h4 className="text-caption font-medium mb-2">Shared Mission</h4>
+                    <p className="text-small text-muted-foreground">
+                      Decode pressure performance and make championship-level thinking accessible to everyone
+                    </p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                      <span className="text-2xl">🏆</span>
+                    </div>
+                    <h4 className="text-caption font-medium mb-2">Patrice's Platform</h4>
+                    <p className="text-small text-muted-foreground">
+                      The champion's credibility and global reach to amplify these insights worldwide
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
