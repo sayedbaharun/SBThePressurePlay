@@ -1,0 +1,159 @@
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+
+const platformLinks = [
+  {
+    name: "Spotify",
+    href: "https://spotify.com",
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.84-.179-.959-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.361 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Apple Podcasts",
+    href: "https://podcasts.apple.com",
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+      </svg>
+    ),
+  },
+  {
+    name: "YouTube",
+    href: "https://youtube.com",
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Google Podcasts",
+    href: "https://podcasts.google.com",
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 19.104c-3.924 0-7.104-3.18-7.104-7.104S8.076 4.896 12 4.896s7.104 3.18 7.104 7.104-3.18 7.104-7.104 7.104zm0-11.616c-2.484 0-4.512 2.028-4.512 4.512S9.516 16.512 12 16.512s4.512-2.028 4.512-4.512S14.484 7.488 12 7.488zm0 6.72c-1.224 0-2.208-.984-2.208-2.208S10.776 9.792 12 9.792s2.208.984 2.208 2.208S13.224 14.208 12 14.208z"/>
+      </svg>
+    ),
+  },
+];
+
+const socialLinks = [
+  {
+    name: "Twitter",
+    href: "https://twitter.com/thepressureplay",
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+      </svg>
+    ),
+  },
+  {
+    name: "LinkedIn",
+    href: "https://linkedin.com/company/thepressureplay",
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+    ),
+  },
+];
+
+export default function SiteFooter() {
+  return (
+    <footer className="bg-card border-t border-border py-16">
+      <div className="container mx-auto px-4 lg:px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {/* Brand Section */}
+            <div className="lg:col-span-2">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">P</span>
+                </div>
+                <span className="text-xl font-bold gradient-text font-display">THE PRESSURE PLAY</span>
+              </div>
+              <p className="text-muted-foreground mb-6 max-w-md">
+                High-impact conversations blending elite performance, business strategy, AI innovation, and championship sports. 
+                Where pressure creates diamonds.
+              </p>
+              <div className="flex space-x-4">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-muted hover:bg-muted/80 rounded-lg transition-colors"
+                    data-testid={`social-link-${social.name.toLowerCase()}`}
+                  >
+                    {social.icon}
+                    <span className="sr-only">{social.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Episodes */}
+            <div>
+              <h3 className="font-semibold mb-4">Episodes</h3>
+              <ul className="space-y-2">
+                <li><Link href="/episodes" className="text-muted-foreground hover:text-foreground transition-colors">Latest Episodes</Link></li>
+                <li><Link href="/episodes" className="text-muted-foreground hover:text-foreground transition-colors">Browse by Topic</Link></li>
+                <li><Link href="/guests" className="text-muted-foreground hover:text-foreground transition-colors">Featured Guests</Link></li>
+                <li><Link href="/episodes" className="text-muted-foreground hover:text-foreground transition-colors">Episode Archive</Link></li>
+              </ul>
+            </div>
+
+            {/* Platform */}
+            <div>
+              <h3 className="font-semibold mb-4">Platform</h3>
+              <ul className="space-y-2">
+                <li><Link href="/newsletter" className="text-muted-foreground hover:text-foreground transition-colors">Newsletter</Link></li>
+                <li><Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link></li>
+                <li><Link href="/press" className="text-muted-foreground hover:text-foreground transition-colors">Press Kit</Link></li>
+                <li><Link href="/partners" className="text-muted-foreground hover:text-foreground transition-colors">Partners</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Listen On Platforms */}
+          <div className="border-t border-border pt-8 mb-8">
+            <h3 className="font-semibold mb-4 text-center">Listen On</h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {platformLinks.map((platform) => (
+                <a
+                  key={platform.name}
+                  href={platform.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 px-4 py-2 bg-muted hover:bg-muted/80 rounded-lg transition-colors"
+                  data-testid={`platform-link-${platform.name.toLowerCase().replace(" ", "-")}`}
+                >
+                  {platform.icon}
+                  <span className="text-sm">{platform.name}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <Separator className="mb-8" />
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-muted-foreground text-sm mb-4 md:mb-0">
+              © 2024 The Pressure Play. All rights reserved.
+            </p>
+            <div className="flex space-x-6 text-sm">
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Terms of Service</a>
+              <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

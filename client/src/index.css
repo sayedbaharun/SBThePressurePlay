@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* The Pressure Play Brand Colors */
+  --pp-midnight: hsl(248, 100%, 6%); /* Deep Midnight #0D0221 */
+  --pp-magenta: hsl(322, 100%, 55%); /* Neon Magenta #FF1B6B */
+  --pp-cyan: hsl(185, 100%, 52%); /* Electric Cyan #05F0FF */
+  --pp-coral: hsl(9, 100%, 69%); /* Hot Coral #FF6F61 */
+  --pp-slate: hsl(228, 21%, 35%); /* Slate Grey #4A4E69 */
+
+  /* Hero Dark Theme (Primary) */
+  --background: hsl(248, 100%, 6%);
+  --foreground: hsl(0, 0%, 95%);
+  --card: hsl(248, 50%, 8%);
+  --card-foreground: hsl(0, 0%, 95%);
+  --popover: hsl(248, 50%, 8%);
+  --popover-foreground: hsl(0, 0%, 95%);
+  --primary: hsl(322, 100%, 55%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(185, 100%, 52%);
+  --secondary-foreground: hsl(248, 100%, 6%);
+  --muted: hsl(248, 20%, 15%);
+  --muted-foreground: hsl(0, 0%, 65%);
+  --accent: hsl(185, 100%, 52%);
+  --accent-foreground: hsl(248, 100%, 6%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(248, 20%, 18%);
+  --input: hsl(248, 20%, 18%);
+  --ring: hsl(322, 100%, 55%);
+  --chart-1: hsl(322, 100%, 55%);
+  --chart-2: hsl(185, 100%, 52%);
+  --chart-3: hsl(262, 100%, 65%);
+  --chart-4: hsl(290, 100%, 70%);
+  --chart-5: hsl(200, 100%, 60%);
+  --radius: 0.75rem;
+
+  /* Typography */
+  --font-sans: "Inter", "Open Sans", sans-serif;
+  --font-display: "Inter", "General Sans", sans-serif;
+  --font-mono: "JetBrains Mono", "Menlo", monospace;
+}
+
+.neon-theme {
+  /* Clutch Neons Theme (Alt/Promo) */
+  --background: hsl(248, 100%, 6%);
+  --foreground: hsl(0, 0%, 95%);
+  --card: hsl(248, 50%, 8%);
+  --card-foreground: hsl(0, 0%, 95%);
+  --primary: hsl(322, 100%, 55%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(185, 100%, 52%);
+  --secondary-foreground: hsl(248, 100%, 6%);
+  --accent: hsl(9, 100%, 69%);
+  --accent-foreground: hsl(248, 100%, 6%);
+  --muted: hsl(228, 21%, 35%);
+  --muted-foreground: hsl(0, 0%, 75%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: linear-gradient(45deg, hsl(322, 100%, 55%), hsl(185, 100%, 52%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, hsl(248, 100%, 6%) 0%, hsl(248, 50%, 8%) 50%, hsl(322, 100%, 55% / 0.1) 100%);
+  }
+
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px hsl(322, 100%, 55% / 0.2);
+  }
+
+  .neon-border {
+    border: 1px solid transparent;
+    background: linear-gradient(hsl(248, 50%, 8%), hsl(248, 50%, 8%)) padding-box,
+                linear-gradient(45deg, hsl(322, 100%, 55%), hsl(185, 100%, 52%)) border-box;
+  }
+
+  .player-progress {
+    background: linear-gradient(90deg, hsl(322, 100%, 55%) 0%, hsl(185, 100%, 52%) 100%);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(248, 20%, 15%);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(322, 100%, 55%);
+    border-radius: 3px;
+  }
+
+  /* Animations */
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 20px hsl(322, 100%, 55% / 0.3); }
+    to { box-shadow: 0 0 30px hsl(322, 100%, 55% / 0.6); }
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .animate-gradient {
+    animation: gradient 8s ease infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+}
