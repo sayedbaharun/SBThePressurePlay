@@ -117,7 +117,7 @@ export class MemStorage implements IStorage {
     // Seed episodes
     const defaultEpisodes: InsertEpisode[] = [
       {
-        number: 47,
+        number: 1,
         slug: "ai-revolution-performance",
         title: "The AI Revolution: How Technology is Reshaping Elite Performance",
         description: "Join us as we dive deep with Silicon Valley's most innovative CEO on how artificial intelligence is transforming not just business, but human potential itself. From predictive analytics in sports to AI-driven leadership strategies, this conversation will change how you think about performance optimization.",
@@ -141,7 +141,7 @@ export class MemStorage implements IStorage {
         featured: true
       },
       {
-        number: 46,
+        number: 2,
         slug: "mental-resilience-competition",
         title: "Mental Resilience in High-Stakes Competition",
         description: "Exploring the psychological strategies that separate champions from competitors with a sports psychologist who has worked with Olympic teams.",
@@ -161,7 +161,7 @@ export class MemStorage implements IStorage {
         featured: false
       },
       {
-        number: 45,
+        number: 3,
         slug: "leadership-digital-age",
         title: "Leadership in the Digital Age: Adapting Strategy for Remote Teams",
         description: "How modern leaders are redefining management principles for distributed teams and digital-first business models.",
