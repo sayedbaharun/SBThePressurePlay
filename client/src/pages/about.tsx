@@ -6,10 +6,10 @@ import businessTeamImage from "@assets/generated_images/Business_team_strategy_s
 const presenters = [
   {
     name: "Sayed Baharun",
-    role: "Co-Host & Performance Strategist",
+    role: "Co-Founder & Performance Architect",
     image: sayedImage,
-    bio: "Elite performance coach and business strategist with over a decade of experience working with championship athletes and Fortune 500 executives. Sayed brings cutting-edge insights from the worlds of sports psychology, business optimization, and human performance.",
-    expertise: ["Performance Psychology", "Business Strategy", "Leadership Development", "Elite Mindset Training"],
+    bio: "🚀 Visionary behind The Pressure Play concept. Pioneer of the Champion's Framework methodology combining neuroscience, business strategy, and AI innovation. 15+ years optimizing Fortune 500 C-suite performance and championship teams. Trusted advisor to elite performers across industries who saw the opportunity to bridge three worlds that had never been connected at this level.",
+    expertise: ["Visionary Architect of The Pressure Play", "Champion's Framework Methodology", "AI Strategy Expert for Elite Performers", "C-Suite Transformation", "Neuroscience-Based Performance"],
     socials: {
       linkedin: "#",
       twitter: "#",
@@ -18,10 +18,10 @@ const presenters = [
   },
   {
     name: "Patrice Evra",
-    role: "Co-Host & Champion Mindset Expert",
+    role: "Co-Founder & Champion Validator",
     image: patriceImage,
-    bio: "Former Manchester United captain and French national team legend. Patrice brings championship-level insights from the highest levels of professional sports, sharing the mindset and strategies that led to multiple Premier League titles and international success.",
-    expertise: ["Championship Mindset", "Team Leadership", "Elite Sports Performance", "Mental Resilience"],
+    bio: "🏆 5x Premier League Champion and Manchester United Captain with 14M+ global social following. First elite athlete bridging sports excellence with business strategy and AI innovation. From Old Trafford to Silicon Valley, Patrice brings the championship credibility and global platform to amplify these insights to millions worldwide.",
+    expertise: ["Championship Psychology", "High-Pressure Leadership", "Global Platform & Credibility", "Performance Under Pressure", "Elite Sports Validation"],
     socials: {
       linkedin: "#",
       twitter: "#",
@@ -37,12 +37,16 @@ export default function About() {
       <section className="content-section-large hero-section">
         <div className="container mx-auto text-center">
           <h1 className="text-display-2 font-display mb-6">
-            <span className="brand-text">Meet The Hosts</span>
+            <span className="brand-text">Meet Your Co-Founders</span>
           </h1>
           <p className="text-body-large text-muted-foreground max-w-2xl mx-auto">
-            Two elite minds bringing championship-level insights from performance psychology, 
-            business strategy, and professional sports.
+            Two champions from different worlds, united by a shared mission to unlock human potential.
           </p>
+          <div className="mt-8">
+            <p className="text-headline font-medium brand-text">
+              Strategic Vision × Championship Validation = Global Impact
+            </p>
+          </div>
         </div>
       </section>
 
@@ -117,8 +121,56 @@ export default function About() {
         </div>
       </section>
 
+      {/* Partnership Story */}
+      <section className="content-section bg-muted/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-display-2 font-display mb-6">
+              <span className="brand-text">The Partnership That Changed Everything</span>
+            </h2>
+            <p className="text-body-large text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              When performance architect Sayed Baharun met Manchester United legend Patrice Evra, 
+              they discovered something extraordinary: the same principles that create champions on the 
+              pitch also drive breakthrough success in business and AI innovation.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <div className="apple-card p-8 text-center">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                <span className="text-2xl">🧠</span>
+              </div>
+              <h3 className="text-headline font-display mb-4">Sayed's Vision</h3>
+              <p className="text-body text-muted-foreground">
+                The strategic architect who saw the opportunity to revolutionize how we think about performance
+              </p>
+            </div>
+            
+            <div className="apple-card p-8 text-center">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                <span className="text-2xl">⚡</span>
+              </div>
+              <h3 className="text-headline font-display mb-4">Shared Mission</h3>
+              <p className="text-body text-muted-foreground">
+                Decode pressure performance and make championship-level thinking accessible to everyone
+              </p>
+            </div>
+            
+            <div className="apple-card p-8 text-center">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                <span className="text-2xl">🏆</span>
+              </div>
+              <h3 className="text-headline font-display mb-4">Patrice's Platform</h3>
+              <p className="text-body text-muted-foreground">
+                The champion's credibility and global reach to amplify these insights worldwide
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Clean Mission Statement */}
-      <section className="content-section bg-muted/30 relative overflow-hidden">
+      <section className="content-section relative overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 opacity-20">
           <img
@@ -134,9 +186,9 @@ export default function About() {
             <span className="brand-text">Our Mission</span>
           </h2>
           <p className="text-body-large text-muted-foreground leading-relaxed">
-            The Pressure Play decodes the mindset, strategies, and systems that separate good from great. 
-            We bring you exclusive conversations with championship athletes, visionary entrepreneurs, 
-            and performance experts who operate at the highest levels.
+            Sayed Baharun and Patrice Evra decode the mindset, strategies, and systems that separate good from great. 
+            Together, we bring you exclusive conversations combining elite sports psychology, cutting-edge business strategy, 
+            and AI innovation to unlock championship-level performance in any field.
           </p>
         </div>
       </section>
