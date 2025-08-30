@@ -147,7 +147,7 @@ export default function ImpactStoriesSection() {
                   className="px-6 py-3 border border-primary/20 text-primary rounded-xl font-medium hover:bg-primary/10 transition-all duration-200"
                   data-testid="cta-join-elite-circle"
                 >
-                  Join Elite Circle
+                  Join Free Newsletter
                 </button>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 
 const platformLinks = [
@@ -92,15 +93,26 @@ export default function SiteFooter() {
                 Where the locker room meets the boardroom — and the future. Championship mindset × Business mastery × AI innovation.
               </p>
               
-              {/* Newsletter CTA */}
+              {/* Enhanced Newsletter CTA */}
               <div className="apple-card p-4 mb-6 bg-gradient-to-r from-primary/5 to-accent/5">
-                <h4 className="font-medium mb-2">Weekly Pressure Points</h4>
+                <h4 className="font-medium mb-2">Never Miss a Champion Moment</h4>
                 <p className="text-small text-muted-foreground mb-3">
-                  Elite insights delivered every Tuesday. Join 50K+ leaders.
+                  Join Elite Circle for weekly insights that separate good from great
                 </p>
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-lg text-small">
-                  Subscribe Now
-                </Button>
+                <div className="flex gap-2 mb-2">
+                  <Input 
+                    type="email" 
+                    placeholder="Your email" 
+                    className="flex-1 text-small h-8"
+                    data-testid="footer-newsletter-input"
+                  />
+                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-3 py-2 rounded-lg text-small h-8">
+                    Subscribe Free
+                  </Button>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  ✓ 50,000+ subscribers ✓ No spam ✓ Unsubscribe anytime
+                </p>
               </div>
               
               <div className="flex space-x-4">

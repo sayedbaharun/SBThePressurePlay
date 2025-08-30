@@ -68,7 +68,7 @@ export default function HeroSection() {
                 className="px-8 py-4 rounded-2xl font-medium bg-white/10 border-white/20 text-white hover:bg-white/20 transition-all duration-200 backdrop-blur-sm hover:scale-105"
                 data-testid="hero-join-elite-circle"
               >
-                Join Elite Circle
+                Join Free Newsletter
               </Button>
             </Link>
           </div>
