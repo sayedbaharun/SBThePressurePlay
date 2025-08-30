@@ -1,4 +1,6 @@
 import { Linkedin, Twitter, Instagram } from "lucide-react";
+import sayedImage from "@assets/IMG_3685_1756540300594.jpg";
+import patriceImage from "@assets/PE2_1756540349604.jpg";
 
 interface Presenter {
   name: string;
@@ -18,7 +20,7 @@ const presenters: Presenter[] = [
     name: "Sayed Baharun",
     role: "Co-Host & Performance Strategist",
     bio: "Elite performance coach and business strategist with over a decade of experience working with championship athletes and Fortune 500 executives. Sayed brings cutting-edge insights from the worlds of sports psychology, business optimization, and human performance.",
-    headshot: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+    headshot: sayedImage,
     expertise: ["Performance Psychology", "Business Strategy", "Leadership Development", "Elite Mindset Training"],
     socials: {
       linkedin: "#",
@@ -30,7 +32,7 @@ const presenters: Presenter[] = [
     name: "Patrice Evra",
     role: "Co-Host & Champion Mindset Expert",
     bio: "Former Manchester United captain and French national team legend. Patrice brings championship-level insights from the highest levels of professional sports, sharing the mindset and strategies that led to multiple Premier League titles and international success.",
-    headshot: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
+    headshot: patriceImage,
     expertise: ["Championship Mindset", "Team Leadership", "Elite Sports Performance", "Mental Resilience"],
     socials: {
       linkedin: "#",
