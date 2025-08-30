@@ -11,7 +11,41 @@
   --pp-coral: hsl(9, 100%, 69%); /* Hot Coral #FF6F61 */
   --pp-slate: hsl(228, 21%, 35%); /* Slate Grey #4A4E69 */
 
-  /* Hero Dark Theme (Primary) */
+  /* Light Theme */
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(248, 100%, 6%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(248, 100%, 6%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(248, 100%, 6%);
+  --primary: hsl(322, 100%, 55%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(185, 100%, 52%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(0, 0%, 96%);
+  --muted-foreground: hsl(0, 0%, 45%);
+  --accent: hsl(185, 100%, 52%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --border: hsl(0, 0%, 89%);
+  --input: hsl(0, 0%, 89%);
+  --ring: hsl(322, 100%, 55%);
+  --chart-1: hsl(322, 100%, 55%);
+  --chart-2: hsl(185, 100%, 52%);
+  --chart-3: hsl(262, 100%, 65%);
+  --chart-4: hsl(290, 100%, 70%);
+  --chart-5: hsl(200, 100%, 60%);
+  --radius: 0.75rem;
+
+  /* Typography */
+  --font-sans: "Inter", "Open Sans", sans-serif;
+  --font-display: "Inter", "General Sans", sans-serif;
+  --font-mono: "JetBrains Mono", "Menlo", monospace;
+}
+
+.dark {
+  /* Dark Theme */
   --background: hsl(248, 100%, 6%);
   --foreground: hsl(0, 0%, 95%);
   --card: hsl(248, 50%, 8%);
@@ -31,33 +65,6 @@
   --border: hsl(248, 20%, 18%);
   --input: hsl(248, 20%, 18%);
   --ring: hsl(322, 100%, 55%);
-  --chart-1: hsl(322, 100%, 55%);
-  --chart-2: hsl(185, 100%, 52%);
-  --chart-3: hsl(262, 100%, 65%);
-  --chart-4: hsl(290, 100%, 70%);
-  --chart-5: hsl(200, 100%, 60%);
-  --radius: 0.75rem;
-
-  /* Typography */
-  --font-sans: "Inter", "Open Sans", sans-serif;
-  --font-display: "Inter", "General Sans", sans-serif;
-  --font-mono: "JetBrains Mono", "Menlo", monospace;
-}
-
-.neon-theme {
-  /* Clutch Neons Theme (Alt/Promo) */
-  --background: hsl(248, 100%, 6%);
-  --foreground: hsl(0, 0%, 95%);
-  --card: hsl(248, 50%, 8%);
-  --card-foreground: hsl(0, 0%, 95%);
-  --primary: hsl(322, 100%, 55%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(185, 100%, 52%);
-  --secondary-foreground: hsl(248, 100%, 6%);
-  --accent: hsl(9, 100%, 69%);
-  --accent-foreground: hsl(248, 100%, 6%);
-  --muted: hsl(228, 21%, 35%);
-  --muted-foreground: hsl(0, 0%, 75%);
 }
 
 @layer base {

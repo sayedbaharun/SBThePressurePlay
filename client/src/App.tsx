@@ -10,6 +10,7 @@ import Guests from "@/pages/guests";
 import GuestDetail from "@/pages/guest-detail";
 import Watch from "@/pages/watch";
 import Listen from "@/pages/listen";
+import About from "@/pages/about";
 import Newsletter from "@/pages/newsletter";
 import Partners from "@/pages/partners";
 import Press from "@/pages/press";
@@ -29,6 +30,7 @@ function Router() {
       <Route path="/guests/:slug" component={GuestDetail} />
       <Route path="/watch" component={Watch} />
       <Route path="/listen" component={Listen} />
+      <Route path="/about" component={About} />
       <Route path="/newsletter" component={Newsletter} />
       <Route path="/partners" component={Partners} />
       <Route path="/press" component={Press} />

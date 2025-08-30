@@ -3,25 +3,25 @@ import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<'dark' | 'neon'>('dark');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'dark' | 'neon' || 'dark';
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' || 'dark';
     setTheme(savedTheme);
     updateTheme(savedTheme);
   }, []);
 
-  const updateTheme = (newTheme: 'dark' | 'neon') => {
+  const updateTheme = (newTheme: 'light' | 'dark') => {
     const root = document.documentElement;
-    root.classList.remove('neon-theme');
+    root.classList.remove('dark');
     
-    if (newTheme === 'neon') {
-      root.classList.add('neon-theme');
+    if (newTheme === 'dark') {
+      root.classList.add('dark');
     }
   };
 
   const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'neon' : 'dark';
+    const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
     updateTheme(newTheme);
@@ -35,10 +35,10 @@ export default function ThemeToggle() {
       className="p-2 rounded-lg hover:bg-muted transition-colors"
       data-testid="theme-toggle"
     >
-      {theme === 'dark' ? (
-        <Sun className="h-5 w-5" />
-      ) : (
+      {theme === 'light' ? (
         <Moon className="h-5 w-5" />
+      ) : (
+        <Sun className="h-5 w-5" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>

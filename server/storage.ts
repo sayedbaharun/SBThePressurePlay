@@ -156,6 +156,8 @@ export class MemStorage implements IStorage {
         topics: ["sports", "high-performance"],
         transcript: "Detailed transcript would be here...",
         highlights: [],
+        youtubeId: null,
+        audioUrl: null,
         featured: false
       },
       {
@@ -174,6 +176,8 @@ export class MemStorage implements IStorage {
         topics: ["business-strategy", "leadership"],
         transcript: "Detailed transcript would be here...",
         highlights: [],
+        youtubeId: null,
+        audioUrl: null,
         featured: false
       }
     ];
@@ -225,7 +229,21 @@ export class MemStorage implements IStorage {
 
   async createEpisode(insertEpisode: InsertEpisode): Promise<Episode> {
     const id = randomUUID();
-    const episode: Episode = { ...insertEpisode, id };
+    const episode: Episode = { 
+      ...insertEpisode, 
+      id,
+      number: insertEpisode.number ?? null,
+      cover: insertEpisode.cover ?? null,
+      duration: insertEpisode.duration ?? null,
+      platforms: insertEpisode.platforms ?? null,
+      guests: insertEpisode.guests ?? null,
+      topics: insertEpisode.topics ?? null,
+      transcript: insertEpisode.transcript ?? null,
+      highlights: insertEpisode.highlights ?? null,
+      youtubeId: insertEpisode.youtubeId ?? null,
+      audioUrl: insertEpisode.audioUrl ?? null,
+      featured: insertEpisode.featured ?? null
+    };
     this.episodes.set(id, episode);
     return episode;
   }
@@ -247,7 +265,16 @@ export class MemStorage implements IStorage {
 
   async createGuest(insertGuest: InsertGuest): Promise<Guest> {
     const id = randomUUID();
-    const guest: Guest = { ...insertGuest, id };
+    const guest: Guest = { 
+      ...insertGuest, 
+      id,
+      role: insertGuest.role ?? null,
+      bio: insertGuest.bio ?? null,
+      headshot: insertGuest.headshot ?? null,
+      socials: insertGuest.socials ?? null,
+      tags: insertGuest.tags ?? null,
+      episodeSlugs: insertGuest.episodeSlugs ?? null
+    };
     this.guests.set(id, guest);
     return guest;
   }
@@ -275,7 +302,8 @@ export class MemStorage implements IStorage {
     const message: ContactMessage = { 
       ...insertMessage, 
       id, 
-      createdAt: new Date() 
+      createdAt: new Date(),
+      subject: insertMessage.subject ?? null
     };
     this.contactMessages.set(id, message);
     return message;
@@ -296,7 +324,12 @@ export class MemStorage implements IStorage {
 
   async createTopic(insertTopic: InsertTopic): Promise<Topic> {
     const id = randomUUID();
-    const topic: Topic = { ...insertTopic, id };
+    const topic: Topic = { 
+      ...insertTopic, 
+      id,
+      description: insertTopic.description ?? null,
+      color: insertTopic.color ?? null
+    };
     this.topics.set(id, topic);
     return topic;
   }

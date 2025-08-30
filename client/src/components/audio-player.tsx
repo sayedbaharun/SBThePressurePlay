@@ -99,7 +99,7 @@ export default function AudioPlayer({ episode, isVisible = false, onClose }: Aud
     <>
       <audio
         ref={audioRef}
-        src={episode.audioUrl}
+        src={episode.audioUrl || undefined}
         preload="metadata"
       />
       
