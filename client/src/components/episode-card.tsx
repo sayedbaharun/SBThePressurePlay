@@ -21,7 +21,7 @@ export default function EpisodeCard({ episode, guests = [], onPlay }: EpisodeCar
   };
 
   return (
-    <Card className="card-hover bg-background border border-border rounded-2xl overflow-hidden group">
+    <div className="apple-card p-0 overflow-hidden group">
       <Link href={`/episodes/${episode.slug}`}>
         <div className="aspect-square relative">
           <img 
@@ -31,93 +31,97 @@ export default function EpisodeCard({ episode, guests = [], onPlay }: EpisodeCar
             data-testid={`episode-cover-${episode.slug}`}
           />
           <div className="absolute top-4 left-4">
-            <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm text-xs font-mono">
-              EP. {episode.number}
-            </Badge>
+            <div className="apple-card px-3 py-1 bg-background/90 backdrop-blur-sm">
+              <span className="text-caption font-mono">EP. {episode.number}</span>
+            </div>
           </div>
           <div className="absolute bottom-4 right-4">
-            <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm text-xs">
-              <Clock className="w-3 h-3 mr-1" />
-              {episode.duration} min
-            </Badge>
+            <div className="apple-card px-3 py-1 bg-background/90 backdrop-blur-sm">
+              <div className="flex items-center space-x-1">
+                <Clock className="w-3 h-3" />
+                <span className="text-caption">{episode.duration} min</span>
+              </div>
+            </div>
           </div>
-          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <Button
-              size="lg"
+          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+            <button
               onClick={handlePlay}
-              className="bg-primary/90 hover:bg-primary text-primary-foreground rounded-full w-16 h-16 p-0"
+              className="w-14 h-14 bg-primary/90 hover:bg-primary text-primary-foreground rounded-full flex items-center justify-center transition-all duration-200"
               data-testid={`episode-play-${episode.slug}`}
             >
-              <Play className="w-6 h-6 ml-1" />
-            </Button>
+              <Play className="w-5 h-5 ml-0.5" />
+            </button>
           </div>
         </div>
       </Link>
       
-      <CardContent className="p-6">
+      <div className="p-6 space-y-4">
         <Link href={`/episodes/${episode.slug}`}>
-          <h3 className="text-lg font-bold mb-2 line-clamp-2 hover:text-primary transition-colors" data-testid={`episode-title-${episode.slug}`}>
+          <h3 className="text-headline font-display line-clamp-2 hover:text-primary transition-colors duration-200" data-testid={`episode-title-${episode.slug}`}>
             {episode.title}
           </h3>
         </Link>
         
-        <p className="text-sm text-muted-foreground mb-4 line-clamp-3" data-testid={`episode-description-${episode.slug}`}>
+        <p className="text-caption text-muted-foreground line-clamp-3 leading-relaxed" data-testid={`episode-description-${episode.slug}`}>
           {episode.description}
         </p>
         
         {episodeGuests.length > 0 && (
-          <div className="flex items-center space-x-3 mb-4">
-            <div className="flex -space-x-2">
-              {episodeGuests.slice(0, 2).map((guest) => (
-                <div key={guest.id} className="w-8 h-8 rounded-full overflow-hidden border-2 border-background">
-                  <img 
-                    src={guest.headshot || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40"} 
-                    alt={guest.name}
-                    className="w-full h-full object-cover" 
-                  />
-                </div>
-              ))}
-            </div>
-            <div>
-              <p className="text-sm font-medium" data-testid={`episode-guests-${episode.slug}`}>
-                {episodeGuests.map(g => g.name).join(", ")}
-              </p>
-              {episodeGuests[0] && (
-                <p className="text-xs text-muted-foreground">{episodeGuests[0].role}</p>
-              )}
+          <div className="space-y-3">
+            <span className="text-caption text-muted-foreground">Featuring</span>
+            <div className="flex items-center space-x-3">
+              <div className="flex -space-x-2">
+                {episodeGuests.slice(0, 2).map((guest) => (
+                  <div key={guest.id} className="w-8 h-8 rounded-full overflow-hidden border-2 border-background">
+                    <img 
+                      src={guest.headshot || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40"} 
+                      alt={guest.name}
+                      className="w-full h-full object-cover" 
+                    />
+                  </div>
+                ))}
+              </div>
+              <div>
+                <p className="text-caption font-medium" data-testid={`episode-guests-${episode.slug}`}>
+                  {episodeGuests.map(g => g.name).join(", ")}
+                </p>
+                {episodeGuests[0] && (
+                  <p className="text-caption text-muted-foreground">{episodeGuests[0].role}</p>
+                )}
+              </div>
             </div>
           </div>
         )}
         
         {episode.topics && episode.topics.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-2">
             {episode.topics.slice(0, 3).map((topic) => (
-              <Badge key={topic} variant="outline" className="text-xs">
-                {topic.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
-              </Badge>
+              <div key={topic} className="apple-card px-3 py-1 bg-muted/50">
+                <span className="text-caption">
+                  {topic.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                </span>
+              </div>
             ))}
           </div>
         )}
         
-        <div className="flex justify-between items-center">
-          <span className="text-xs text-muted-foreground">
+        <div className="flex justify-between items-center pt-2 border-t border-border">
+          <span className="text-caption text-muted-foreground">
             {new Date(episode.publishedAt).toLocaleDateString('en-US', {
               month: 'short',
               day: 'numeric',
               year: 'numeric'
             })}
           </span>
-          <Button
-            variant="ghost"
-            size="sm"
+          <button
             onClick={handlePlay}
-            className="text-primary hover:text-primary/80 transition-colors p-2"
+            className="w-8 h-8 apple-card flex items-center justify-center text-primary hover:text-primary/80 transition-colors duration-200"
             data-testid={`episode-play-button-${episode.slug}`}
           >
             <Play className="w-4 h-4" />
-          </Button>
+          </button>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

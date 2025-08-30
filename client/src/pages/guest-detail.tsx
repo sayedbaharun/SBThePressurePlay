@@ -63,13 +63,13 @@ export default function GuestDetail() {
   };
 
   return (
-    <div className="min-h-screen bg-background py-20">
-      <div className="container mx-auto px-4 lg:px-6">
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-5">
         <div className="max-w-6xl mx-auto">
-          {/* Guest Profile Header */}
-          <div className="text-center mb-16">
-            <div className="relative inline-block mb-8">
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden mx-auto neon-border">
+          {/* Clean Guest Profile Header */}
+          <section className="content-section-large text-center">
+            <div className="mb-12">
+              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden mx-auto presenter-image">
                 <img 
                   src={guest.headshot || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"} 
                   alt={guest.name}
@@ -77,46 +77,45 @@ export default function GuestDetail() {
                   data-testid="guest-detail-avatar"
                 />
               </div>
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary to-secondary rounded-full blur-xl opacity-30 animate-glow"></div>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 font-display" data-testid="guest-detail-name">
+            <h1 className="text-display-1 font-display mb-6" data-testid="guest-detail-name">
               {guest.name}
             </h1>
             
             {guest.role && (
-              <p className="text-xl text-primary mb-6 font-medium" data-testid="guest-detail-role">
+              <p className="text-headline brand-text mb-8" data-testid="guest-detail-role">
                 {guest.role}
               </p>
             )}
 
             {guest.bio && (
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8" data-testid="guest-detail-bio">
+              <p className="text-body-large text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-12" data-testid="guest-detail-bio">
                 {guest.bio}
               </p>
             )}
 
-            {/* Tags */}
+            {/* Clean Tags */}
             {guest.tags && guest.tags.length > 0 && (
-              <div className="flex justify-center flex-wrap gap-2 mb-8">
+              <div className="flex justify-center flex-wrap gap-3 mb-12">
                 {guest.tags.map((tag) => (
-                  <Badge key={tag} variant="outline" className="px-3 py-1">
-                    {tag}
-                  </Badge>
+                  <div key={tag} className="apple-card px-4 py-2">
+                    <span className="text-caption">{tag}</span>
+                  </div>
                 ))}
               </div>
             )}
 
-            {/* Social Links */}
+            {/* Refined Social Links */}
             {guest.socials && Object.keys(guest.socials).length > 0 && (
-              <div className="flex justify-center space-x-4">
+              <div className="flex justify-center space-x-3">
                 {Object.entries(guest.socials).map(([platform, handle]) => (
                   <a
                     key={platform}
                     href={handle.startsWith('http') ? handle : `https://${platform}.com/${handle}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-muted hover:bg-muted/80 rounded-lg transition-colors"
+                    className="w-12 h-12 apple-card flex items-center justify-center transition-colors duration-200"
                     data-testid={`guest-social-${platform}`}
                   >
                     {getSocialIcon(platform)}
@@ -125,102 +124,187 @@ export default function GuestDetail() {
                 ))}
               </div>
             )}
-          </div>
+          </section>
 
           {/* Episodes Section */}
-          <div className="mb-16">
+          <section className="content-section">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text font-display">
-                Episodes Featuring {guest.name}
+              <h2 className="text-display-2 font-display mb-6">
+                <span className="brand-text">Episodes</span>
               </h2>
-              <p className="text-muted-foreground">
-                {guestEpisodes.length} episode{guestEpisodes.length !== 1 ? 's' : ''} featuring insights from {guest.name}
+              <p className="text-caption text-muted-foreground">
+                {guestEpisodes.length} episode{guestEpisodes.length !== 1 ? 's' : ''} featuring {guest.name}
               </p>
             </div>
 
             {episodesLoading ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {Array.from({ length: 3 }).map((_, i) => (
-                  <Card key={i} className="overflow-hidden">
+                  <div key={i} className="apple-card p-0 overflow-hidden">
                     <Skeleton className="aspect-square w-full" />
-                    <CardContent className="p-6">
-                      <Skeleton className="h-6 w-3/4 mb-2" />
-                      <Skeleton className="h-4 w-full mb-4" />
+                    <div className="p-6">
+                      <Skeleton className="h-6 w-3/4 mb-3" />
+                      <Skeleton className="h-4 w-full mb-2" />
                       <Skeleton className="h-4 w-1/2" />
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 ))}
               </div>
             ) : guestEpisodes.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {guestEpisodes.map((episode) => (
                   <EpisodeCard key={episode.id} episode={episode} />
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground">
-                  No episodes found featuring {guest.name}.
-                </p>
+              <div className="text-center py-20">
+                <div className="max-w-sm mx-auto">
+                  <h3 className="text-headline mb-3">No episodes yet</h3>
+                  <p className="text-caption text-muted-foreground">
+                    {guest.name} hasn't appeared on any episodes.
+                  </p>
+                </div>
               </div>
             )}
-          </div>
+          </section>
 
-          {/* About Section */}
-          <Card className="mb-16">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold mb-6 font-display">About {guest.name}</h3>
-              <div className="prose prose-invert max-w-none">
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {guest.bio || `${guest.name} is a renowned ${guest.role?.toLowerCase() || 'professional'} who has made significant contributions to their field. Through their appearances on The Pressure Play, they share valuable insights on performance, leadership, and innovation.`}
-                </p>
-                
-                {guest.role && (
-                  <div className="grid md:grid-cols-2 gap-8 mt-8">
-                    <div>
-                      <h4 className="text-lg font-semibold mb-3">Professional Role</h4>
-                      <p className="text-muted-foreground">{guest.role}</p>
+          {/* Podcast Links & Resources Section */}
+          <section className="content-section">
+            <div className="apple-card p-8">
+              <h3 className="text-display-2 font-display mb-8">
+                <span className="brand-text">Resources</span>
+              </h3>
+              
+              {/* Podcast Platform Links */}
+              <div className="mb-8">
+                <h4 className="text-headline mb-4">Listen to Episodes</h4>
+                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+                  <a 
+                    href="#" 
+                    className="apple-card p-4 text-center hover:bg-primary/10 transition-colors duration-200"
+                  >
+                    <div className="w-8 h-8 mx-auto mb-2">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-green-500">
+                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02z"/>
+                      </svg>
                     </div>
-                    {guest.tags && guest.tags.length > 0 && (
+                    <span className="text-caption">Spotify</span>
+                  </a>
+                  <a 
+                    href="#" 
+                    className="apple-card p-4 text-center hover:bg-primary/10 transition-colors duration-200"
+                  >
+                    <div className="w-8 h-8 mx-auto mb-2">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-gray-500">
+                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987"/>
+                      </svg>
+                    </div>
+                    <span className="text-caption">Apple Podcasts</span>
+                  </a>
+                  <a 
+                    href="#" 
+                    className="apple-card p-4 text-center hover:bg-primary/10 transition-colors duration-200"
+                  >
+                    <div className="w-8 h-8 mx-auto mb-2">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-red-500">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                      </svg>
+                    </div>
+                    <span className="text-caption">YouTube</span>
+                  </a>
+                  <a 
+                    href="#" 
+                    className="apple-card p-4 text-center hover:bg-primary/10 transition-colors duration-200"
+                  >
+                    <div className="w-8 h-8 mx-auto mb-2">
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-orange-500">
+                        <path d="M12 0A12 12 0 1 0 24 12A12.013 12.013 0 0 0 12 0ZM9.973 17.123H7.442V9.364h2.531Zm3.46 0h-2.53V9.364h2.53Z"/>
+                      </svg>
+                    </div>
+                    <span className="text-caption">Google Podcasts</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Episode Transcriptions */}
+              <div className="mb-8">
+                <h4 className="text-headline mb-4">Transcriptions</h4>
+                <div className="space-y-3">
+                  {guestEpisodes.length > 0 ? guestEpisodes.slice(0, 3).map((episode, index) => (
+                    <div key={episode.id} className="apple-card p-4 flex items-center justify-between">
                       <div>
-                        <h4 className="text-lg font-semibold mb-3">Areas of Expertise</h4>
+                        <h5 className="text-caption font-medium line-clamp-1">{episode.title}</h5>
+                        <p className="text-caption text-muted-foreground">Episode {episode.number}</p>
+                      </div>
+                      <a 
+                        href="#"
+                        className="apple-card px-4 py-2 text-caption hover:bg-primary/10 transition-colors duration-200"
+                      >
+                        Read Transcript
+                      </a>
+                    </div>
+                  )) : (
+                    <p className="text-caption text-muted-foreground">Transcriptions will be available when episodes are published.</p>
+                  )}
+                </div>
+              </div>
+
+              {/* About Section */}
+              <div>
+                <h4 className="text-headline mb-4">About {guest.name}</h4>
+                <div className="space-y-6">
+                  <p className="text-body-large text-muted-foreground leading-relaxed">
+                    {guest.bio || `${guest.name} is a renowned ${guest.role?.toLowerCase() || 'professional'} who has made significant contributions to their field. Through their appearances on The Pressure Play, they share valuable insights on performance, leadership, and innovation.`}
+                  </p>
+                  
+                  {guest.role && guest.tags && guest.tags.length > 0 && (
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div className="space-y-2">
+                        <h5 className="text-caption font-medium text-muted-foreground">Role</h5>
+                        <p className="text-caption">{guest.role}</p>
+                      </div>
+                      <div className="space-y-3">
+                        <h5 className="text-caption font-medium text-muted-foreground">Expertise</h5>
                         <div className="flex flex-wrap gap-2">
                           {guest.tags.map((tag) => (
-                            <Badge key={tag} variant="secondary" className="text-xs">
-                              {tag}
-                            </Badge>
+                            <div key={tag} className="apple-card px-3 py-1 bg-muted/50">
+                              <span className="text-caption">{tag}</span>
+                            </div>
                           ))}
                         </div>
                       </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Call to Action */}
-          <div className="text-center">
-            <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4 font-display">
-                  Enjoyed {guest.name}'s insights?
-                </h3>
-                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Discover more episodes featuring industry leaders, athletes, and innovators sharing 
-                  their strategies for peak performance.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                    Explore All Episodes
-                  </Button>
-                  <Button variant="outline" size="lg">
-                    View All Guests
-                  </Button>
+                    </div>
+                  )}
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Simple Call to Action */}
+          <section className="content-section text-center">
+            <div className="apple-card p-8 bg-muted/30">
+              <h3 className="text-display-2 font-display mb-6">
+                <span className="brand-text">Explore More</span>
+              </h3>
+              <p className="text-body-large text-muted-foreground mb-8 max-w-xl mx-auto">
+                Discover more conversations with industry leaders, athletes, and innovators.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a 
+                  href="/episodes"
+                  className="apple-card px-8 py-4 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-all duration-200"
+                >
+                  All Episodes
+                </a>
+                <a 
+                  href="/guests"
+                  className="apple-card px-8 py-4 font-medium transition-all duration-200"
+                >
+                  All Guests
+                </a>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
