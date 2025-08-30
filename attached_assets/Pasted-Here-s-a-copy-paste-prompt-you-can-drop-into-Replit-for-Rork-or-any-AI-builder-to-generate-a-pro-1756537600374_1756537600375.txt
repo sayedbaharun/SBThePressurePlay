@@ -1,0 +1,265 @@
+Here’s a copy-paste prompt you can drop into Replit (for “Rork” or any AI-builder) to generate a production-ready website for The Pressure Play.
+
+⸻
+
+Build a Production-Ready Website for The Pressure Play
+
+Role & Standards
+
+You are an expert web designer & full-stack engineer with 20+ years experience at Apple and Google. You build pixel-perfect, accessible, blazing-fast websites with world-class UX, meticulous systems design, and beautiful typography. You think in design systems, deliver clean, documented code, and ship with CI/CD, analytics, SEO, and structured content in place.
+
+Project Overview
+
+Create the official website for The Pressure Play — a high-impact podcast/media platform blending elite performance, business, AI, and sport. The site must feel premium, modern, and social-first with strong editorial visuals and motion.
+
+Tech Stack (required)
+	•	Next.js 14+ (App Router)
+	•	TypeScript
+	•	Tailwind CSS (+ CSS variables for theme tokens)
+	•	shadcn/ui (Radix primitives)
+	•	Framer Motion (subtle, performant motion)
+	•	Zod (validation)
+	•	Supabase (auth + DB for forms/newsletter backup) OR Sanity (for CMS). Prefer Sanity as headless CMS; fall back to MDX if needed.
+	•	Vercel deployment (preview + production)
+	•	Plausible or Google Analytics v4
+	•	ESLint + Prettier + Husky + lint-staged
+
+If Sanity is used, scaffold a /studio route and schemas as below.
+
+Brand & Assets (use these exactly)
+	•	Logos & visuals are available locally. Expect these file names:
+	•	/public/brand/The Pressure Play - Black Logo Transparent.png
+	•	/public/brand/The Pressure Play - White Logo Transparent.png
+	•	/public/brand/The Pressure Play - Stacked Logo Transparent.png
+	•	/public/brand/The Pressure Play - Horizontal Logo Transparent.png
+	•	/public/brand/The Pressure Play - Full Horizontal Logo Transparent.png
+	•	/public/brand/The Pressure Play - Monochrome Logo.png
+	•	/public/brand/The Pressure Play - High Resolution Podcast Cover.png
+	•	/public/brand/The Pressure Play - App Icon.png
+	•	/public/brand/The Pressure Play - Color Palette Page.png
+	•	/public/brand/The Pressure Play - Graphic Elements Page.png
+
+Color System (tokens)
+
+Create Tailwind CSS variables for:
+	•	--pp-ink (primary on dark)
+	•	--pp-bg (base background)
+	•	--pp-accent (signature accent)
+	•	--pp-accent-2, --pp-muted, --pp-border, --pp-warn
+Load palette from the brand pages. Provide two accessible themes:
+
+	1.	Hero Dark (primary theme): deep midnight base with luminous accents
+	2.	Clutch Neons (alt / promo):
+	•	Deep Midnight #0D0221
+	•	Neon Magenta #FF1B6B
+	•	Electric Cyan #05F0FF
+	•	Hot Coral #FF6F61
+	•	Slate Grey #4A4E69
+Include a theme toggle.
+
+Typography
+	•	Display: General Sans or Satoshi (or equivalent, self-hosted)
+	•	Body: Inter
+	•	Numeric/Code: JetBrains Mono (for stats/episode numbers)
+Set fluid type scales, tight rhythm, and optical size where supported.
+
+Logo Rules
+	•	Favor Horizontal Logo in nav and footers, Stacked for hero/cards.
+	•	Clearspace = height of the letter “P”.
+	•	Never distort or apply drop shadows to marks.
+
+Information Architecture (Sitemap)
+	•	/ Home (hero, latest episode, trailer video, newsletter capture)
+	•	/episodes (paginated grid + filters)
+	•	/episodes/[slug] (player, show notes, guests, transcript, share cards)
+	•	/guests (directory with profiles)
+	•	/watch (YouTube playlist embeds, shorts grid)
+	•	/listen (Spotify/Apple/Google links + follow CTA)
+	•	/newsletter (subscribe + archive)
+	•	/partners (sponsorship deck highlights, inquiry form)
+	•	/press (press kit, logos, downloadable assets)
+	•	/contact (booking & general form)
+	•	/playbook (long-form essays/resources; MDX)
+	•	/privacy, /terms, /cookies
+	•	/studio (Sanity Studio, protected route)
+
+Key Features (ship all)
+	1.	Episode System
+	•	Fetch from CMS and/or import from a podcast RSS URL (configurable).
+	•	Fields: title, number, slug, description, cover, duration, publish date, platforms (Spotify/Apple/YouTube URLs), guests[], topics[], transcript (portable text/MDX), highlights (timestamped), social assets.
+	•	Generate OpenGraph images per episode (dynamic OG via /api/og/episode).
+	2.	Guest Profiles
+	•	Fields: name, role, bio, headshot, socials, episodes[] relation, tags (sport, AI, business, etc.).
+	•	Guest page auto-lists appearances.
+	3.	Search & Filter
+	•	Fast client search (Fuse.js) + server filters by topic, guest, year.
+	4.	Newsletter
+	•	Primary: form posts to Supabase (table newsletter_subscribers) and mail provider webhook (abstract service).
+	•	Double opt-in screens & success/failure states.
+	5.	Contact & Booking
+	•	Zod-validated forms → Supabase contact_messages.
+	•	Optional email via Resend/SendGrid.
+	6.	Transcripts
+	•	Accessible transcript viewer with timestamps and jump-to-segment.
+	•	Auto-generate shareable quote snippets + deep links (?t=mm:ss).
+	7.	Social & Sharing
+	•	Twitter/X, LinkedIn, WhatsApp, Threads buttons.
+	•	/api/og/ routes for dynamic share images site-wide.
+	8.	SEO & Speed
+	•	Metadata API in Next 14, JSON-LD (PodcastSeries, PodcastEpisode, Person), sitemap.xml, robots.txt.
+	•	Image optimization, prefetch strategies, 90+ Lighthouse across PWA/Perf/SEO/A11y.
+	9.	Accessibility
+	•	Radix primitives, focus rings, skip links, color contrast ≥ 4.5:1, reduced-motion support.
+	10.	Analytics & GDPR
+
+	•	Plausible or GA4; cookie banner with minimal tracking mode.
+
+	11.	Design System
+
+	•	Tokens in CSS variables, Tailwind config, shadcn component presets (Card, Button, Badge, Dialog, Sheet, Tabs, Tooltip, Pagination).
+	•	Reusable EpisodeCard, GuestCard, AudioPlayer, TranscriptBlock, NewsletterForm, SocialShare, Tag, Stat.
+
+	12.	CMS Schemas (Sanity)
+
+	•	episode, guest, topic, resource, pressAsset, siteSettings.
+	•	Portable Text blocks with callouts, quotes, code, tweet embeds.
+
+	13.	Audio Player
+
+	•	Sticky mini-player on route change; supports YouTube/Spotify embeds and direct MP3 when provided.
+
+	14.	Press Kit
+
+	•	Downloadable logos (SVG/PNG), color specs, host bios, show description, approved photos, usage guidelines.
+
+	15.	Partners Page
+
+	•	Sponsorship tiers, audience metrics, inquiry form, downloadable 1-pager PDF (auto-generated from data).
+
+Pages: Content & UX Notes
+	•	Home:
+	•	Cinematic hero using High Resolution Podcast Cover as focal visual (masked gradient overlay).
+	•	“Latest Episode” large card + “Start here” curated starter trio.
+	•	Rolling marquee of topics (AI • Leadership • High Performance • Strategy).
+	•	Newsletter block with social proof and 1-line privacy note.
+	•	Episode Detail:
+	•	Left: Player, show notes, highlights; Right: Guest card(s), share, topics, newsletter.
+	•	Transcript section with in-page search and “copy quote” button.
+	•	Guests:
+	•	Grid with filter chips; each card has motion on hover (lift, glow accent).
+	•	Press:
+	•	Grid of downloadable assets, clear brand rules, contact for media.
+
+Data Models (TypeScript)
+
+Create types/interfaces for:
+
+type PlatformLink = { label: 'Spotify'|'Apple'|'YouTube'|'Google'|'RSS'|'Website'; url: string };
+type TopicTag = { slug: string; title: string };
+
+interface Guest {
+  _id: string; name: string; role?: string; bio?: string;
+  headshot?: string; socials?: Record<string,string>;
+  tags?: string[]; episodeSlugs?: string[];
+}
+interface Episode {
+  _id: string; number?: number; slug: string; title: string;
+  description: string; cover?: string; duration?: number;
+  publishedAt: string; platforms?: PlatformLink[];
+  guests?: string[]; topics?: TopicTag[]; transcript?: any;
+  highlights?: { t: string; text: string }[];
+  youtubeId?: string; audioUrl?: string;
+}
+interface ContactMessage { name: string; email: string; subject?: string; message: string; }
+
+File Structure
+
+/app
+  /(site)/layout.tsx
+  /(site)/page.tsx
+  /episodes/page.tsx
+  /episodes/[slug]/page.tsx
+  /guests/page.tsx
+  /guests/[slug]/page.tsx
+  /watch/page.tsx
+  /listen/page.tsx
+  /newsletter/page.tsx
+  /partners/page.tsx
+  /press/page.tsx
+  /contact/page.tsx
+  /playbook/page.tsx
+  /privacy/page.tsx
+  /terms/page.tsx
+  /cookies/page.tsx
+  /api/subscribe/route.ts
+  /api/contact/route.ts
+  /api/og/episode/route.tsx
+  /api/og/site/route.tsx
+/components
+  AudioPlayer.tsx EpisodeCard.tsx GuestCard.tsx TranscriptBlock.tsx
+  NewsletterForm.tsx SocialShare.tsx Tag.tsx Stat.tsx
+  SiteHeader.tsx SiteFooter.tsx ThemeToggle.tsx
+/lib
+  cms.ts rss.ts seo.ts og.ts sanity.ts supabase.ts validators.ts
+/styles
+  globals.css tailwind.css
+/public/brand (assets)
+/sanity (schemas if using Sanity)
+/scripts (seeders, rss import)
+
+Environment Variables (.env.local template)
+
+NEXT_PUBLIC_SITE_URL=https://thepressureplay.com
+NEXT_PUBLIC_ANALYTICS=plausible
+SANITY_PROJECT_ID=
+SANITY_DATASET=production
+SANITY_READ_TOKEN=
+SANITY_WRITE_TOKEN=
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
+RESEND_API_KEY=
+PODCAST_RSS_URL=
+
+Commands
+	•	pnpm dlx create-next-app@latest (if not scaffolded)
+	•	pnpm add -D tailwindcss postcss autoprefixer eslint prettier husky lint-staged @types/node @types/react
+	•	pnpm add next@latest react react-dom typescript framer-motion zod class-variance-authority lucide-react
+	•	pnpm add @sanity/client next-sanity (if using Sanity)
+	•	pnpm add @supabase/supabase-js (if using Supabase)
+	•	pnpm add next-plausible or GA4 alternative
+	•	Initialize shadcn/ui and generate base components.
+
+Content Seeding
+	•	Provide a scripts/seed.ts that:
+	1.	Reads /public/brand/* to confirm assets present.
+	2.	Imports PODCAST_RSS_URL (if set) and creates Episode entries in CMS/JSON.
+	3.	Seeds 3 demo guest profiles and 6 topics.
+	•	Provide pnpm seed script.
+
+CI/CD
+	•	GitHub Actions for typecheck, lint, build.
+	•	Vercel project with Preview Deploys per PR.
+	•	Protect main branch.
+
+QA & Acceptance Criteria
+	•	Performance: ≥ 90 on Lighthouse (Mobile) for Performance, A11y, Best Practices, SEO.
+	•	A11y: Keyboard nav, aria labels, semantic landmarks, focus management.
+	•	Brand: Uses provided logos & color tokens; correct spacing & logo rules.
+	•	SEO: Correct <head> via Next Metadata API, OG images, JSON-LD for PodcastSeries/Episode, sitemap.xml, robots.txt.
+	•	Content: Episodes list and detail render properly with transcript and share.
+	•	Forms: Newsletter and Contact submit with validation + success/error states; data lands in Supabase tables; email optional via Resend.
+	•	Theming: Dark (default) + Neon promo theme toggle persists via localStorage.
+	•	Docs: README.md with setup, env vars, commands, and brand usage notes.
+	•	No dead links, CLS < 0.05, images lazy-loaded, responsive across breakpoints.
+
+Stretch (nice-to-have if time allows)
+	•	RSS importer cron (Vercel cron) to pull new episodes nightly.
+	•	Shareable clip generator: create timestamped URL snippets.
+	•	Sponsor 1-pager PDF: server route to render PDF from /partners data.
+
+Deliverables
+	1.	Full Next.js repo with the structure above, assets wired, and CMS configured.
+	2.	Deployed preview URL + instructions to connect a custom domain.
+	3.	A short Loom or markdown walkthrough of decisions and how to edit content.
+
+Build now. Ask no questions. If any asset is missing, create tasteful placeholders consistent with the brand. Ship a complete, working site with the criteria above.
