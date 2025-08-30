@@ -19,27 +19,27 @@ export default function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
-      <div className="container mx-auto px-4 lg:px-6">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">P</span>
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-md">
+      <div className="container mx-auto px-5">
+        <div className="flex items-center justify-between h-20">
+          {/* Refined Logo */}
+          <Link href="/" className="flex items-center space-x-4">
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center">
+              <span className="text-white font-bold text-lg">P</span>
             </div>
-            <span className="text-xl font-bold gradient-text font-display">THE PRESSURE PLAY</span>
+            <span className="text-headline font-display brand-text">THE PRESSURE PLAY</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          {/* Clean Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-sm transition-colors hover:text-foreground ${
+                className={`text-caption font-medium transition-colors duration-200 ${
                   location === item.href
-                    ? "text-foreground font-medium"
-                    : "text-muted-foreground"
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
                 data-testid={`nav-link-${item.name.toLowerCase()}`}
               >
