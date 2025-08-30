@@ -9,7 +9,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0">
         <div className="relative w-full h-full">
           <iframe
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playlist=dQw4w9WgXcQ"
+            src="https://www.youtube.com/embed/wz1r_VJaJZw?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playlist=wz1r_VJaJZw"
             title="The Pressure Play Hero Video"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ 
