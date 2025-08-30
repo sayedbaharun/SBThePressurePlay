@@ -19,6 +19,7 @@ import {
   Crown
 } from "lucide-react";
 import type { NewsletterSubscriber } from "@shared/schema";
+import executiveImage from "@assets/generated_images/Executive_leadership_portrait_1a759e03.png";
 
 const benefits = [
   {
@@ -146,8 +147,18 @@ export default function Newsletter() {
           </div>
 
           {/* Subscription Form */}
-          <Card className="mb-16 bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
-            <CardContent className="p-8">
+          <Card className="mb-16 bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20 relative overflow-hidden">
+            {/* Background Image */}
+            <div className="absolute right-0 top-0 w-1/3 h-full opacity-20">
+              <img
+                src={executiveImage}
+                alt=""
+                className="w-full h-full object-cover object-left"
+              />
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-background"></div>
+            </div>
+            
+            <CardContent className="p-8 relative z-10">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="text-center mb-6">
                   <h2 className="text-2xl font-bold mb-2 font-display">
@@ -215,46 +226,6 @@ export default function Newsletter() {
             </div>
           </div>
 
-          {/* Newsletter Archive */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-8 text-center font-display">
-              Recent Editions
-            </h2>
-            <div className="space-y-6">
-              {pastEditions.map((edition, index) => (
-                <Card key={index} className="border border-border">
-                  <CardContent className="p-6">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                      <div>
-                        <h3 className="text-lg font-bold mb-2" data-testid={`edition-title-${index}`}>
-                          {edition.title}
-                        </h3>
-                        <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-3">
-                          <Calendar className="w-4 h-4" />
-                          <span>{edition.date}</span>
-                        </div>
-                      </div>
-                      <Button variant="outline" size="sm" className="md:ml-4">
-                        View Archive
-                      </Button>
-                    </div>
-                    
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
-                      {edition.excerpt}
-                    </p>
-                    
-                    <div className="flex flex-wrap gap-2">
-                      {edition.topics.map((topic) => (
-                        <Badge key={topic} variant="secondary" className="text-xs">
-                          {topic}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
 
           {/* Testimonials */}
           <div className="mb-16">

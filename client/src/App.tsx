@@ -15,6 +15,9 @@ import Newsletter from "@/pages/newsletter";
 import Partners from "@/pages/partners";
 import Press from "@/pages/press";
 import Contact from "@/pages/contact";
+import Privacy from "@/pages/privacy";
+import Terms from "@/pages/terms";
+import Cookies from "@/pages/cookies";
 import NotFound from "@/pages/not-found";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
@@ -35,6 +38,9 @@ function Router() {
       <Route path="/partners" component={Partners} />
       <Route path="/press" component={Press} />
       <Route path="/contact" component={Contact} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/cookies" component={Cookies} />
       <Route component={NotFound} />
     </Switch>
   );

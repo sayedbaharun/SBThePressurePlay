@@ -1,4 +1,5 @@
 import { Download, Users, Award, TrendingUp } from "lucide-react";
+import aiTechImage from "@assets/generated_images/AI_technology_visualization_b1aabb4b.png";
 
 const stats = [
   {
@@ -29,8 +30,18 @@ const stats = [
 
 export default function ValuePropositionStrip() {
   return (
-    <section className="content-section-small bg-primary/5">
-      <div className="container mx-auto px-5">
+    <section className="content-section-small bg-primary/5 relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 opacity-10">
+        <img
+          src={aiTechImage}
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background"></div>
+      </div>
+      
+      <div className="container mx-auto px-5 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (

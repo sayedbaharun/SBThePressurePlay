@@ -27,6 +27,7 @@ import {
   Globe,
   CheckCircle
 } from "lucide-react";
+import workspaceImage from "@assets/generated_images/Professional_workspace_analytics_setup_8664576a.png";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -68,12 +69,6 @@ const contactInfo = [
     description: "General inquiries and support"
   },
   {
-    icon: <Mic className="w-6 h-6" />,
-    label: "Guest Booking",
-    value: "guests@thepressureplay.com",
-    description: "Podcast guest applications"
-  },
-  {
     icon: <Building className="w-6 h-6" />,
     label: "Partnerships",
     value: "partners@thepressureplay.com",
@@ -95,7 +90,6 @@ const responseTime = {
 };
 
 export default function Contact() {
-  const [activeTab, setActiveTab] = useState<"contact" | "booking">("contact");
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -195,7 +189,17 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
       <div className="container mx-auto px-4 lg:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 relative overflow-hidden">
+            {/* Background Image */}
+            <div className="absolute inset-0 opacity-10 -z-10">
+              <img
+                src={workspaceImage}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/80"></div>
+            </div>
+            
             <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text font-display">
               Get In Touch
             </h1>
@@ -208,10 +212,6 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
                 <Clock className="w-4 h-4 mr-2" />
                 24hr Response Time
               </Badge>
-              <Badge variant="secondary" className="px-4 py-2">
-                <Users className="w-4 h-4 mr-2" />
-                Guest Applications Open
-              </Badge>
             </div>
           </div>
 
@@ -220,7 +220,7 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
             <h2 className="text-2xl font-bold mb-8 text-center font-display">
               Contact Information
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               {contactInfo.map((info) => (
                 <Card key={info.label} className="text-center">
                   <CardContent className="p-6">
@@ -242,35 +242,10 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
             </div>
           </div>
 
-          {/* Tab Navigation */}
-          <div className="mb-8">
-            <div className="flex justify-center space-x-1 bg-muted p-1 rounded-lg max-w-md mx-auto">
-              <Button
-                variant={activeTab === "contact" ? "default" : "ghost"}
-                onClick={() => setActiveTab("contact")}
-                className="flex-1"
-                data-testid="contact-tab"
-              >
-                <MessageSquare className="w-4 h-4 mr-2" />
-                General Contact
-              </Button>
-              <Button
-                variant={activeTab === "booking" ? "default" : "ghost"}
-                onClick={() => setActiveTab("booking")}
-                className="flex-1"
-                data-testid="booking-tab"
-              >
-                <Mic className="w-4 h-4 mr-2" />
-                Guest Booking
-              </Button>
-            </div>
-          </div>
-
-          {/* Forms */}
+          {/* Contact Form */}
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Form Content */}
-            <div className="lg:col-span-2">
-              {activeTab === "contact" ? (
+            <div className="lg:col-span-2">(
                 <Card>
                   <CardContent className="p-8">
                     <div className="mb-6">
@@ -368,200 +343,6 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
                     </Form>
                   </CardContent>
                 </Card>
-              ) : (
-                <Card>
-                  <CardContent className="p-8">
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-bold mb-2 font-display">Guest Application</h3>
-                      <p className="text-muted-foreground">
-                        Interested in being a guest on The Pressure Play? Tell us about yourself and your expertise.
-                      </p>
-                    </div>
-
-                    <Form {...bookingForm}>
-                      <form onSubmit={bookingForm.handleSubmit(onBookingSubmit)} className="space-y-6">
-                        <div className="grid md:grid-cols-2 gap-4">
-                          <FormField
-                            control={bookingForm.control}
-                            name="name"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Full Name *</FormLabel>
-                                <FormControl>
-                                  <Input placeholder="Your full name" {...field} data-testid="booking-name-input" />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                          <FormField
-                            control={bookingForm.control}
-                            name="email"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Email *</FormLabel>
-                                <FormControl>
-                                  <Input type="email" placeholder="your@email.com" {...field} data-testid="booking-email-input" />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </div>
-
-                        <div className="grid md:grid-cols-2 gap-4">
-                          <FormField
-                            control={bookingForm.control}
-                            name="company"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Company/Organization</FormLabel>
-                                <FormControl>
-                                  <Input placeholder="Your company name" {...field} data-testid="booking-company-input" />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                          <FormField
-                            control={bookingForm.control}
-                            name="role"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Role/Title *</FormLabel>
-                                <FormControl>
-                                  <Input placeholder="e.g. CEO, Olympic Athlete, AI Researcher" {...field} data-testid="booking-role-input" />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </div>
-
-                        <FormField
-                          control={bookingForm.control}
-                          name="expertise"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Area of Expertise *</FormLabel>
-                              <FormControl>
-                                <Input placeholder="e.g. AI, Leadership, Sports Performance, Business Strategy" {...field} data-testid="booking-expertise-input" />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={bookingForm.control}
-                          name="achievements"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Notable Achievements *</FormLabel>
-                              <FormControl>
-                                <Textarea 
-                                  placeholder="Tell us about your most significant accomplishments, awards, recognition, or career highlights..."
-                                  className="min-h-[100px]"
-                                  {...field}
-                                  data-testid="booking-achievements-input"
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={bookingForm.control}
-                          name="topics"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Potential Discussion Topics *</FormLabel>
-                              <FormControl>
-                                <Textarea 
-                                  placeholder="What topics could you discuss on the show? What insights could you share with our audience of high performers?"
-                                  className="min-h-[100px]"
-                                  {...field}
-                                  data-testid="booking-topics-input"
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <div className="grid md:grid-cols-2 gap-4">
-                          <FormField
-                            control={bookingForm.control}
-                            name="previousMedia"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Previous Media Experience</FormLabel>
-                                <FormControl>
-                                  <Textarea 
-                                    placeholder="List any previous podcast, TV, or speaking appearances..."
-                                    className="min-h-[80px]"
-                                    {...field}
-                                    data-testid="booking-media-input"
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                          <FormField
-                            control={bookingForm.control}
-                            name="socialMedia"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Social Media/Website</FormLabel>
-                                <FormControl>
-                                  <Textarea 
-                                    placeholder="Your website, LinkedIn, Twitter, or other relevant links..."
-                                    className="min-h-[80px]"
-                                    {...field}
-                                    data-testid="booking-social-input"
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </div>
-
-                        <FormField
-                          control={bookingForm.control}
-                          name="additionalInfo"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Additional Information</FormLabel>
-                              <FormControl>
-                                <Textarea 
-                                  placeholder="Anything else you'd like us to know about you or your story..."
-                                  className="min-h-[80px]"
-                                  {...field}
-                                  data-testid="booking-additional-input"
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <Button 
-                          type="submit" 
-                          className="w-full" 
-                          disabled={bookingMutation.isPending}
-                          data-testid="booking-submit-button"
-                        >
-                          <Calendar className="w-5 h-5 mr-2" />
-                          {bookingMutation.isPending ? "Submitting..." : "Submit Guest Application"}
-                        </Button>
-                      </form>
-                    </Form>
-                  </CardContent>
-                </Card>
-              )}
             </div>
 
             {/* Sidebar */}
@@ -577,13 +358,6 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
                         <span className="text-sm">General Inquiries</span>
                       </div>
                       <span className="text-sm text-muted-foreground">{responseTime.general}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <Mic className="w-4 h-4 text-primary" />
-                        <span className="text-sm">Guest Applications</span>
-                      </div>
-                      <span className="text-sm text-muted-foreground">{responseTime.booking}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
@@ -603,48 +377,6 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
                 </CardContent>
               </Card>
 
-              {/* Guest Requirements */}
-              {activeTab === "booking" && (
-                <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-bold mb-4 font-display">
-                      Guest Requirements
-                    </h3>
-                    <div className="space-y-3 text-sm">
-                      <div className="flex items-start space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                          Recognized expertise in your field
-                        </span>
-                      </div>
-                      <div className="flex items-start space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                          Compelling story or unique insights
-                        </span>
-                      </div>
-                      <div className="flex items-start space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                          Available for 60-75 minute recording
-                        </span>
-                      </div>
-                      <div className="flex items-start space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                          Quality audio/video setup for remote recording
-                        </span>
-                      </div>
-                      <div className="flex items-start space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-muted-foreground">
-                          Willing to promote episode on social media
-                        </span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
 
               {/* FAQ */}
               <Card>
@@ -667,12 +399,6 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
                       </p>
                     </div>
                     <Separator />
-                    <div>
-                      <h4 className="font-semibold mb-1">What's the guest selection process?</h4>
-                      <p className="text-muted-foreground">
-                        We review applications based on expertise, story relevance, and audience alignment.
-                      </p>
-                    </div>
                   </div>
                 </CardContent>
               </Card>

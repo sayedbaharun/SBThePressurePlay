@@ -7,6 +7,7 @@ import { ExternalLink, Play, Rss, Smartphone, Headphones, Youtube, Video } from 
 import EpisodeCard from "@/components/episode-card";
 import NewsletterSection from "@/components/newsletter-section";
 import type { Episode } from "@shared/schema";
+import stadiumImage from "@assets/generated_images/Championship_stadium_sunset_view_ff2f8695.png";
 
 const audioPlatforms = [
   {
@@ -93,17 +94,28 @@ export default function Listen() {
       <div className="container mx-auto px-5">
         <div className="max-w-6xl mx-auto">
           {/* Clean Header */}
-          <section className="content-section-large text-center">
-            <h1 className="text-display-1 font-display mb-8">
-              <span className="brand-text">Listen & Watch</span>
-            </h1>
-            <p className="text-body-large text-muted-foreground max-w-2xl mx-auto mb-12">
-              Experience The Pressure Play your way. Choose audio-only for multitasking or full video for the complete experience.
-            </p>
+          <section className="content-section-large text-center relative overflow-hidden">
+            {/* Background Image */}
+            <div className="absolute inset-0 opacity-15">
+              <img
+                src={stadiumImage}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/90 to-background"></div>
+            </div>
             
-            {/* Audio/Video Toggle */}
-            <div className="flex justify-center mb-12">
-              <div className="apple-card p-1 flex">
+            <div className="relative z-10">
+              <h1 className="text-display-1 font-display mb-8">
+                <span className="brand-text">Listen & Watch</span>
+              </h1>
+              <p className="text-body-large text-muted-foreground max-w-2xl mx-auto mb-12">
+                Experience The Pressure Play your way. Choose audio-only for multitasking or full video for the complete experience.
+              </p>
+              
+              {/* Audio/Video Toggle */}
+              <div className="flex justify-center mb-12">
+                <div className="apple-card p-1 flex">
                 <button
                   onClick={() => setActiveTab("audio")}
                   className={`px-6 py-3 rounded-lg text-caption font-medium transition-all duration-200 ${
@@ -126,6 +138,7 @@ export default function Listen() {
                   <Video className="w-4 h-4 mr-2 inline" />
                   Video
                 </button>
+                </div>
               </div>
             </div>
           </section>

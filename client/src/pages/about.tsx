@@ -1,5 +1,7 @@
 import sayedImage from "@assets/IMG_3685_1756540300594.jpg";
 import patriceImage from "@assets/PE2_1756540349604.jpg";
+import podcastStudioImage from "@assets/generated_images/Professional_podcast_studio_setup_80248453.png";
+import businessTeamImage from "@assets/generated_images/Business_team_strategy_session_5c675323.png";
 
 const presenters = [
   {
@@ -116,8 +118,18 @@ export default function About() {
       </section>
 
       {/* Clean Mission Statement */}
-      <section className="content-section bg-muted/30">
-        <div className="container mx-auto text-center max-w-4xl">
+      <section className="content-section bg-muted/30 relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src={podcastStudioImage}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/70"></div>
+        </div>
+        
+        <div className="container mx-auto text-center max-w-4xl relative z-10">
           <h2 className="text-display-2 font-display mb-8">
             <span className="brand-text">Our Mission</span>
           </h2>

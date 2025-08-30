@@ -102,9 +102,7 @@ export default function SiteFooter() {
               <h3 className="font-semibold mb-4">Episodes</h3>
               <ul className="space-y-2">
                 <li><Link href="/episodes" className="text-muted-foreground hover:text-foreground transition-colors">Latest Episodes</Link></li>
-                <li><Link href="/episodes" className="text-muted-foreground hover:text-foreground transition-colors">Browse by Topic</Link></li>
                 <li><Link href="/guests" className="text-muted-foreground hover:text-foreground transition-colors">Featured Guests</Link></li>
-                <li><Link href="/episodes" className="text-muted-foreground hover:text-foreground transition-colors">Episode Archive</Link></li>
               </ul>
             </div>
 
@@ -114,7 +112,6 @@ export default function SiteFooter() {
               <ul className="space-y-2">
                 <li><Link href="/newsletter" className="text-muted-foreground hover:text-foreground transition-colors">Newsletter</Link></li>
                 <li><Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link></li>
-                <li><Link href="/press" className="text-muted-foreground hover:text-foreground transition-colors">Press Kit</Link></li>
                 <li><Link href="/partners" className="text-muted-foreground hover:text-foreground transition-colors">Partners</Link></li>
               </ul>
             </div>
@@ -147,9 +144,9 @@ export default function SiteFooter() {
               © 2024 The Pressure Play. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
-              <Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
-              <Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Terms of Service</Link>
-              <Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Cookie Policy</Link>
+              <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms of Service</Link>
+              <Link href="/cookies" className="text-muted-foreground hover:text-foreground transition-colors">Cookie Policy</Link>
             </div>
           </div>
         </div>
