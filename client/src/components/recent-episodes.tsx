@@ -32,36 +32,32 @@ export default function RecentEpisodes({ episodes, guests }: RecentEpisodesProps
   };
 
   return (
-    <section className="py-20 bg-card">
-      <div className="container mx-auto px-4 lg:px-6">
+    <section className="content-section">
+      <div className="container mx-auto px-5">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text font-display">
-                Recent Episodes
-              </h2>
-              <p className="text-muted-foreground">
-                Explore our latest conversations on performance, innovation, and success.
-              </p>
-            </div>
+          <div className="text-center mb-16">
+            <h2 className="text-display-2 font-display mb-6">
+              <span className="brand-text">Recent Episodes</span>
+            </h2>
+            <p className="text-body-large text-muted-foreground max-w-2xl mx-auto mb-8">
+              Explore our latest conversations on performance, innovation, and success.
+            </p>
             
             {/* Filter Tabs */}
-            <div className="flex flex-wrap gap-2 mt-6 md:mt-0">
+            <div className="flex flex-wrap justify-center gap-2">
               {topicFilters.map((filter) => (
-                <Button
+                <button
                   key={filter.value}
-                  variant={activeFilter === filter.value ? "default" : "secondary"}
-                  size="sm"
                   onClick={() => setActiveFilter(filter.value)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  className={`apple-card px-4 py-2 text-caption font-medium transition-colors duration-200 ${
                     activeFilter === filter.value
                       ? "bg-primary text-primary-foreground"
-                      : "bg-muted text-muted-foreground hover:bg-muted/80"
+                      : "hover:bg-muted/50"
                   }`}
                   data-testid={`filter-${filter.value}`}
                 >
                   {filter.label}
-                </Button>
+                </button>
               ))}
             </div>
           </div>
