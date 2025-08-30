@@ -1,13 +1,14 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Play, Rss, Smartphone, Headphones } from "lucide-react";
+import { ExternalLink, Play, Rss, Smartphone, Headphones, Youtube, Video } from "lucide-react";
 import EpisodeCard from "@/components/episode-card";
 import NewsletterSection from "@/components/newsletter-section";
 import type { Episode } from "@shared/schema";
 
-const platforms = [
+const audioPlatforms = [
   {
     name: "Spotify",
     description: "Stream on the world's largest music platform",
@@ -45,8 +46,27 @@ const platforms = [
     bgColor: "bg-blue-500/10 border-blue-500/20",
   },
   {
+    name: "Overcast",
+    description: "Premium podcast app for iOS",
+    url: "https://overcast.fm/itunes/thepressureplay",
+    icon: <Headphones className="w-8 h-8" />,
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10 border-orange-500/20",
+  },
+];
+
+const videoPlatforms = [
+  {
+    name: "YouTube",
+    description: "Watch full episodes with video",
+    url: "https://youtube.com/@thepressureplay",
+    icon: <Youtube className="w-8 h-8" />,
+    color: "text-red-500",
+    bgColor: "bg-red-500/10 border-red-500/20",
+  },
+  {
     name: "YouTube Music",
-    description: "Listen with YouTube Premium",
+    description: "Audio-only with YouTube Premium",
     url: "https://music.youtube.com/playlist?list=thepressureplay",
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -56,196 +76,238 @@ const platforms = [
     color: "text-red-500",
     bgColor: "bg-red-500/10 border-red-500/20",
   },
-  {
-    name: "Overcast",
-    description: "Premium podcast app for iOS",
-    url: "https://overcast.fm/itunes/thepressureplay",
-    icon: <Headphones className="w-8 h-8" />,
-    color: "text-orange-500",
-    bgColor: "bg-orange-500/10 border-orange-500/20",
-  },
-  {
-    name: "Pocket Casts",
-    description: "Cross-platform podcast player",
-    url: "https://pca.st/thepressureplay",
-    icon: <Smartphone className="w-8 h-8" />,
-    color: "text-purple-500",
-    bgColor: "bg-purple-500/10 border-purple-500/20",
-  },
 ];
 
 export default function Listen() {
+  const [activeTab, setActiveTab] = useState<"audio" | "video">("audio");
+  
   const { data: episodes = [], isLoading } = useQuery<Episode[]>({
     queryKey: ["/api/episodes"],
   });
 
   const featuredEpisodes = episodes.slice(0, 3);
+  const videoEpisodes = episodes.filter(episode => episode.youtubeId);
 
   return (
-    <div className="min-h-screen bg-background py-20">
-      <div className="container mx-auto px-4 lg:px-6">
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-5">
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text font-display">
-              Listen Everywhere
+          {/* Clean Header */}
+          <section className="content-section-large text-center">
+            <h1 className="text-display-1 font-display mb-8">
+              <span className="brand-text">Listen & Watch</span>
             </h1>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              The Pressure Play is available on all major podcast platforms. Choose your preferred 
-              listening experience and never miss an episode.
+            <p className="text-body-large text-muted-foreground max-w-2xl mx-auto mb-12">
+              Experience The Pressure Play your way. Choose audio-only for multitasking or full video for the complete experience.
             </p>
-            <div className="flex justify-center space-x-4">
-              <Badge variant="secondary" className="px-4 py-2">
-                <Rss className="w-4 h-4 mr-2" />
-                50+ Episodes
-              </Badge>
-              <Badge variant="secondary" className="px-4 py-2">
-                <Play className="w-4 h-4 mr-2" />
-                2M+ Downloads
-              </Badge>
+            
+            {/* Audio/Video Toggle */}
+            <div className="flex justify-center mb-12">
+              <div className="apple-card p-1 flex">
+                <button
+                  onClick={() => setActiveTab("audio")}
+                  className={`px-6 py-3 rounded-lg text-caption font-medium transition-all duration-200 ${
+                    activeTab === "audio"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <Headphones className="w-4 h-4 mr-2 inline" />
+                  Audio
+                </button>
+                <button
+                  onClick={() => setActiveTab("video")}
+                  className={`px-6 py-3 rounded-lg text-caption font-medium transition-all duration-200 ${
+                    activeTab === "video"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <Video className="w-4 h-4 mr-2 inline" />
+                  Video
+                </button>
+              </div>
             </div>
-          </div>
+          </section>
 
           {/* Platform Grid */}
-          <div className="mb-20">
-            <h2 className="text-2xl font-bold mb-8 text-center font-display">
-              Choose Your Platform
+          <section className="content-section">
+            <h2 className="text-display-2 font-display text-center mb-12">
+              <span className="brand-text">
+                {activeTab === "audio" ? "Audio" : "Video"} Platforms
+              </span>
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {platforms.map((platform) => (
-                <Card key={platform.name} className={`${platform.bgColor} border transition-all duration-300 hover:scale-105`}>
-                  <CardContent className="p-6">
+              {(activeTab === "audio" ? audioPlatforms : videoPlatforms).map((platform) => (
+                <div key={platform.name} className={`apple-card p-0 overflow-hidden ${platform.bgColor} border transition-all duration-200 hover:scale-105`}>
+                  <div className="p-6">
                     <div className="flex items-start space-x-4">
                       <div className={`${platform.color} flex-shrink-0`}>
                         {platform.icon}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-bold mb-2" data-testid={`platform-${platform.name.toLowerCase().replace(' ', '-')}`}>
+                        <h3 className="text-headline font-display mb-2" data-testid={`platform-${platform.name.toLowerCase().replace(' ', '-')}`}>
                           {platform.name}
                         </h3>
-                        <p className="text-sm text-muted-foreground mb-4">
+                        <p className="text-caption text-muted-foreground mb-4">
                           {platform.description}
                         </p>
-                        <Button
-                          variant="outline"
-                          size="sm"
+                        <button
                           onClick={() => window.open(platform.url, '_blank')}
-                          className="w-full"
+                          className="w-full apple-card px-4 py-3 text-caption font-medium hover:bg-primary/10 transition-colors duration-200"
                           data-testid={`listen-on-${platform.name.toLowerCase().replace(' ', '-')}`}
                         >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Listen Now
-                        </Button>
+                          <ExternalLink className="w-4 h-4 mr-2 inline" />
+                          {activeTab === "audio" ? "Listen Now" : "Watch Now"}
+                        </button>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
-          </div>
+          </section>
 
-          {/* RSS Feed */}
-          <Card className="mb-20 bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
-            <CardContent className="p-8 text-center">
-              <Rss className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-4 font-display">
-                Use Your Own Podcast App?
-              </h3>
-              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Copy our RSS feed URL and add it to any podcast application of your choice. 
-                Perfect for custom setups and professional podcast managers.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                <div className="flex-1 p-3 bg-background rounded-lg border text-sm font-mono text-muted-foreground">
-                  https://feeds.thepressureplay.com/rss
+          {/* Featured Video Section (only show when video tab is active) */}
+          {activeTab === "video" && videoEpisodes.length > 0 && (
+            <section className="content-section">
+              <h2 className="text-display-2 font-display text-center mb-12">
+                <span className="brand-text">Featured Video</span>
+              </h2>
+              <div className="apple-card p-0 overflow-hidden">
+                <div className="aspect-video relative">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${videoEpisodes[0].youtubeId}`}
+                    title={videoEpisodes[0].title}
+                    className="w-full h-full"
+                    allowFullScreen
+                    data-testid="featured-video"
+                  />
                 </div>
-                <Button 
-                  variant="outline"
-                  onClick={() => {
-                    navigator.clipboard.writeText('https://feeds.thepressureplay.com/rss');
-                  }}
-                  data-testid="copy-rss-feed"
-                >
-                  Copy RSS
-                </Button>
+                <div className="p-6">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-3 mb-3">
+                        <div className="apple-card px-3 py-1">
+                          <span className="text-caption font-mono">EP. {videoEpisodes[0].number}</span>
+                        </div>
+                        <div className="flex items-center text-muted-foreground text-caption">
+                          <Play className="w-3 h-3 mr-1" />
+                          {videoEpisodes[0].duration} min
+                        </div>
+                      </div>
+                      <h3 className="text-headline font-display mb-3" data-testid="featured-video-title">
+                        {videoEpisodes[0].title}
+                      </h3>
+                      <p className="text-caption text-muted-foreground line-clamp-2">
+                        {videoEpisodes[0].description}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => window.open(`https://www.youtube.com/watch?v=${videoEpisodes[0].youtubeId}`, '_blank')}
+                      className="ml-4 apple-card px-4 py-3 text-caption font-medium"
+                      data-testid="watch-on-youtube"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2 inline" />
+                      Watch on YouTube
+                    </button>
+                  </div>
+                </div>
               </div>
-            </CardContent>
-          </Card>
+            </section>
+          )}
+
+          {/* RSS Feed (only show for audio) */}
+          {activeTab === "audio" && (
+            <section className="content-section">
+              <div className="apple-card p-8 text-center bg-muted/30">
+                <Rss className="w-12 h-12 text-primary mx-auto mb-6" />
+                <h3 className="text-display-2 font-display mb-6">
+                  <span className="brand-text">Custom Setup</span>
+                </h3>
+                <p className="text-body-large text-muted-foreground mb-8 max-w-2xl mx-auto">
+                  Use your preferred podcast app? Copy our RSS feed URL and add it to any application.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                  <div className="flex-1 apple-card p-3 font-mono text-caption text-muted-foreground">
+                    https://feeds.thepressureplay.com/rss
+                  </div>
+                  <button 
+                    onClick={() => {
+                      navigator.clipboard.writeText('https://feeds.thepressureplay.com/rss');
+                    }}
+                    className="apple-card px-4 py-3 text-caption font-medium"
+                    data-testid="copy-rss-feed"
+                  >
+                    Copy RSS
+                  </button>
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Latest Episodes */}
-          <div className="mb-20">
+          <section className="content-section">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 gradient-text font-display">
-                Latest Episodes
+              <h2 className="text-display-2 font-display mb-6">
+                <span className="brand-text">Latest Episodes</span>
               </h2>
-              <p className="text-muted-foreground">
-                Start with our most recent conversations and work your way back through our archive.
+              <p className="text-caption text-muted-foreground">
+                Start with our most recent conversations.
               </p>
             </div>
 
             {isLoading ? (
-              <div className="grid md:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-3 gap-6">
                 {Array.from({ length: 3 }).map((_, i) => (
-                  <Card key={i} className="overflow-hidden">
+                  <div key={i} className="apple-card p-0 overflow-hidden">
                     <div className="aspect-square bg-muted animate-pulse" />
-                    <CardContent className="p-6">
+                    <div className="p-6">
                       <div className="h-6 bg-muted rounded mb-2 animate-pulse" />
                       <div className="h-4 bg-muted rounded mb-4 animate-pulse" />
                       <div className="h-4 bg-muted rounded w-1/2 animate-pulse" />
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 ))}
               </div>
             ) : (
-              <div className="grid md:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-3 gap-6">
                 {featuredEpisodes.map((episode) => (
                   <EpisodeCard key={episode.id} episode={episode} />
                 ))}
               </div>
             )}
-          </div>
+          </section>
 
-          {/* Stats */}
-          <div className="grid md:grid-cols-4 gap-8 mb-20 text-center">
-            <div className="p-6">
-              <h3 className="text-3xl font-bold gradient-text font-display mb-2">50+</h3>
-              <p className="text-muted-foreground">Episodes Available</p>
-            </div>
-            <div className="p-6">
-              <h3 className="text-3xl font-bold gradient-text font-display mb-2">2M+</h3>
-              <p className="text-muted-foreground">Total Downloads</p>
-            </div>
-            <div className="p-6">
-              <h3 className="text-3xl font-bold gradient-text font-display mb-2">12</h3>
-              <p className="text-muted-foreground">Platforms Available</p>
-            </div>
-            <div className="p-6">
-              <h3 className="text-3xl font-bold gradient-text font-display mb-2">4.9★</h3>
-              <p className="text-muted-foreground">Average Rating</p>
-            </div>
-          </div>
-
-          {/* Call to Action */}
-          <Card>
-            <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold mb-4 font-display">
-                Start Listening Today
+          {/* Simple Call to Action */}
+          <section className="content-section text-center">
+            <div className="apple-card p-8 bg-muted/30">
+              <h3 className="text-display-2 font-display mb-6">
+                <span className="brand-text">Start Today</span>
               </h3>
-              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Join millions of listeners who trust The Pressure Play for insights on performance, 
-                leadership, and innovation. Pick your platform and dive into our archive.
+              <p className="text-body-large text-muted-foreground mb-8 max-w-xl mx-auto">
+                Pick your platform and dive into our archive of performance insights.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  <Play className="w-5 h-5 mr-2" />
-                  Start with Latest Episode
-                </Button>
-                <Button variant="outline" size="lg">
+                <a 
+                  href="/episodes"
+                  className="apple-card px-8 py-4 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-all duration-200"
+                >
+                  <Play className="w-4 h-4 mr-2 inline" />
                   Browse All Episodes
-                </Button>
+                </a>
+                {activeTab === "video" && (
+                  <button
+                    onClick={() => window.open('https://youtube.com/@thepressureplay?sub_confirmation=1', '_blank')}
+                    className="apple-card px-8 py-4 font-medium transition-all duration-200"
+                  >
+                    <Youtube className="w-4 h-4 mr-2 inline" />
+                    Subscribe on YouTube
+                  </button>
+                )}
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </section>
         </div>
       </div>
 

@@ -8,10 +8,8 @@ import { Menu, X } from "lucide-react";
 const navigation = [
   { name: "Episodes", href: "/episodes" },
   { name: "Guests", href: "/guests" },
-  { name: "Watch", href: "/watch" },
   { name: "Listen", href: "/listen" },
   { name: "About", href: "/about" },
-  { name: "Partners", href: "/partners" },
 ];
 
 export default function SiteHeader() {
