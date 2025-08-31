@@ -2,10 +2,36 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import ThemeToggle from "./theme-toggle";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, Play, Users, BookOpen, Calendar, Mail, Info } from "lucide-react";
 
-const navigation = [
+const navigationDropdowns = [
+  {
+    name: "Explore",
+    items: [
+      { name: "Episodes", href: "/episodes", icon: Play, description: "Latest conversations" },
+      { name: "Champions", href: "/guests", icon: Users, description: "Featured guests" },
+      { name: "Playbook", href: "/playbook", icon: BookOpen, description: "Frameworks & methodology" },
+    ]
+  },
+  {
+    name: "Connect", 
+    items: [
+      { name: "Live Events", href: "/events", icon: Calendar, description: "Masterclasses & workshops" },
+      { name: "Elite Circle", href: "/newsletter", icon: Mail, description: "Free newsletter" },
+      { name: "About", href: "/about", icon: Info, description: "Meet the co-founders" },
+    ]
+  }
+];
+
+// Flattened navigation for mobile
+const mobileNavigation = [
   { name: "Episodes", href: "/episodes" },
   { name: "Champions", href: "/guests" },
   { name: "Playbook", href: "/playbook" },
@@ -30,21 +56,37 @@ export default function SiteHeader() {
             <span className="text-headline font-display brand-text">THE PRESSURE PLAY</span>
           </Link>
 
-          {/* Clean Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`text-caption font-medium transition-colors duration-200 ${
-                  location === item.href
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-                data-testid={`nav-link-${item.name.toLowerCase()}`}
-              >
-                {item.name}
-              </Link>
+          {/* Condensed Desktop Navigation with Dropdowns */}
+          <nav className="hidden md:flex items-center space-x-6">
+            {navigationDropdowns.map((dropdown) => (
+              <DropdownMenu key={dropdown.name}>
+                <DropdownMenuTrigger className="flex items-center space-x-1 text-caption font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 focus:outline-none">
+                  <span>{dropdown.name}</span>
+                  <ChevronDown className="w-4 h-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-64">
+                  {dropdown.items.map((item) => {
+                    const IconComponent = item.icon;
+                    return (
+                      <DropdownMenuItem key={item.name} asChild>
+                        <Link 
+                          href={item.href}
+                          className={`flex items-center space-x-3 p-3 cursor-pointer ${
+                            location === item.href ? "bg-muted" : ""
+                          }`}
+                          data-testid={`dropdown-link-${item.name.toLowerCase()}`}
+                        >
+                          <IconComponent className="w-4 h-4 text-primary" />
+                          <div className="flex-1">
+                            <div className="font-medium">{item.name}</div>
+                            <div className="text-xs text-muted-foreground">{item.description}</div>
+                          </div>
+                        </Link>
+                      </DropdownMenuItem>
+                    );
+                  })}
+                </DropdownMenuContent>
+              </DropdownMenu>
             ))}
           </nav>
 
@@ -74,7 +116,7 @@ export default function SiteHeader() {
                     </Button>
                   </div>
                   <nav className="flex flex-col space-y-2">
-                    {navigation.map((item) => (
+                    {mobileNavigation.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
