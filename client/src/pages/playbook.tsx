@@ -147,8 +147,110 @@ export default function Playbook() {
         </div>
       </section>
 
-      {/* Framework Overview */}
+      {/* Champion's Advantage Pillars */}
       <section className="content-section">
+        <div className="container mx-auto px-5">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-display-2 font-display mb-6">
+                <span className="brand-text">The Champion's Advantage</span>
+              </h2>
+              <p className="text-body-large text-muted-foreground max-w-3xl mx-auto">
+                What separates champions from competitors? We decode the mindset, strategies, and systems 
+                used at the highest levels of sports, business, and innovation.
+              </p>
+            </div>
+
+            {/* Champion Mindset Pillars */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+              <div className="apple-card p-8 text-center group hover:scale-105 transition-all duration-300">
+                <div className="mb-6 flex justify-center">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Target className="w-8 h-8 text-primary" />
+                  </div>
+                </div>
+                <h3 className="text-headline font-display mb-4">Elite Performance Psychology</h3>
+                <p className="text-body text-muted-foreground leading-relaxed">
+                  Mental frameworks used by champions to perform under extreme pressure and maintain consistency at the highest levels.
+                </p>
+              </div>
+
+              <div className="apple-card p-8 text-center group hover:scale-105 transition-all duration-300">
+                <div className="mb-6 flex justify-center">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Brain className="w-8 h-8 text-accent" />
+                  </div>
+                </div>
+                <h3 className="text-headline font-display mb-4">Strategic Decision Making</h3>
+                <p className="text-body text-muted-foreground leading-relaxed">
+                  Decision-making methodologies that separate elite leaders from the competition in high-stakes environments.
+                </p>
+              </div>
+
+              <div className="apple-card p-8 text-center group hover:scale-105 transition-all duration-300">
+                <div className="mb-6 flex justify-center">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Zap className="w-8 h-8 text-secondary" />
+                  </div>
+                </div>
+                <h3 className="text-headline font-display mb-4">AI-Powered Optimization</h3>
+                <p className="text-body text-muted-foreground leading-relaxed">
+                  Cutting-edge technology integration for performance enhancement and data-driven competitive advantages.
+                </p>
+              </div>
+
+              <div className="apple-card p-8 text-center group hover:scale-105 transition-all duration-300">
+                <div className="mb-6 flex justify-center">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Trophy className="w-8 h-8 text-primary" />
+                  </div>
+                </div>
+                <h3 className="text-headline font-display mb-4">Global Leadership Insights</h3>
+                <p className="text-body text-muted-foreground leading-relaxed">
+                  Leadership principles that scale across cultures, industries, and competitive environments worldwide.
+                </p>
+              </div>
+            </div>
+
+            {/* Co-Founder Insights */}
+            <div className="space-y-8">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="apple-card p-6 bg-gradient-to-r from-primary/5 to-accent/5">
+                  <blockquote className="text-body font-medium mb-3 text-foreground/90">
+                    "Most people think pressure is the enemy. Champions know it's the catalyst. That's the difference we teach."
+                  </blockquote>
+                  <cite className="text-small text-muted-foreground">
+                    — Sayed Baharun, Co-Founder & Performance Architect
+                  </cite>
+                </div>
+                
+                <div className="apple-card p-6 bg-gradient-to-r from-accent/5 to-primary/5">
+                  <blockquote className="text-body font-medium mb-3 text-foreground/90">
+                    "Pressure is a privilege. It's where champions are made and legends are born."
+                  </blockquote>
+                  <cite className="text-small text-muted-foreground">
+                    — Patrice Evra, Co-Founder & Champion Validator
+                  </cite>
+                </div>
+              </div>
+              
+              <div className="text-center">
+                <div className="apple-card p-6 bg-gradient-to-r from-primary/10 to-accent/10 max-w-3xl mx-auto">
+                  <blockquote className="text-headline font-display mb-4 text-foreground/90 italic">
+                    "When you combine championship mindset with strategic innovation, you get breakthrough results in any field."
+                  </blockquote>
+                  <cite className="text-caption text-muted-foreground">
+                    — Sayed & Patrice, The Pressure Play Co-Founders
+                  </cite>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Framework Overview */}
+      <section className="content-section bg-muted/30">
         <div className="container mx-auto px-5">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
