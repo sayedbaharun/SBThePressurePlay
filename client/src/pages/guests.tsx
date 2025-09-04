@@ -45,11 +45,11 @@ export default function Guests() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text font-display">
-              Featured Guests
+              Game Changers
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Industry leaders, championship athletes, and visionary entrepreneurs who have shaped their fields 
-              and shared their insights on The Pressure Play.
+              Champions from both arenas who've discovered they face identical pressures. 
+              Athletes and CEOs sharing how the same strategies work in locker rooms and boardrooms.
             </p>
           </div>
 

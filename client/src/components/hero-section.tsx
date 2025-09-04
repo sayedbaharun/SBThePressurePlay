@@ -42,24 +42,24 @@ export default function HeroSection() {
           
           <div className="mb-8">
             <p className="text-headline text-white/90 mb-4 font-medium">
-              Where the locker room meets the boardroom — and the future
+              Same pressure, different arena
             </p>
             <p className="text-body-large text-white/70 mb-8">
-              Championship mindset × Business mastery × AI innovation
+              Where locker room champions and boardroom leaders discover they're fighting the same battles
             </p>
             
             {/* Co-Founders Introduction */}
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 max-w-3xl mx-auto mb-12">
-              <h3 className="text-caption font-medium text-white/90 mb-4">Founded by Champions in Their Fields</h3>
+              <h3 className="text-caption font-medium text-white/90 mb-4">Bridging Two Worlds, One Mindset</h3>
               <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                 <div className="text-center">
                   <div className="text-body font-medium text-white">Sayed Baharun</div>
-                  <div className="text-small text-white/70">Performance Architect & AI Strategist</div>
+                  <div className="text-small text-white/70">Boardroom Champion & AI Pioneer</div>
                 </div>
                 <div className="text-white/60 font-bold text-xl">×</div>
                 <div className="text-center">
                   <div className="text-body font-medium text-white">Patrice Evra</div>
-                  <div className="text-small text-white/70">Manchester United Legend</div>
+                  <div className="text-small text-white/70">Locker Room Legend & Business Leader</div>
                 </div>
               </div>
             </div>
@@ -89,13 +89,13 @@ export default function HeroSection() {
             </Link>
           </div>
 
-          {/* Championship Pillars Display */}
+          {/* Parallel Pressure Points */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {[
-              "🏆 Elite Performance", 
-              "🎯 Strategic Decision Making", 
-              "🤖 AI-Powered Optimization", 
-              "🌍 Global Leadership"
+              "🏆 Clutch Moments", 
+              "⚡ High-Stakes Decisions", 
+              "🤖 AI Game Changers", 
+              "🔄 Parallel Worlds"
             ].map((pillar) => (
               <div key={pillar} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 text-center hover:bg-white/20 transition-all duration-200 hover:scale-105">
                 <span className="text-caption text-white/90 font-medium">{pillar}</span>

@@ -25,66 +25,66 @@ import {
 const frameworkPillars = [
   {
     icon: Brain,
-    title: "Neuroscience Foundation",
-    description: "Understanding the brain science behind pressure performance",
-    content: "Discover how elite performers rewire their neural pathways to thrive under pressure. Learn the specific neuroscience techniques that separate champions from competitors.",
-    techniques: ["Stress Inoculation Training", "Cognitive Load Management", "Neural Pathway Optimization", "Pressure Response Conditioning"]
+    title: "Parallel Pressure Psychology",
+    description: "The identical mental frameworks athletes and CEOs use",
+    content: "Discover how penalty takers and IPO decision-makers use the exact same neural pathways. The brain doesn't know if you're wearing a jersey or a suit—pressure is pressure.",
+    techniques: ["Cross-Arena Mental Models", "Pressure Universality Principles", "Arena-Agnostic Conditioning", "Parallel Performance States"]
   },
   {
     icon: Target,
-    title: "Strategic Execution",
-    description: "Converting mindset into measurable business outcomes",
-    content: "Bridge the gap between championship thinking and business results. Master the frameworks that turn pressure moments into breakthrough opportunities.",
-    techniques: ["Goal Cascade Methodology", "Performance Metrics Design", "Execution Under Pressure", "Strategic Decision Making"]
+    title: "Same Strategy, Different Field",
+    description: "Proven tactics that work in both locker rooms and boardrooms",
+    content: "Learn execution frameworks that championship athletes and Fortune 500 leaders use identically. Same pressure protocols, different uniforms.",
+    techniques: ["Universal Execution Models", "Cross-Arena Goal Setting", "Parallel Decision Trees", "Unified Performance Metrics"]
   },
   {
     icon: Zap,
-    title: "AI-Powered Optimization",
-    description: "Leveraging technology to amplify human performance",
-    content: "Integrate AI tools and analytics to enhance decision-making, pattern recognition, and performance tracking at elite levels.",
-    techniques: ["Performance Analytics", "Pattern Recognition AI", "Decision Support Systems", "Predictive Modeling"]
+    title: "AI Game Changers",
+    description: "How technology transforms both sports and business identically",
+    content: "Athletes and CEOs are using the same AI tools for competitive advantage. Pattern recognition, performance optimization, and strategic intelligence work the same in both worlds.",
+    techniques: ["Dual-Arena Analytics", "Cross-Platform AI Tools", "Parallel Intelligence Systems", "Universal Tech Integration"]
   },
   {
     icon: Trophy,
-    title: "Championship Application",
-    description: "Real-world validation from elite sports and business",
-    content: "Apply proven principles from Premier League victories, Fortune 500 boardrooms, and championship moments to your domain.",
-    techniques: ["Pressure Moment Analysis", "Champion Case Studies", "Victory Pattern Recognition", "Elite Performer Modeling"]
+    title: "Bridge Builder Application",
+    description: "Translating strategies between worlds",
+    content: "Apply championship strategies from sports to business and business frameworks to athletic performance. Both worlds share identical success principles.",
+    techniques: ["Arena Translation Methods", "Parallel Success Patterns", "Cross-Training Protocols", "Universal Victory Frameworks"]
   }
 ];
 
 const masterclasses = [
   {
-    title: "The 90th Minute Mindset",
-    instructor: "Patrice Evra",
-    description: "How to perform when everything is on the line",
+    title: "Same Pressure, Different Arena",
+    instructor: "Patrice Evra & Sayed Baharun",
+    description: "How penalty kicks and IPO decisions use identical mental frameworks",
     duration: "45 min",
     level: "All Levels",
-    topics: ["Clutch Performance", "Late-Game Psychology", "Pressure Privilege", "Winning Moments"]
+    topics: ["Parallel Pressure Moments", "Universal Mental Strategies", "Cross-Arena Psychology", "Shared Success Principles"]
   },
   {
-    title: "Neuroscience of Elite Decision Making",
+    title: "Boardroom Meets Locker Room",
     instructor: "Sayed Baharun", 
-    description: "The science behind championship choices",
+    description: "Business strategies that work in sports (and vice versa)",
     duration: "60 min",
     level: "Advanced",
-    topics: ["Cognitive Load Theory", "Decision Architecture", "Neural Optimization", "Performance States"]
+    topics: ["Strategy Translation", "Parallel Decision Making", "Cross-Training Methods", "Universal Frameworks"]
   },
   {
-    title: "AI Strategy for Champions",
+    title: "AI Champions from Both Worlds",
     instructor: "Sayed Baharun",
-    description: "Leveraging technology for competitive advantage",
+    description: "How athletes and CEOs use identical AI tools",
     duration: "50 min", 
     level: "Intermediate",
-    topics: ["Performance Analytics", "AI Decision Support", "Data-Driven Optimization", "Tech Integration"]
+    topics: ["Dual-Arena Analytics", "Shared AI Strategies", "Cross-Platform Intelligence", "Universal Tech Advantage"]
   },
   {
-    title: "Building Champion Teams",
+    title: "Bridge Builder Leadership",
     instructor: "Patrice Evra & Sayed Baharun",
-    description: "Creating high-performance cultures",
+    description: "Leading across arenas with universal principles",
     duration: "75 min",
     level: "Leadership",
-    topics: ["Team Chemistry", "Performance Culture", "Leadership Under Pressure", "Championship Mentality"]
+    topics: ["Cross-Arena Leadership", "Universal Team Building", "Parallel Culture Creation", "Bridge-Building Mindset"]
   }
 ];
 

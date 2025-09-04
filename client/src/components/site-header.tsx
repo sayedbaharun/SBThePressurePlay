@@ -13,19 +13,19 @@ import { Menu, X, ChevronDown, Play, Users, BookOpen, Calendar, Mail, Info } fro
 
 const navigationDropdowns = [
   {
-    name: "Explore",
+    name: "Parallel Worlds",
     items: [
-      { name: "Episodes", href: "/episodes", icon: Play, description: "Latest conversations" },
-      { name: "Champions", href: "/guests", icon: Users, description: "Featured guests" },
-      { name: "Playbook", href: "/playbook", icon: BookOpen, description: "Frameworks & methodology" },
+      { name: "Episodes", href: "/episodes", icon: Play, description: "Athletes & CEOs sharing insights" },
+      { name: "Game Changers", href: "/guests", icon: Users, description: "Champions from both arenas" },
+      { name: "Pressure Principles", href: "/playbook", icon: BookOpen, description: "Same strategies, different fields" },
     ]
   },
   {
-    name: "Connect", 
+    name: "Community", 
     items: [
-      { name: "Live Events", href: "/events", icon: Calendar, description: "Masterclasses & workshops" },
-      { name: "Elite Circle", href: "/newsletter", icon: Mail, description: "Free newsletter" },
-      { name: "About", href: "/about", icon: Info, description: "Meet the co-founders" },
+      { name: "Locker Room Boardroom", href: "/events", icon: Calendar, description: "Live sessions with both worlds" },
+      { name: "Pressure Academy", href: "/newsletter", icon: Mail, description: "Learn parallel strategies" },
+      { name: "Bridge Builders", href: "/about", icon: Info, description: "Meet your guides" },
     ]
   }
 ];
@@ -33,11 +33,11 @@ const navigationDropdowns = [
 // Flattened navigation for mobile
 const mobileNavigation = [
   { name: "Episodes", href: "/episodes" },
-  { name: "Champions", href: "/guests" },
-  { name: "Playbook", href: "/playbook" },
-  { name: "Live Events", href: "/events" },
-  { name: "Elite Circle", href: "/newsletter" },
-  { name: "About", href: "/about" },
+  { name: "Game Changers", href: "/guests" },
+  { name: "Pressure Principles", href: "/playbook" },
+  { name: "Locker Room Boardroom", href: "/events" },
+  { name: "Pressure Academy", href: "/newsletter" },
+  { name: "Bridge Builders", href: "/about" },
 ];
 
 export default function SiteHeader() {

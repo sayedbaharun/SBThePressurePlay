@@ -9,10 +9,11 @@ export default function PresenterTeaser() {
       <div className="container mx-auto px-5">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-display-2 font-display mb-6">
-            <span className="brand-text">Your Co-Founders</span>
+            <span className="brand-text">Your Bridge Builders</span>
           </h2>
           <p className="text-body-large text-muted-foreground mb-12">
-            Two champions from different worlds, united by a shared mission to unlock human potential.
+            Two champions who discovered the boardroom and locker room face identical pressures. 
+            Now they're bridging both worlds to share what works everywhere.
           </p>
           
           <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -25,9 +26,9 @@ export default function PresenterTeaser() {
                 />
               </div>
               <h3 className="text-headline font-display mb-2">Sayed Baharun</h3>
-              <p className="text-body text-muted-foreground mb-3">Co-Founder & Performance Architect</p>
+              <p className="text-body text-muted-foreground mb-3">Boardroom Champion & AI Pioneer</p>
               <p className="text-small text-muted-foreground">
-                Visionary behind The Pressure Play concept combining neuroscience, business strategy, and AI innovation.
+                Brings boardroom strategies to the locker room, proving executive decisions and athletic choices use identical mental frameworks.
               </p>
             </div>
             
@@ -40,9 +41,9 @@ export default function PresenterTeaser() {
                 />
               </div>
               <h3 className="text-headline font-display mb-2">Patrice Evra</h3>
-              <p className="text-body text-muted-foreground mb-3">Co-Founder & Champion Validator</p>
+              <p className="text-body text-muted-foreground mb-3">Locker Room Legend & Business Leader</p>
               <p className="text-small text-muted-foreground">
-                5x Premier League Champion bringing championship credibility and global platform.
+                Brings championship psychology to the boardroom, showing how title-winning mentality translates directly to business success.
               </p>
             </div>
           </div>
@@ -50,12 +51,12 @@ export default function PresenterTeaser() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/about">
               <Button variant="outline" size="lg">
-                Meet the Co-Founders
+                Meet the Bridge Builders
               </Button>
             </Link>
             <Link href="/playbook">
               <Button size="lg">
-                Explore Our Methodology
+                Discover Pressure Principles
               </Button>
             </Link>
           </div>

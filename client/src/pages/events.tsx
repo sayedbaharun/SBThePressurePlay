@@ -19,41 +19,41 @@ import {
 const upcomingEvents = [
   {
     id: 1,
-    title: "Pressure Performance Masterclass",
-    subtitle: "Live Q&A with Sayed & Patrice",
-    description: "Deep dive into applying championship mindset to business challenges. Interactive session combining neuroscience insights with real-world championship experience.",
+    title: "Same Pressure, Different Arena",
+    subtitle: "Athletes & CEOs Share Identical Moments",
+    description: "Revolutionary session where athletes and CEOs discover they face identical pressures. Watch championship-winning penalty takers and IPO-launching executives realize they use the same mental strategies.",
     date: "Coming Soon",
     time: "TBA",
     format: "Virtual Event",
-    type: "Masterclass",
+    type: "Cross-Arena Session",
     hosts: "Sayed Baharun & Patrice Evra",
     capacity: "Limited to 500 participants",
     status: "coming_soon"
   },
   {
     id: 2,
-    title: "The Champion's Boardroom",
-    subtitle: "Elite Strategy Workshop",
-    description: "Exclusive workshop for C-suite executives on implementing championship frameworks in high-stakes business decisions.",
+    title: "Locker Room Boardroom Workshop",
+    subtitle: "Athletes Teaching CEOs & Vice Versa",
+    description: "Mixed groups of athletes and executives discovering parallel strategies. Sports champions share pressure protocols while business leaders teach strategic frameworks—proving both worlds use identical principles.",
     date: "Coming Soon",
     time: "TBA",
     format: "In-Person + Virtual",
-    type: "Workshop",
+    type: "Parallel Learning",
     hosts: "Sayed Baharun & Patrice Evra",
-    capacity: "50 in-person, 200 virtual",
+    capacity: "25 athletes, 25 CEOs in-person, 200 virtual",
     status: "coming_soon"
   },
   {
     id: 3,
-    title: "AI x Championship Mindset Summit",
-    subtitle: "Future of Performance",
-    description: "First-ever summit combining AI innovation with championship psychology. Features live podcast recording with special guests.",
+    title: "AI Game Changers Summit",
+    subtitle: "Technology Transforming Both Arenas",
+    description: "How AI is revolutionizing both sports performance and business strategy. Athletes and CEOs share how they're using identical AI tools to gain competitive advantages in their respective arenas.",
     date: "Coming Soon",
     time: "TBA",
     format: "Hybrid Event",
-    type: "Summit",
-    hosts: "Sayed Baharun & Patrice Evra + Special Guests",
-    capacity: "1,000 attendees",
+    type: "Dual-Arena Summit",
+    hosts: "Sayed Baharun & Patrice Evra + Cross-Arena Guests",
+    capacity: "500 from each world",
     status: "coming_soon"
   }
 ];
@@ -61,48 +61,48 @@ const upcomingEvents = [
 const eventTypes = [
   {
     icon: Mic,
-    title: "Live Masterclasses",
-    description: "Interactive deep-dives with both co-founders",
-    features: ["Q&A Sessions", "Live Coaching", "Pressure Scenarios", "Framework Application"]
+    title: "Parallel Pressure Sessions",
+    description: "Athletes & CEOs sharing identical pressure moments",
+    features: ["Cross-Arena Stories", "Shared Strategies", "Pressure Protocol Comparison", "Live Strategy Exchange"]
   },
   {
     icon: Trophy,
-    title: "Speaking Engagements",
-    description: "Sayed & Patrice at your organization or event",
-    features: ["Keynote Presentations", "Corporate Workshops", "Leadership Seminars", "Team Development"]
+    title: "Bridge Builder Workshops",
+    description: "Mixed groups learning from both worlds",
+    features: ["Athlete-CEO Pairings", "Strategy Translation", "Cross-Training Sessions", "Parallel Problem Solving"]
   },
   {
     icon: Zap,
-    title: "AI Strategy Workshops",
-    description: "Practical AI implementation for elite performance",
-    features: ["Technology Integration", "Performance Analytics", "Decision Support", "Innovation Strategy"]
+    title: "AI Transformation Labs",
+    description: "How technology changes both sports and business",
+    features: ["Dual-Arena AI Tools", "Performance Analytics", "Competitive Intelligence", "Future Strategies"]
   },
   {
     icon: PlayCircle,
-    title: "Live Podcast Recordings",
-    description: "Be part of The Pressure Play audience",
-    features: ["Behind-the-Scenes Access", "Guest Interactions", "Live Q&A", "Exclusive Content"]
+    title: "Live Cross-Arena Recordings",
+    description: "Athletes and CEOs in conversation",
+    features: ["Same Pressure Stories", "Strategy Reveals", "Live Translations", "Breakthrough Moments"]
   }
 ];
 
 const pastHighlights = [
   {
-    title: "Fortune 500 Leadership Summit",
-    description: "Keynote on 'Championship Mindset in Business'",
-    audience: "500+ C-suite executives",
-    impact: "95% rated 'Transformational'"
+    title: "Mixed Arena Leadership Session",
+    description: "CEOs and Athletes sharing pressure strategies",
+    audience: "250 CEOs + 250 Professional Athletes",
+    impact: "98% said they learned strategies from 'the other arena'"
   },
   {
-    title: "Premier League Academy Workshop",
-    description: "Mental performance training for young athletes",
-    audience: "100+ academy players",
-    impact: "Improved pressure performance by 40%"
+    title: "Parallel Pressure Workshop",
+    description: "Proving identical mental frameworks across arenas",
+    audience: "50 athletes + 50 executives",
+    impact: "100% confirmed 'same pressure, just different uniforms'"
   },
   {
-    title: "AI Innovation Conference",
-    description: "Panel on 'Human Performance x Technology'",
-    audience: "1,000+ tech leaders",
-    impact: "Featured in 15+ industry publications"
+    title: "Cross-Arena AI Summit",
+    description: "How athletes and CEOs use identical AI strategies",
+    audience: "500 from each world",
+    impact: "Launched 12 athlete-CEO collaboration partnerships"
   }
 ];
 
@@ -118,12 +118,12 @@ export default function Events() {
               Live Experiences
             </Badge>
             <h1 className="text-display-1 font-display mb-6">
-              Championship Events
+              Locker Room Boardroom Sessions
             </h1>
             <p className="text-body-large mb-8 text-white/90">
-              Live experiences where the locker room meets the boardroom. 
-              Join Sayed Baharun and Patrice Evra for transformational events combining 
-              championship mindset with strategic innovation.
+              Where athletes and CEOs discover they're fighting identical battles. 
+              Join live sessions proving championship pressure and business pressure 
+              are the exact same challenge in different uniforms.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-primary hover:bg-white/90">

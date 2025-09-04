@@ -5,38 +5,38 @@ import { Input } from "@/components/ui/input";
 const newsletterBenefits = [
   {
     icon: Trophy,
-    title: "Weekly Pressure Points",
-    description: "Champion mindset insights every Tuesday"
+    title: "Parallel Pressure Insights",
+    description: "How athletes & CEOs handle identical moments"
   },
   {
     icon: Mail,
-    title: "Early Episode Access", 
-    description: "24 hours before public release"
+    title: "Cross-Arena Strategies", 
+    description: "Boardroom tactics that work in locker rooms & vice versa"
   },
   {
     icon: Brain,
-    title: "Exclusive Content",
-    description: "Behind-the-scenes stories & bonus insights"
+    title: "Behind Both Scenes",
+    description: "Exclusive stories from both worlds"
   },
   {
     icon: Zap,
-    title: "AI Performance Tips",
-    description: "Future-focused optimization strategies"
+    title: "AI Game Changers",
+    description: "How technology is transforming both arenas"
   }
 ];
 
 const socialProof = [
   {
     number: "50,000+",
-    label: "Elite Circle Subscribers"
+    label: "Pressure Academy Members"
   },
   {
     number: "4.8★",
-    label: "Newsletter Rating"
+    label: "Community Rating"
   },
   {
     number: "Weekly",
-    label: "Champion Insights"
+    label: "Cross-Arena Insights"
   }
 ];
 
@@ -63,11 +63,11 @@ export default function EliteCircleSection() {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-display-2 font-display mb-6">
-              <span className="brand-text">Join The Elite Circle</span>
+              <span className="brand-text">Join The Pressure Academy</span>
             </h2>
             <p className="text-body-large text-muted-foreground max-w-3xl mx-auto mb-8">
-              Free weekly insights from champions and innovators. Get exclusive behind-the-scenes content, 
-              champion mindset strategies, and early access to episodes.
+              Free weekly insights proving athletes and CEOs face identical pressures. 
+              Learn strategies that work in both locker rooms and boardrooms.
             </p>
             
             {/* Social Proof Stats */}
