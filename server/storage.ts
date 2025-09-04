@@ -141,6 +141,8 @@ export class MemStorage implements IStorage {
         ],
         youtubeId: "dQw4w9WgXcQ",
         audioUrl: "https://example.com/audio.mp3",
+        previewUrl: "https://example.com/preview.mp3",
+        waveformData: [0.2, 0.4, 0.6, 0.8, 0.3, 0.5, 0.7, 0.9, 0.1, 0.3, 0.6, 0.4, 0.8, 0.2, 0.5],
         featured: true
       },
       {
@@ -161,6 +163,8 @@ export class MemStorage implements IStorage {
         highlights: [],
         youtubeId: null,
         audioUrl: null,
+        previewUrl: null,
+        waveformData: null,
         featured: false
       },
       {
@@ -181,6 +185,8 @@ export class MemStorage implements IStorage {
         highlights: [],
         youtubeId: null,
         audioUrl: null,
+        previewUrl: null,
+        waveformData: null,
         featured: false
       }
     ];

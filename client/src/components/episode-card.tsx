@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Play, Clock } from "lucide-react";
+import WaveformPlayer from "./waveform-player";
 import type { Episode, Guest } from "@shared/schema";
 
 interface EpisodeCardProps {
@@ -102,6 +103,20 @@ export default function EpisodeCard({ episode, guests = [], onPlay }: EpisodeCar
                 </span>
               </div>
             ))}
+          </div>
+        )}
+        
+        {/* Waveform Preview */}
+        {(episode.previewUrl || episode.audioUrl) && (
+          <div className="space-y-2">
+            <span className="text-caption text-muted-foreground">Preview</span>
+            <WaveformPlayer 
+              audioUrl={episode.audioUrl || undefined}
+              previewUrl={episode.previewUrl || undefined}
+              duration={30} // 30 second preview
+              showControls={false}
+              className="bg-muted/30 p-2"
+            />
           </div>
         )}
         

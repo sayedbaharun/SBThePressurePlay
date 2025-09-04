@@ -23,6 +23,7 @@ import {
 import TopicTag from "@/components/topic-tag";
 import GuestCard from "@/components/guest-card";
 import NewsletterSection from "@/components/newsletter-section";
+import WaveformPlayer from "@/components/waveform-player";
 import { useToast } from "@/hooks/use-toast";
 import type { Episode, Guest } from "@shared/schema";
 
@@ -138,6 +139,20 @@ export default function EpisodeDetail() {
                     </Button>
                   </div>
                 </div>
+                
+                {/* Full Waveform Player */}
+                {(episode.audioUrl || episode.previewUrl) && (
+                  <div className="p-6 bg-gradient-to-r from-background to-muted/20">
+                    <WaveformPlayer 
+                      audioUrl={episode.audioUrl || undefined}
+                      previewUrl={episode.previewUrl || undefined}
+                      duration={(episode.duration || 0) * 60} // Convert minutes to seconds
+                      showControls={true}
+                      autoHeight={true}
+                      className="bg-transparent border-none p-0"
+                    />
+                  </div>
+                )}
               </Card>
 
               {/* Episode Info */}

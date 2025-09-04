@@ -25,6 +25,8 @@ export const episodes = pgTable("episodes", {
   highlights: json("highlights").$type<Array<{ time: string; text: string }>>(),
   youtubeId: text("youtube_id"),
   audioUrl: text("audio_url"),
+  previewUrl: text("preview_url"),
+  waveformData: json("waveform_data").$type<number[]>(),
   featured: boolean("featured").default(false),
 });
 
