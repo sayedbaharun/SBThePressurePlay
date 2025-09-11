@@ -9,13 +9,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import ThemeToggle from "./theme-toggle";
-import { Menu, X, ChevronDown, Play, Users, BookOpen, Calendar, Mail, Info } from "lucide-react";
+import { Menu, X, ChevronDown, Users, BookOpen, Calendar, Mail, Info } from "lucide-react";
 
 const navigationDropdowns = [
   {
     name: "Parallel Worlds",
     items: [
-      { name: "Episodes", href: "/episodes", icon: Play, description: "Athletes & CEOs sharing insights" },
       { name: "Game Changers", href: "/guests", icon: Users, description: "Champions from both arenas" },
       { name: "Pressure Principles", href: "/playbook", icon: BookOpen, description: "Same strategies, different fields" },
     ]
@@ -32,7 +31,6 @@ const navigationDropdowns = [
 
 // Flattened navigation for mobile
 const mobileNavigation = [
-  { name: "Episodes", href: "/episodes" },
   { name: "Game Changers", href: "/guests" },
   { name: "Pressure Principles", href: "/playbook" },
   { name: "Locker Room Boardroom", href: "/events" },

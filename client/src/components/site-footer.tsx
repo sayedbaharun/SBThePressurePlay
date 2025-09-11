@@ -137,7 +137,6 @@ export default function SiteFooter() {
             <div>
               <h3 className="font-semibold mb-4">Platform</h3>
               <ul className="space-y-2">
-                <li><Link href="/episodes" className="text-muted-foreground hover:text-foreground transition-colors">Latest Episodes</Link></li>
                 <li><Link href="/guests" className="text-muted-foreground hover:text-foreground transition-colors">Champions</Link></li>
                 <li><Link href="/newsletter" className="text-muted-foreground hover:text-foreground transition-colors">Elite Circle</Link></li>
                 <li><Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">About Hosts</Link></li>
@@ -156,36 +155,6 @@ export default function SiteFooter() {
             </div>
           </div>
 
-          {/* Exclusive Partnerships */}
-          <div className="border-t border-border pt-8 mb-8">
-            <h3 className="font-semibold mb-4 text-center">Exclusive Content Partnerships</h3>
-            <p className="text-center text-muted-foreground mb-6 text-small">
-              Premium episodes, behind-the-scenes content, and live events across platforms
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              {platformLinks.map((platform) => (
-                <a
-                  key={platform.name}
-                  href={platform.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 px-4 py-3 bg-muted hover:bg-muted/80 rounded-lg transition-colors group"
-                  data-testid={`platform-link-${platform.name.toLowerCase().replace(" ", "-")}`}
-                >
-                  {platform.icon}
-                  <div className="text-left">
-                    <span className="text-sm font-medium block">{platform.name}</span>
-                    <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
-                      {platform.name === 'Spotify' ? 'Exclusive interviews' : 
-                       platform.name === 'YouTube' ? 'Live masterclasses' :
-                       platform.name === 'Apple Podcasts' ? 'Early access' :
-                       'Premium content'}
-                    </span>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
 
           {/* Bottom Bar */}
           <Separator className="mb-8" />

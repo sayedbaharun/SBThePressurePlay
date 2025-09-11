@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Play, Youtube, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -65,24 +65,14 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Championship CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Link href="/episodes">
-              <Button 
-                size="lg" 
-                className="px-8 py-4 bg-primary text-primary-foreground rounded-2xl font-medium hover:bg-primary/90 transition-all duration-200 shadow-xl hover:shadow-2xl hover:scale-105"
-                data-testid="hero-latest-episode"
-              >
-                <Play className="w-5 h-5 mr-3" />
-                Latest Episode
-              </Button>
-            </Link>
+          {/* Championship CTA Button */}
+          <div className="flex justify-center mb-16">
             <Link href="/newsletter">
               <Button 
-                variant="outline" 
-                size="lg"
-                className="px-8 py-4 rounded-2xl font-medium bg-white/10 border-white/20 text-white hover:bg-white/20 transition-all duration-200 backdrop-blur-sm hover:scale-105"
-                data-testid="hero-join-elite-circle"
+                size="xl" 
+                variant="magnetic"
+                className="px-12 py-6 rounded-2xl font-semibold shadow-xl hover:shadow-2xl"
+                data-testid="hero-join-newsletter"
               >
                 Join Free Newsletter
               </Button>
