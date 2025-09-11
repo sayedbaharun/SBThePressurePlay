@@ -63,11 +63,11 @@ export default function EliteCircleSection() {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-display-2 font-display mb-6">
-              <span className="brand-text">Join The Pressure Academy</span>
+              <span className="brand-text">Master Pressure Like a Champion</span>
             </h2>
             <p className="text-body-large text-muted-foreground max-w-3xl mx-auto mb-8">
-              Free weekly insights proving athletes and CEOs face identical pressures. 
-              Learn strategies that work in both locker rooms and boardrooms.
+              Patrice and Sayed - Free Download: "The Champion's Pressure Playbook"<br />
+              Patrice Evra's 10 strategies for performing under pressure - from Old Trafford to the boardroom
             </p>
             
             {/* Social Proof Stats */}
