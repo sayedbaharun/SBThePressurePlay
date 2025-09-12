@@ -5,11 +5,11 @@ import businessTeamImage from "@assets/generated_images/Business_team_strategy_s
 
 const presenters = [
   {
-    name: "Sayed Baharun",
-    role: "Co-Founder & Performance Architect",
-    image: sayedImage,
-    bio: "🚀 Visionary behind The Pressure Play concept. Pioneer of the Champion's Framework methodology combining neuroscience, business strategy, and AI innovation. 15+ years optimizing Fortune 500 C-suite performance and championship teams. Trusted advisor to elite performers across industries who saw the opportunity to bridge three worlds that had never been connected at this level.",
-    expertise: ["Visionary Architect of The Pressure Play", "Champion's Framework Methodology", "AI Strategy Expert for Elite Performers", "C-Suite Transformation", "Neuroscience-Based Performance"],
+    name: "Patrice Evra",
+    role: "Co-Founder & Champion Validator",
+    image: patriceImage,
+    bio: "🏆 5x Premier League Champion and Manchester United Captain with 14M+ global social following. First elite athlete bridging sports excellence with business strategy and AI innovation. From Old Trafford to Silicon Valley, Patrice brings the championship credibility and global platform to amplify these insights to millions worldwide.",
+    expertise: ["Championship Psychology", "High-Pressure Leadership", "Global Platform & Credibility", "Performance Under Pressure", "Elite Sports Validation"],
     socials: {
       linkedin: "#",
       twitter: "#",
@@ -17,11 +17,11 @@ const presenters = [
     }
   },
   {
-    name: "Patrice Evra",
-    role: "Co-Founder & Champion Validator",
-    image: patriceImage,
-    bio: "🏆 5x Premier League Champion and Manchester United Captain with 14M+ global social following. First elite athlete bridging sports excellence with business strategy and AI innovation. From Old Trafford to Silicon Valley, Patrice brings the championship credibility and global platform to amplify these insights to millions worldwide.",
-    expertise: ["Championship Psychology", "High-Pressure Leadership", "Global Platform & Credibility", "Performance Under Pressure", "Elite Sports Validation"],
+    name: "Sayed Baharun",
+    role: "Co-Founder & Performance Architect",
+    image: sayedImage,
+    bio: "🚀 Visionary behind The Pressure Play concept. Pioneer of the Champion's Framework methodology combining neuroscience, business strategy, and AI innovation. 15+ years optimizing Fortune 500 C-suite performance and championship teams. Trusted advisor to elite performers across industries who saw the opportunity to bridge three worlds that had never been connected at this level.",
+    expertise: ["Visionary Architect of The Pressure Play", "Champion's Framework Methodology", "AI Strategy Expert for Elite Performers", "C-Suite Transformation", "Neuroscience-Based Performance"],
     socials: {
       linkedin: "#",
       twitter: "#",
@@ -193,33 +193,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Simplified Call to Action */}
-      <section className="content-section">
-        <div className="container mx-auto text-center">
-          <h2 className="text-display-2 font-display mb-6">
-            <span className="brand-text">Ready to Elevate?</span>
-          </h2>
-          <p className="text-body-large text-muted-foreground mb-12 max-w-xl mx-auto">
-            Join our community of high performers and access exclusive content.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/episodes"
-              className="apple-card px-8 py-4 bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-all duration-200"
-              data-testid="button-episodes"
-            >
-              Latest Episodes
-            </a>
-            <a
-              href="/listen"
-              className="apple-card px-8 py-4 font-medium transition-all duration-200"
-              data-testid="button-listen"
-            >
-              Start Listening
-            </a>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
