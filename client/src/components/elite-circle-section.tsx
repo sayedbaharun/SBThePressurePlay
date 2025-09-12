@@ -103,12 +103,14 @@ export default function EliteCircleSection() {
                   className="flex-1"
                   data-testid="newsletter-email-input"
                 />
-                <Button 
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-xl font-medium whitespace-nowrap"
-                  data-testid="newsletter-signup-button"
-                >
-                  Join Free Today
-                </Button>
+                <a href="/newsletter">
+                  <Button 
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-xl font-medium whitespace-nowrap"
+                    data-testid="newsletter-signup-button"
+                  >
+                    Join Free Today
+                  </Button>
+                </a>
               </div>
               
               <p className="text-small text-muted-foreground">
@@ -165,9 +167,11 @@ export default function EliteCircleSection() {
                   <p className="text-small text-muted-foreground/70 mb-4 italic">
                     By Sayed Baharun & Patrice Evra
                   </p>
-                  <Button variant="outline" className="text-primary border-primary hover:bg-primary/5">
-                    Join Elite Circle to read full insights →
-                  </Button>
+                  <a href="/newsletter">
+                    <Button variant="outline" className="text-primary border-primary hover:bg-primary/5">
+                      Join Elite Circle to read full insights →
+                    </Button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -184,9 +188,11 @@ export default function EliteCircleSection() {
                 <p className="text-body text-muted-foreground mb-4">
                   Patrice Evra's 10 strategies for performing under pressure - from Old Trafford to the boardroom
                 </p>
-                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-xl font-medium">
-                  Get Free Playbook + Join Elite Circle
-                </Button>
+                <a href="/newsletter">
+                  <Button className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3 rounded-xl font-medium">
+                    Get Free Playbook + Join Elite Circle
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
@@ -222,12 +228,16 @@ export default function EliteCircleSection() {
                 Join thousands of entrepreneurs, executives, and innovators who never miss our weekly insights.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  Join High Achievers Free
-                </Button>
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
-                  Invite Fellow Champions
-                </Button>
+                <a href="/newsletter">
+                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                    Join High Achievers Free
+                  </Button>
+                </a>
+                <a href="/contact">
+                  <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
+                    Invite Fellow Champions
+                  </Button>
+                </a>
               </div>
             </div>
           </div>

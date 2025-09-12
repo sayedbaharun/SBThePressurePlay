@@ -11,9 +11,9 @@ const presenters = [
     bio: "🏆 5x Premier League Champion and Manchester United Captain with 14M+ global social following. First elite athlete bridging sports excellence with business strategy and AI innovation. From Old Trafford to Silicon Valley, Patrice brings the championship credibility and global platform to amplify these insights to millions worldwide.",
     expertise: ["Championship Psychology", "High-Pressure Leadership", "Global Platform & Credibility", "Performance Under Pressure", "Elite Sports Validation"],
     socials: {
-      linkedin: "#",
-      twitter: "#",
-      instagram: "#"
+      linkedin: "https://linkedin.com/in/patrice-evra",
+      twitter: "https://twitter.com/patrice_evra",
+      instagram: "https://instagram.com/patrice_evra"
     }
   },
   {
@@ -23,9 +23,9 @@ const presenters = [
     bio: "🚀 Visionary behind The Pressure Play concept. Pioneer of the Champion's Framework methodology combining neuroscience, business strategy, and AI innovation. 15+ years optimizing Fortune 500 C-suite performance and championship teams. Trusted advisor to elite performers across industries who saw the opportunity to bridge three worlds that had never been connected at this level.",
     expertise: ["Visionary Architect of The Pressure Play", "Champion's Framework Methodology", "AI Strategy Expert for Elite Performers", "C-Suite Transformation", "Neuroscience-Based Performance"],
     socials: {
-      linkedin: "#",
-      twitter: "#",
-      instagram: "#"
+      linkedin: "https://linkedin.com/in/sayed-baharun",
+      twitter: "https://twitter.com/sayed_baharun", 
+      instagram: "https://instagram.com/sayed_baharun"
     }
   }
 ];
