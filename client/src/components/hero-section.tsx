@@ -5,7 +5,7 @@ import { useABTest } from "@/hooks/useABTest";
 
 export default function HeroSection() {
   // A/B test different CTA copy versions
-  const heroCtaVariant = useABTest({
+  const { variant: heroCtaVariant, trackClick } = useABTest({
     testName: 'hero_cta_copy',
     variants: [
       { id: 'original', text: 'Join Free Newsletter' },
@@ -87,6 +87,7 @@ export default function HeroSection() {
                 variant="magnetic"
                 className="px-12 py-6 rounded-2xl font-semibold shadow-xl hover:shadow-2xl"
                 data-testid="hero-join-newsletter"
+                onClick={trackClick}
               >
                 {heroCtaVariant?.text || 'Join Free Newsletter'}
               </Button>

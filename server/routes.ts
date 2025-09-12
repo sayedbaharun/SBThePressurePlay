@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertNewsletterSubscriberSchema, insertContactMessageSchema } from "@shared/schema";
+import { insertNewsletterSubscriberSchema, insertContactMessageSchema, insertAbTestEventSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -105,6 +105,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid form data", errors: error.errors });
       }
       res.status(500).json({ message: "Failed to send message" });
+    }
+  });
+
+  // A/B Test Analytics routes
+  app.post("/api/analytics/track", async (req, res) => {
+    try {
+      const validatedData = insertAbTestEventSchema.parse(req.body);
+      const event = await storage.createAbTestEvent(validatedData);
+      res.json(event);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid request data", errors: error.errors });
+      }
+      res.status(500).json({ message: "Failed to track event" });
+    }
+  });
+
+  app.get("/api/analytics/stats/:testName", async (req, res) => {
+    try {
+      const stats = await storage.getAbTestStats(req.params.testName);
+      res.json(stats);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch analytics stats" });
+    }
+  });
+
+  app.get("/api/analytics/events/:testName?", async (req, res) => {
+    try {
+      const events = await storage.getAbTestEvents(req.params.testName);
+      res.json(events);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch analytics events" });
     }
   });
 

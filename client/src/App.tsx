@@ -16,6 +16,7 @@ import Contact from "@/pages/contact";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import Cookies from "@/pages/cookies";
+import Analytics from "@/pages/analytics";
 import NotFound from "@/pages/not-found";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
@@ -42,6 +43,9 @@ function Router() {
       <Route path="/partners" component={() => { window.location.href = "/newsletter"; return null; }} />
       {/* Redirect press route to newsletter */}
       <Route path="/press" component={() => { window.location.href = "/newsletter"; return null; }} />
+      
+      {/* Analytics page - hidden from navigation */}
+      <Route path="/analytics" component={Analytics} />
       <Route path="/contact" component={Contact} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />

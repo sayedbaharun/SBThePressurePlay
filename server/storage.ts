@@ -4,7 +4,8 @@ import {
   type Guest, type InsertGuest,
   type NewsletterSubscriber, type InsertNewsletterSubscriber,
   type ContactMessage, type InsertContactMessage,
-  type Topic, type InsertTopic
+  type Topic, type InsertTopic,
+  type AbTestEvent, type InsertAbTestEvent
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 
@@ -39,6 +40,11 @@ export interface IStorage {
   getTopics(): Promise<Topic[]>;
   getTopic(slug: string): Promise<Topic | undefined>;
   createTopic(topic: InsertTopic): Promise<Topic>;
+
+  // A/B Test Analytics
+  createAbTestEvent(event: InsertAbTestEvent): Promise<AbTestEvent>;
+  getAbTestEvents(testName?: string): Promise<AbTestEvent[]>;
+  getAbTestStats(testName: string): Promise<{ variantId: string; exposures: number; clicks: number; conversionRate: number }[]>;
 }
 
 export class MemStorage implements IStorage {
@@ -48,6 +54,7 @@ export class MemStorage implements IStorage {
   private newsletterSubscribers: Map<string, NewsletterSubscriber>;
   private contactMessages: Map<string, ContactMessage>;
   private topics: Map<string, Topic>;
+  private abTestEvents: Map<string, AbTestEvent>;
 
   constructor() {
     this.users = new Map();
@@ -56,6 +63,7 @@ export class MemStorage implements IStorage {
     this.newsletterSubscribers = new Map();
     this.contactMessages = new Map();
     this.topics = new Map();
+    this.abTestEvents = new Map();
     this.seedData();
   }
 
@@ -341,6 +349,52 @@ export class MemStorage implements IStorage {
     };
     this.topics.set(id, topic);
     return topic;
+  }
+
+  // A/B Test Analytics methods
+  async createAbTestEvent(insertEvent: InsertAbTestEvent): Promise<AbTestEvent> {
+    const id = randomUUID();
+    const event: AbTestEvent = {
+      ...insertEvent,
+      id,
+      timestamp: new Date()
+    };
+    this.abTestEvents.set(id, event);
+    return event;
+  }
+
+  async getAbTestEvents(testName?: string): Promise<AbTestEvent[]> {
+    const events = Array.from(this.abTestEvents.values());
+    if (testName) {
+      return events.filter(event => event.testName === testName);
+    }
+    return events;
+  }
+
+  async getAbTestStats(testName: string): Promise<{ variantId: string; exposures: number; clicks: number; conversionRate: number }[]> {
+    const events = await this.getAbTestEvents(testName);
+    const variants = new Map<string, { exposures: number; clicks: number }>();
+
+    // Count exposures and clicks by variant
+    for (const event of events) {
+      if (!variants.has(event.variantId)) {
+        variants.set(event.variantId, { exposures: 0, clicks: 0 });
+      }
+      const variant = variants.get(event.variantId)!;
+      if (event.eventType === 'exposure') {
+        variant.exposures++;
+      } else if (event.eventType === 'click') {
+        variant.clicks++;
+      }
+    }
+
+    // Calculate conversion rates
+    return Array.from(variants.entries()).map(([variantId, stats]) => ({
+      variantId,
+      exposures: stats.exposures,
+      clicks: stats.clicks,
+      conversionRate: stats.exposures > 0 ? (stats.clicks / stats.exposures) * 100 : 0
+    }));
   }
 }
 

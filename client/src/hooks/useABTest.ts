@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { apiRequest } from '@/lib/queryClient';
 
 type ABTestVariant = {
   id: string;
@@ -10,6 +11,31 @@ type ABTestConfig = {
   testName: string;
   variants: ABTestVariant[];
   persistInSession?: boolean; // Whether to remember choice during session
+};
+
+// Generate a session ID that persists for the browser session
+const getSessionId = () => {
+  let sessionId = sessionStorage.getItem('ab_session_id');
+  if (!sessionId) {
+    sessionId = `${Date.now()}_${Math.random().toString(36).substring(2)}`;
+    sessionStorage.setItem('ab_session_id', sessionId);
+  }
+  return sessionId;
+};
+
+// Track analytics events
+const trackEvent = async (testName: string, variantId: string, eventType: 'exposure' | 'click') => {
+  try {
+    await apiRequest('POST', '/api/analytics/track', {
+      testName,
+      variantId,
+      eventType,
+      sessionId: getSessionId()
+    });
+  } catch (error) {
+    // Fail silently for analytics - don't break user experience
+    console.warn('Failed to track A/B test event:', error);
+  }
 };
 
 export function useABTest(config: ABTestConfig) {
@@ -49,7 +75,8 @@ export function useABTest(config: ABTestConfig) {
           sessionStorage.setItem(storageKey, variant.id);
         }
         
-        // Optional: Track the variant selection for analytics
+        // Track exposure event
+        trackEvent(testName, variant.id, 'exposure');
         console.log(`AB Test "${testName}": Selected variant "${variant.id}"`);
         
         break;
@@ -57,5 +84,13 @@ export function useABTest(config: ABTestConfig) {
     }
   }, [config]);
 
-  return selectedVariant;
+  // Return variant and tracking function
+  return {
+    variant: selectedVariant,
+    trackClick: () => {
+      if (selectedVariant) {
+        trackEvent(config.testName, selectedVariant.id, 'click');
+      }
+    }
+  };
 }

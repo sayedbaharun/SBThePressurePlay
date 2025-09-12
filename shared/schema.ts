@@ -66,6 +66,15 @@ export const topics = pgTable("topics", {
   color: text("color").default("#FF1B6B"),
 });
 
+export const abTestEvents = pgTable("ab_test_events", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  testName: text("test_name").notNull(),
+  variantId: text("variant_id").notNull(),
+  eventType: text("event_type").notNull(), // 'exposure' or 'click'
+  sessionId: text("session_id").notNull(),
+  timestamp: timestamp("timestamp").notNull().defaultNow(),
+});
+
 // Insert schemas
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
@@ -93,6 +102,11 @@ export const insertTopicSchema = createInsertSchema(topics).omit({
   id: true,
 });
 
+export const insertAbTestEventSchema = createInsertSchema(abTestEvents).omit({
+  id: true,
+  timestamp: true,
+});
+
 // Types
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
@@ -111,3 +125,6 @@ export type ContactMessage = typeof contactMessages.$inferSelect;
 
 export type InsertTopic = z.infer<typeof insertTopicSchema>;
 export type Topic = typeof topics.$inferSelect;
+
+export type InsertAbTestEvent = z.infer<typeof insertAbTestEventSchema>;
+export type AbTestEvent = typeof abTestEvents.$inferSelect;
