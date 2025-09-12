@@ -35,8 +35,7 @@ function Router() {
       <Route path="/guests/:slug" component={() => { window.location.href = "/newsletter"; return null; }} />
       <Route path="/about" component={About} />
       <Route path="/newsletter" component={Newsletter} />
-      {/* Redirect playbook route to newsletter */}
-      <Route path="/playbook" component={() => { window.location.href = "/newsletter"; return null; }} />
+      <Route path="/playbook" component={Playbook} />
       {/* Redirect events route to newsletter */}
       <Route path="/events" component={() => { window.location.href = "/newsletter"; return null; }} />
       {/* Redirect partners route to newsletter */}

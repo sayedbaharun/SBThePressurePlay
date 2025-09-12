@@ -68,6 +68,9 @@ const pastEditions = [
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("");
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -77,8 +80,8 @@ export default function Newsletter() {
   });
 
   const subscribeMutation = useMutation({
-    mutationFn: async (email: string) => {
-      const response = await apiRequest("POST", "/api/newsletter/subscribe", { email });
+    mutationFn: async (formData: { email: string; name: string; phone?: string; country?: string }) => {
+      const response = await apiRequest("POST", "/api/newsletter/subscribe", formData);
       return response.json();
     },
     onSuccess: () => {
@@ -87,6 +90,9 @@ export default function Newsletter() {
         description: "Check your email to confirm your subscription and get your welcome bonus.",
       });
       setEmail("");
+      setName("");
+      setPhone("");
+      setCountry("");
       queryClient.invalidateQueries({ queryKey: ["/api/newsletter"] });
     },
     onError: (error: any) => {
@@ -100,8 +106,13 @@ export default function Newsletter() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
-    subscribeMutation.mutate(email);
+    if (!email || !name) return;
+    subscribeMutation.mutate({ 
+      email, 
+      name, 
+      phone: phone || undefined, 
+      country: country || undefined 
+    });
   };
 
   return (
@@ -170,24 +181,53 @@ export default function Newsletter() {
                   </p>
                 </div>
                 
-                <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                  <Input
-                    type="email"
-                    placeholder="Enter your email address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="flex-1 px-6 py-4 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    required
-                    data-testid="newsletter-email-input"
-                  />
+                <div className="space-y-4 max-w-lg mx-auto">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <Input
+                      type="text"
+                      placeholder="Full Name *"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="px-6 py-4 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      required
+                      data-testid="newsletter-name-input"
+                    />
+                    <Input
+                      type="email"
+                      placeholder="Email Address *"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="px-6 py-4 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      required
+                      data-testid="newsletter-email-input"
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <Input
+                      type="tel"
+                      placeholder="Phone Number (Optional)"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="px-6 py-4 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      data-testid="newsletter-phone-input"
+                    />
+                    <Input
+                      type="text"
+                      placeholder="Country (Optional)"
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                      className="px-6 py-4 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      data-testid="newsletter-country-input"
+                    />
+                  </div>
                   <Button
                     type="submit"
                     disabled={subscribeMutation.isPending}
                     size="lg"
-                    className="px-8 py-4 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-colors shadow-lg hover:shadow-primary/25"
+                    className="w-full px-8 py-4 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-colors shadow-lg hover:shadow-primary/25"
                     data-testid="newsletter-subscribe-button"
                   >
-                    {subscribeMutation.isPending ? "Subscribing..." : "Join Now"}
+                    {subscribeMutation.isPending ? "Subscribing..." : "Join Elite Circle Now"}
                   </Button>
                 </div>
                 

@@ -303,7 +303,9 @@ export class MemStorage implements IStorage {
       ...insertSubscriber, 
       id, 
       subscribedAt: new Date(), 
-      confirmed: false 
+      confirmed: false,
+      phone: insertSubscriber.phone ?? null,
+      country: insertSubscriber.country ?? null
     };
     this.newsletterSubscribers.set(id, subscriber);
     return subscriber;

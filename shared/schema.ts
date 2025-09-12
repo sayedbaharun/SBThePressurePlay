@@ -45,6 +45,9 @@ export const guests = pgTable("guests", {
 export const newsletterSubscribers = pgTable("newsletter_subscribers", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   email: text("email").notNull().unique(),
+  name: text("name").notNull(),
+  phone: text("phone"),
+  country: text("country"),
   subscribedAt: timestamp("subscribed_at").notNull().defaultNow(),
   confirmed: boolean("confirmed").default(false),
 });
@@ -91,6 +94,9 @@ export const insertGuestSchema = createInsertSchema(guests).omit({
 
 export const insertNewsletterSubscriberSchema = createInsertSchema(newsletterSubscribers).pick({
   email: true,
+  name: true,
+  phone: true,
+  country: true,
 });
 
 export const insertContactMessageSchema = createInsertSchema(contactMessages).omit({

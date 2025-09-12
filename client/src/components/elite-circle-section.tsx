@@ -228,15 +228,10 @@ export default function EliteCircleSection() {
                 We're creating the world's largest community of high-performers who apply championship mindset to business and life. 
                 Join thousands of entrepreneurs, executives, and innovators who never miss our weekly insights.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex justify-center">
                 <Link href="/newsletter">
                   <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                    Join High Achievers Free
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
-                    Invite Fellow Champions
+                    Join Elite Circle Free
                   </Button>
                 </Link>
               </div>

@@ -34,8 +34,11 @@ export default function SiteHeader() {
             <span className="text-headline font-display brand-text">THE PRESSURE PLAY</span>
           </Link>
 
+          {/* Push navigation to the right with spacer */}
+          <div className="flex-1"></div>
+          
           {/* Simplified Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8 mr-8">
             {simpleNavigation.map((item) => (
               <Link 
                 key={item.name}
