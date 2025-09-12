@@ -1,8 +1,22 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
+import { useABTest } from "@/hooks/useABTest";
 
 export default function HeroSection() {
+  // A/B test different CTA copy versions
+  const heroCtaVariant = useABTest({
+    testName: 'hero_cta_copy',
+    variants: [
+      { id: 'original', text: 'Join Free Newsletter' },
+      { id: 'champion', text: 'Get Champion Insights Free' },
+      { id: 'elite', text: 'Join Elite Circle Now' },
+      { id: 'playbook', text: 'Get Free Pressure Playbook' },
+      { id: 'strategies', text: 'Access Championship Strategies' },
+    ],
+    persistInSession: true
+  });
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
@@ -74,7 +88,7 @@ export default function HeroSection() {
                 className="px-12 py-6 rounded-2xl font-semibold shadow-xl hover:shadow-2xl"
                 data-testid="hero-join-newsletter"
               >
-                Join Free Newsletter
+                {heroCtaVariant?.text || 'Join Free Newsletter'}
               </Button>
             </Link>
           </div>

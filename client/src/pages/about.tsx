@@ -105,7 +105,9 @@ export default function About() {
                       <a
                         key={platform}
                         href={url}
-                        className="apple-card w-12 h-12 flex items-center justify-center"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="apple-card w-12 h-12 flex items-center justify-center hover:scale-105 transition-transform"
                         data-testid={`link-${platform}-${presenter.name.toLowerCase().replace(' ', '-')}`}
                       >
                         <span className="text-caption font-semibold">

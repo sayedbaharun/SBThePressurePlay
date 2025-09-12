@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -312,9 +313,9 @@ export default function Newsletter() {
               </div>
               <Separator className="my-4" />
               <div className="flex flex-wrap gap-4 text-sm">
-                <a href="/privacy" className="text-primary hover:underline">Privacy Policy</a>
-                <a href="/terms" className="text-primary hover:underline">Terms of Service</a>
-                <a href="/contact" className="text-primary hover:underline">Contact Us</a>
+                <Link href="/privacy" className="text-primary hover:underline">Privacy Policy</Link>
+                <Link href="/terms" className="text-primary hover:underline">Terms of Service</Link>
+                <Link href="/contact" className="text-primary hover:underline">Contact Us</Link>
               </div>
             </CardContent>
           </Card>
