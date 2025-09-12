@@ -29,8 +29,9 @@ function Router() {
       <Route path="/episodes/:slug" component={() => { window.location.href = "/newsletter"; return null; }} />
       <Route path="/watch" component={() => { window.location.href = "/newsletter"; return null; }} />
       <Route path="/listen" component={() => { window.location.href = "/newsletter"; return null; }} />
-      <Route path="/guests" component={Guests} />
-      <Route path="/guests/:slug" component={GuestDetail} />
+      {/* Redirect guest-related routes to newsletter */}
+      <Route path="/guests" component={() => { window.location.href = "/newsletter"; return null; }} />
+      <Route path="/guests/:slug" component={() => { window.location.href = "/newsletter"; return null; }} />
       <Route path="/about" component={About} />
       <Route path="/newsletter" component={Newsletter} />
       <Route path="/playbook" component={Playbook} />

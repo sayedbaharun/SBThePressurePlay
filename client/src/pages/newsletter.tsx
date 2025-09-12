@@ -24,13 +24,13 @@ import executiveImage from "@assets/generated_images/Executive_leadership_portra
 const benefits = [
   {
     icon: <Zap className="w-6 h-6" />,
-    title: "Early Access",
-    description: "Get episodes 24 hours before they go public"
+    title: "Champion Insights",
+    description: "Weekly strategies for high-pressure performance"
   },
   {
     icon: <Crown className="w-6 h-6" />,
     title: "Exclusive Content",
-    description: "Behind-the-scenes insights and extended interviews"
+    description: "Behind-the-scenes insights from champions"
   },
   {
     icon: <TrendingUp className="w-6 h-6" />,

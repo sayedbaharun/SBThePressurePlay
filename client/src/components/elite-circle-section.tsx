@@ -25,20 +25,7 @@ const newsletterBenefits = [
   }
 ];
 
-const socialProof = [
-  {
-    number: "50,000+",
-    label: "Pressure Academy Members"
-  },
-  {
-    number: "4.8★",
-    label: "Community Rating"
-  },
-  {
-    number: "Weekly",
-    label: "Cross-Arena Insights"
-  }
-];
+const socialProof: { number: string; label: string }[] = [];
 
 const testimonials = [
   {
@@ -125,7 +112,7 @@ export default function EliteCircleSection() {
               </div>
               
               <p className="text-small text-muted-foreground">
-                No spam. Unsubscribe anytime. 50,000+ subscribers trust us.
+                No spam. Unsubscribe anytime.
               </p>
             </div>
 
@@ -138,7 +125,7 @@ export default function EliteCircleSection() {
                 </div>
                 <div className="flex items-start">
                   <Check className="w-5 h-5 text-primary shrink-0 mt-0.5 mr-3" />
-                  <span className="text-body">🎯 Early episode access (24 hours before public release)</span>
+                  <span className="text-body">🎯 Exclusive champion strategies and insights</span>
                 </div>
                 <div className="flex items-start">
                   <Check className="w-5 h-5 text-primary shrink-0 mt-0.5 mr-3" />
@@ -152,7 +139,7 @@ export default function EliteCircleSection() {
                 </div>
                 <div className="flex items-start">
                   <Check className="w-5 h-5 text-primary shrink-0 mt-0.5 mr-3" />
-                  <span className="text-body">📈 Business strategy breakdowns from episodes</span>
+                  <span className="text-body">📈 Business strategy breakdowns from champions</span>
                 </div>
                 <div className="flex items-start">
                   <Check className="w-5 h-5 text-primary shrink-0 mt-0.5 mr-3" />
@@ -236,7 +223,7 @@ export default function EliteCircleSection() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                  Join 50,000+ Subscribers Free
+                  Join High Achievers Free
                 </Button>
                 <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
                   Invite Fellow Champions

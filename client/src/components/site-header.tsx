@@ -15,7 +15,6 @@ const navigationDropdowns = [
   {
     name: "Parallel Worlds",
     items: [
-      { name: "Game Changers", href: "/guests", icon: Users, description: "Champions from both arenas" },
       { name: "Pressure Principles", href: "/playbook", icon: BookOpen, description: "Same strategies, different fields" },
     ]
   },
@@ -31,7 +30,6 @@ const navigationDropdowns = [
 
 // Flattened navigation for mobile
 const mobileNavigation = [
-  { name: "Game Changers", href: "/guests" },
   { name: "Pressure Principles", href: "/playbook" },
   { name: "Locker Room Boardroom", href: "/events" },
   { name: "Pressure Academy", href: "/newsletter" },

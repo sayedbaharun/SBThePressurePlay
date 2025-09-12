@@ -9,7 +9,7 @@ export default function Terms() {
           
           <div className="prose prose-lg max-w-none">
             <p className="text-lg text-muted-foreground mb-8">
-              Last updated: December 2024
+              Last updated: January 2025
             </p>
 
             <div className="space-y-8 text-muted-foreground">

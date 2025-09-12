@@ -49,8 +49,8 @@ export default function NewsletterSection() {
                 Join The Elite Circle
               </h2>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                Get exclusive insights, early episode access, and performance strategies delivered weekly. 
-                Join 50,000+ high achievers who never miss an episode.
+                Get exclusive insights and performance strategies delivered weekly. 
+                Join high achievers building championship mindsets.
               </p>
 
               {/* Newsletter Form */}
@@ -80,29 +80,6 @@ export default function NewsletterSection() {
                 </p>
               </form>
 
-              {/* Social Proof */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 pt-8 border-t border-border">
-                <div className="flex items-center space-x-2">
-                  <div className="flex -space-x-2">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40" alt="Subscriber" className="w-8 h-8 rounded-full border-2 border-background" />
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40" alt="Subscriber" className="w-8 h-8 rounded-full border-2 border-background" />
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40" alt="Subscriber" className="w-8 h-8 rounded-full border-2 border-background" />
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&h=40" alt="Subscriber" className="w-8 h-8 rounded-full border-2 border-background" />
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <Users className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">50,000+ subscribers</span>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-1">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <span className="text-sm text-muted-foreground">4.9/5 rating</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

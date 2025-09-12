@@ -137,7 +137,6 @@ export default function SiteFooter() {
             <div>
               <h3 className="font-semibold mb-4">Platform</h3>
               <ul className="space-y-2">
-                <li><Link href="/guests" className="text-muted-foreground hover:text-foreground transition-colors">Champions</Link></li>
                 <li><Link href="/newsletter" className="text-muted-foreground hover:text-foreground transition-colors">Elite Circle</Link></li>
                 <li><Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">About Hosts</Link></li>
               </ul>
@@ -160,8 +159,7 @@ export default function SiteFooter() {
           <Separator className="mb-8" />
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-muted-foreground text-sm mb-4 md:mb-0">
-              <p>© 2024 The Pressure Play. All rights reserved.</p>
-              <p className="text-xs">Founded by Sayed Baharun & Patrice Evra</p>
+              <p>© 2025 The Pressure Play. All rights reserved.</p>
             </div>
             <div className="flex space-x-6 text-sm">
               <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
