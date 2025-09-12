@@ -17,6 +17,7 @@ import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import Cookies from "@/pages/cookies";
 import Analytics from "@/pages/analytics";
+import Admin from "@/pages/admin";
 import NotFound from "@/pages/not-found";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
@@ -45,6 +46,9 @@ function Router() {
       
       {/* Analytics page - hidden from navigation */}
       <Route path="/analytics" component={Analytics} />
+      
+      {/* Admin page - hidden from navigation */}
+      <Route path="/admin" component={Admin} />
       <Route path="/contact" component={Contact} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
