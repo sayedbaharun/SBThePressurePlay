@@ -133,23 +133,13 @@ export default function SiteFooter() {
               </div>
             </div>
 
-            {/* Platform */}
+            {/* Simplified Navigation */}
             <div>
-              <h3 className="font-semibold mb-4">Platform</h3>
+              <h3 className="font-semibold mb-4">Navigation</h3>
               <ul className="space-y-2">
-                <li><Link href="/newsletter" className="text-muted-foreground hover:text-foreground transition-colors">Elite Circle</Link></li>
-                <li><Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">About Hosts</Link></li>
-              </ul>
-            </div>
-
-            {/* Speaking & Media */}
-            <div>
-              <h3 className="font-semibold mb-4">Speaking & Media</h3>
-              <ul className="space-y-2">
-                <li><Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Speaking Engagements</Link></li>
-                <li><Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Media Inquiries</Link></li>
-                <li><Link href="/events" className="text-muted-foreground hover:text-foreground transition-colors">Live Events</Link></li>
-                <li><Link href="/playbook" className="text-muted-foreground hover:text-foreground transition-colors">Champion's Playbook</Link></li>
+                <li><Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link></li>
+                <li><Link href="/newsletter" className="text-muted-foreground hover:text-foreground transition-colors">Newsletter</Link></li>
+                <li><Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link></li>
               </ul>
             </div>
           </div>

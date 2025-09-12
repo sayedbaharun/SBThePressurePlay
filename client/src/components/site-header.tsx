@@ -11,27 +11,11 @@ import {
 import ThemeToggle from "./theme-toggle";
 import { Menu, X, ChevronDown, Users, BookOpen, Calendar, Mail, Info } from "lucide-react";
 
-const navigationDropdowns = [
-  {
-    name: "Parallel Worlds",
-    items: [
-      { name: "Pressure Principles", href: "/playbook", icon: BookOpen, description: "Same strategies, different fields" },
-    ]
-  },
-  {
-    name: "Community", 
-    items: [
-      { name: "Pressure Academy", href: "/newsletter", icon: Mail, description: "Learn parallel strategies" },
-      { name: "Bridge Builders", href: "/about", icon: Info, description: "Meet your guides" },
-    ]
-  }
-];
-
-// Flattened navigation for mobile
-const mobileNavigation = [
-  { name: "Pressure Principles", href: "/playbook" },
-  { name: "Pressure Academy", href: "/newsletter" },
-  { name: "Bridge Builders", href: "/about" },
+// Simplified navigation - no dropdowns
+const simpleNavigation = [
+  { name: "About", href: "/about" },
+  { name: "Newsletter", href: "/newsletter" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function SiteHeader() {
@@ -50,37 +34,19 @@ export default function SiteHeader() {
             <span className="text-headline font-display brand-text">THE PRESSURE PLAY</span>
           </Link>
 
-          {/* Condensed Desktop Navigation with Dropdowns */}
-          <nav className="hidden md:flex items-center space-x-6">
-            {navigationDropdowns.map((dropdown) => (
-              <DropdownMenu key={dropdown.name}>
-                <DropdownMenuTrigger className="flex items-center space-x-1 text-caption font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 focus:outline-none">
-                  <span>{dropdown.name}</span>
-                  <ChevronDown className="w-4 h-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-64">
-                  {dropdown.items.map((item) => {
-                    const IconComponent = item.icon;
-                    return (
-                      <DropdownMenuItem key={item.name} asChild>
-                        <Link 
-                          href={item.href}
-                          className={`flex items-center space-x-3 p-3 cursor-pointer ${
-                            location === item.href ? "bg-muted" : ""
-                          }`}
-                          data-testid={`dropdown-link-${item.name.toLowerCase()}`}
-                        >
-                          <IconComponent className="w-4 h-4 text-primary" />
-                          <div className="flex-1">
-                            <div className="font-medium">{item.name}</div>
-                            <div className="text-xs text-muted-foreground">{item.description}</div>
-                          </div>
-                        </Link>
-                      </DropdownMenuItem>
-                    );
-                  })}
-                </DropdownMenuContent>
-              </DropdownMenu>
+          {/* Simplified Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            {simpleNavigation.map((item) => (
+              <Link 
+                key={item.name}
+                href={item.href}
+                className={`text-caption font-medium transition-colors duration-200 ${
+                  location === item.href ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                }`}
+                data-testid={`nav-link-${item.name.toLowerCase()}`}
+              >
+                {item.name}
+              </Link>
             ))}
           </nav>
 
@@ -110,7 +76,7 @@ export default function SiteHeader() {
                     </Button>
                   </div>
                   <nav className="flex flex-col space-y-2">
-                    {mobileNavigation.map((item) => (
+                    {simpleNavigation.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}

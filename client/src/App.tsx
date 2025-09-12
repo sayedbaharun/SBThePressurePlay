@@ -34,11 +34,14 @@ function Router() {
       <Route path="/guests/:slug" component={() => { window.location.href = "/newsletter"; return null; }} />
       <Route path="/about" component={About} />
       <Route path="/newsletter" component={Newsletter} />
-      <Route path="/playbook" component={Playbook} />
+      {/* Redirect playbook route to newsletter */}
+      <Route path="/playbook" component={() => { window.location.href = "/newsletter"; return null; }} />
       {/* Redirect events route to newsletter */}
       <Route path="/events" component={() => { window.location.href = "/newsletter"; return null; }} />
-      <Route path="/partners" component={Partners} />
-      <Route path="/press" component={Press} />
+      {/* Redirect partners route to newsletter */}
+      <Route path="/partners" component={() => { window.location.href = "/newsletter"; return null; }} />
+      {/* Redirect press route to newsletter */}
+      <Route path="/press" component={() => { window.location.href = "/newsletter"; return null; }} />
       <Route path="/contact" component={Contact} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
