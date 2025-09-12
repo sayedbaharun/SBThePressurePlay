@@ -290,35 +290,6 @@ export default function Newsletter() {
             </div>
           </div>
 
-          {/* Privacy & Terms */}
-          <Card className="bg-muted/30">
-            <CardContent className="p-6">
-              <h3 className="font-bold mb-4 flex items-center">
-                <Shield className="w-5 h-5 mr-2 text-primary" />
-                Privacy & Terms
-              </h3>
-              <div className="space-y-3 text-sm text-muted-foreground">
-                <p>
-                  ✓ We respect your privacy and will never share your email address with third parties.
-                </p>
-                <p>
-                  ✓ You can unsubscribe at any time with one click.
-                </p>
-                <p>
-                  ✓ We send one email per week, typically on Sundays.
-                </p>
-                <p>
-                  ✓ All content is original and exclusive to newsletter subscribers.
-                </p>
-              </div>
-              <Separator className="my-4" />
-              <div className="flex flex-wrap gap-4 text-sm">
-                <Link href="/privacy" className="text-primary hover:underline">Privacy Policy</Link>
-                <Link href="/terms" className="text-primary hover:underline">Terms of Service</Link>
-                <Link href="/contact" className="text-primary hover:underline">Contact Us</Link>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </div>
