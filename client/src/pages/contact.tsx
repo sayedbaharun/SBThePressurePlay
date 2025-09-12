@@ -32,6 +32,8 @@ import workspaceImage from "@assets/generated_images/Professional_workspace_anal
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
+  phone: z.string().optional(),
+  country: z.string().optional(),
   subject: z.string().min(1, "Please select a subject"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
@@ -39,6 +41,8 @@ const contactSchema = z.object({
 const bookingSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
+  phone: z.string().optional(),
+  country: z.string().optional(),
   company: z.string().optional(),
   role: z.string().min(1, "Please enter your role or title"),
   expertise: z.string().min(1, "Please describe your area of expertise"),
@@ -98,6 +102,8 @@ export default function Contact() {
     defaultValues: {
       name: "",
       email: "",
+      phone: "",
+      country: "",
       subject: "",
       message: "",
     },
@@ -108,6 +114,8 @@ export default function Contact() {
     defaultValues: {
       name: "",
       email: "",
+      phone: "",
+      country: "",
       company: "",
       role: "",
       expertise: "",
@@ -148,6 +156,8 @@ export default function Contact() {
         subject: "Guest Booking Application",
         message: `Guest Application from ${data.name}
         
+Phone: ${data.phone || "N/A"}
+Country: ${data.country || "N/A"}
 Company: ${data.company || "N/A"}
 Role: ${data.role}
 Expertise: ${data.expertise}
@@ -242,18 +252,19 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Contact Forms */}
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Form Content */}
-            <div className="lg:col-span-2">(
-                <Card>
-                  <CardContent className="p-8">
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-bold mb-2 font-display">Send Us a Message</h3>
-                      <p className="text-muted-foreground">
-                        We typically respond to general inquiries within 24-48 hours.
-                      </p>
-                    </div>
+            <div className="lg:col-span-2 space-y-12">
+              {/* General Contact Form */}
+              <Card>
+                <CardContent className="p-8">
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-bold mb-2 font-display">Send Us a Message</h3>
+                    <p className="text-muted-foreground">
+                      We typically respond to general inquiries within 24-48 hours.
+                    </p>
+                  </div>
 
                     <Form {...contactForm}>
                       <form onSubmit={contactForm.handleSubmit(onContactSubmit)} className="space-y-6">
@@ -279,6 +290,35 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
                                 <FormLabel>Email *</FormLabel>
                                 <FormControl>
                                   <Input type="email" placeholder="your@email.com" {...field} data-testid="contact-email-input" />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <FormField
+                            control={contactForm.control}
+                            name="phone"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Phone (Optional)</FormLabel>
+                                <FormControl>
+                                  <Input type="tel" placeholder="Your phone number" {...field} data-testid="contact-phone-input" />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={contactForm.control}
+                            name="country"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Country (Optional)</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Your country" {...field} data-testid="contact-country-input" />
                                 </FormControl>
                                 <FormMessage />
                               </FormItem>
@@ -343,6 +383,238 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
                     </Form>
                   </CardContent>
                 </Card>
+
+              {/* Guest Booking Form */}
+              <Card>
+                <CardContent className="p-8">
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-bold mb-2 font-display flex items-center gap-2">
+                      <Mic className="w-6 h-6 text-primary" />
+                      Apply to be a Guest
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Interested in sharing your expertise on The Pressure Play? We'd love to hear from you.
+                      Our team reviews applications within 3-5 business days.
+                    </p>
+                  </div>
+
+                  <Form {...bookingForm}>
+                    <form onSubmit={bookingForm.handleSubmit(onBookingSubmit)} className="space-y-6">
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <FormField
+                          control={bookingForm.control}
+                          name="name"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Name *</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Your name" {...field} data-testid="booking-name-input" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={bookingForm.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Email *</FormLabel>
+                              <FormControl>
+                                <Input type="email" placeholder="your@email.com" {...field} data-testid="booking-email-input" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <FormField
+                          control={bookingForm.control}
+                          name="phone"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Phone (Optional)</FormLabel>
+                              <FormControl>
+                                <Input type="tel" placeholder="Your phone number" {...field} data-testid="booking-phone-input" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={bookingForm.control}
+                          name="country"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Country (Optional)</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Your country" {...field} data-testid="booking-country-input" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <FormField
+                          control={bookingForm.control}
+                          name="company"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Company (Optional)</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Your company" {...field} data-testid="booking-company-input" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={bookingForm.control}
+                          name="role"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Role/Title *</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Your role or title" {...field} data-testid="booking-role-input" />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <FormField
+                        control={bookingForm.control}
+                        name="expertise"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Area of Expertise *</FormLabel>
+                            <FormControl>
+                              <Textarea 
+                                placeholder="Describe your main area of expertise..."
+                                className="min-h-[100px]"
+                                {...field}
+                                data-testid="booking-expertise-input"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={bookingForm.control}
+                        name="achievements"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Notable Achievements *</FormLabel>
+                            <FormControl>
+                              <Textarea 
+                                placeholder="Share your key accomplishments and achievements..."
+                                className="min-h-[100px]"
+                                {...field}
+                                data-testid="booking-achievements-input"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={bookingForm.control}
+                        name="topics"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Potential Discussion Topics *</FormLabel>
+                            <FormControl>
+                              <Textarea 
+                                placeholder="What topics would you like to discuss on the show?"
+                                className="min-h-[100px]"
+                                {...field}
+                                data-testid="booking-topics-input"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <FormField
+                          control={bookingForm.control}
+                          name="previousMedia"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Previous Media Appearances (Optional)</FormLabel>
+                              <FormControl>
+                                <Textarea 
+                                  placeholder="List any previous podcasts, interviews, or media appearances..."
+                                  className="min-h-[80px]"
+                                  {...field}
+                                  data-testid="booking-previous-media-input"
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={bookingForm.control}
+                          name="socialMedia"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Social Media Links (Optional)</FormLabel>
+                              <FormControl>
+                                <Textarea 
+                                  placeholder="Share your LinkedIn, Twitter, or other relevant social media profiles..."
+                                  className="min-h-[80px]"
+                                  {...field}
+                                  data-testid="booking-social-media-input"
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <FormField
+                        control={bookingForm.control}
+                        name="additionalInfo"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Additional Information (Optional)</FormLabel>
+                            <FormControl>
+                              <Textarea 
+                                placeholder="Anything else you'd like us to know..."
+                                className="min-h-[100px]"
+                                {...field}
+                                data-testid="booking-additional-info-input"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <Button 
+                        type="submit" 
+                        className="w-full" 
+                        disabled={bookingMutation.isPending}
+                        data-testid="booking-submit-button"
+                      >
+                        <Send className="w-5 h-5 mr-2" />
+                        {bookingMutation.isPending ? "Submitting Application..." : "Submit Guest Application"}
+                      </Button>
+                    </form>
+                  </Form>
+                </CardContent>
+              </Card>
             </div>
 
             {/* Sidebar */}

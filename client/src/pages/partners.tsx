@@ -28,6 +28,8 @@ import {
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
+  phone: z.string().optional(),
+  country: z.string().optional(),
   company: z.string().min(1, "Company name is required"),
   partnershipType: z.string().min(1, "Please select a partnership type"),
   budget: z.string().min(1, "Please select a budget range"),
@@ -117,6 +119,8 @@ export default function Partners() {
     defaultValues: {
       name: "",
       email: "",
+      phone: "",
+      country: "",
       company: "",
       partnershipType: "",
       budget: "",
@@ -389,6 +393,35 @@ export default function Partners() {
                             <FormLabel>Email *</FormLabel>
                             <FormControl>
                               <Input type="email" placeholder="your@email.com" {...field} data-testid="partner-email-input" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <FormField
+                        control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Phone (Optional)</FormLabel>
+                            <FormControl>
+                              <Input type="tel" placeholder="Your phone number" {...field} data-testid="partner-phone-input" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="country"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Country (Optional)</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your country" {...field} data-testid="partner-country-input" />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
