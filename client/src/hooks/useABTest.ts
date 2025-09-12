@@ -82,7 +82,8 @@ export function useABTest(config: ABTestConfig) {
         break;
       }
     }
-  }, [config]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [config.testName]); // Only depend on testName to avoid infinite re-renders
 
   // Return variant and tracking function
   return {
