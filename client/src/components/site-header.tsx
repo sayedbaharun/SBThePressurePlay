@@ -21,7 +21,6 @@ const navigationDropdowns = [
   {
     name: "Community", 
     items: [
-      { name: "Locker Room Boardroom", href: "/events", icon: Calendar, description: "Live sessions with both worlds" },
       { name: "Pressure Academy", href: "/newsletter", icon: Mail, description: "Learn parallel strategies" },
       { name: "Bridge Builders", href: "/about", icon: Info, description: "Meet your guides" },
     ]
@@ -31,7 +30,6 @@ const navigationDropdowns = [
 // Flattened navigation for mobile
 const mobileNavigation = [
   { name: "Pressure Principles", href: "/playbook" },
-  { name: "Locker Room Boardroom", href: "/events" },
   { name: "Pressure Academy", href: "/newsletter" },
   { name: "Bridge Builders", href: "/about" },
 ];

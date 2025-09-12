@@ -35,7 +35,8 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/newsletter" component={Newsletter} />
       <Route path="/playbook" component={Playbook} />
-      <Route path="/events" component={Events} />
+      {/* Redirect events route to newsletter */}
+      <Route path="/events" component={() => { window.location.href = "/newsletter"; return null; }} />
       <Route path="/partners" component={Partners} />
       <Route path="/press" component={Press} />
       <Route path="/contact" component={Contact} />

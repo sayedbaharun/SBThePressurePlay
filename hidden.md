@@ -14,12 +14,16 @@ This file tracks pages that are currently hidden from public access on The Press
 - `/guests` - Guest listing page (redirects to /newsletter)
 - `/guests/:slug` - Individual guest detail pages (redirects to /newsletter)
 
+### Events
+- `/events` - Live events page (redirects to /newsletter)
+
 ## Reason for Hiding
 These pages are temporarily hidden while the platform focuses on newsletter acquisition and building the audience before launching episode content.
 
 ## Navigation Changes
 - Removed episode links from hero section
 - Removed guest links from navigation dropdowns
+- Removed events links from navigation dropdowns
 - Removed episode and guest links from footer
 - All hidden routes redirect to `/newsletter` to maintain user acquisition flow
 
