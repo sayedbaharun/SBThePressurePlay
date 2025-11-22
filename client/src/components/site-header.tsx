@@ -15,7 +15,7 @@ import { Menu, X, ChevronDown, Users, BookOpen, Calendar, Mail, Info } from "luc
 const simpleNavigation = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Elite Circle", href: "/inner-circle" },
+  { name: "Elite Circle", href: "/newsletter" },
   { name: "Contact", href: "/contact" },
 ];
 
