@@ -112,23 +112,22 @@ export default function SiteFooter() {
 
           {/* Links Column 1 */}
           <div>
-            <h3 className="font-bold text-white mb-6 uppercase tracking-wider">Explore</h3>
+            <h3 className="font-bold text-white mb-6 uppercase tracking-wider">Navigation</h3>
             <ul className="space-y-3">
+              <li><Link href="/" className="text-gray-400 hover:text-primary transition-colors">Home</Link></li>
               <li><Link href="/about" className="text-gray-400 hover:text-primary transition-colors">About</Link></li>
-              <li><Link href="/newsletter" className="text-gray-400 hover:text-primary transition-colors">Newsletter</Link></li>
-              <li><Link href="/playbook" className="text-gray-400 hover:text-primary transition-colors">Playbook</Link></li>
+              <li><Link href="/inner-circle" className="text-gray-400 hover:text-primary transition-colors">Elite Circle</Link></li>
               <li><Link href="/contact" className="text-gray-400 hover:text-primary transition-colors">Contact</Link></li>
             </ul>
           </div>
 
           {/* Links Column 2 */}
           <div>
-            <h3 className="font-bold text-white mb-6 uppercase tracking-wider">Business</h3>
+            <h3 className="font-bold text-white mb-6 uppercase tracking-wider">Legal</h3>
             <ul className="space-y-3">
-              <li><a href="mailto:partners@thepressureplay.com" className="text-gray-400 hover:text-primary transition-colors">Sponsorship</a></li>
-              <li><a href="mailto:press@thepressureplay.com" className="text-gray-400 hover:text-primary transition-colors">Press Kit</a></li>
               <li><Link href="/privacy" className="text-gray-400 hover:text-primary transition-colors">Privacy</Link></li>
               <li><Link href="/terms" className="text-gray-400 hover:text-primary transition-colors">Terms</Link></li>
+              <li><Link href="/cookies" className="text-gray-400 hover:text-primary transition-colors">Cookies</Link></li>
             </ul>
           </div>
         </div>

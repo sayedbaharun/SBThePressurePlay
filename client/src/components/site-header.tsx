@@ -11,10 +11,11 @@ import {
 import ThemeToggle from "./theme-toggle";
 import { Menu, X, ChevronDown, Users, BookOpen, Calendar, Mail, Info } from "lucide-react";
 
-// Simplified navigation - no dropdowns
+// Central navigation - consistent everywhere
 const simpleNavigation = [
+  { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Newsletter", href: "/newsletter" },
+  { name: "Elite Circle", href: "/inner-circle" },
   { name: "Contact", href: "/contact" },
 ];
 

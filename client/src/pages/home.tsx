@@ -25,13 +25,7 @@ export default function Home() {
       {/* 3. Sponsor Marquee */}
       <SponsorMarquee />
       
-      {/* 4. Gear Locker - Affiliate Products */}
-      <GearLocker />
-      
-      {/* 5. Inner Circle Premium */}
-      <InnerCircle />
-      
-      {/* 6. Sticky Audio Player */}
+      {/* 4. Sticky Audio Player */}
       <StickyAudioPlayer />
     </div>
   );

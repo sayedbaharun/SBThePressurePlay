@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { useABTest } from "@/hooks/useABTest";
+import heroBgImage from "@assets/stock_images/luxury_executive_boa_a3b1b581.jpg";
 
 export default function HeroSection() {
   // A/B test different CTA copy versions
@@ -19,24 +20,15 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
+      {/* Hero Background Image */}
       <div className="absolute inset-0 z-0">
-        <div className="relative w-full h-full">
-          <iframe
-            src="https://www.youtube.com/embed/wz1r_VJaJZw?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playlist=wz1r_VJaJZw"
-            title="The Pressure Play Hero Video"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ 
-              width: '100vw',
-              height: '100vh',
-              transform: 'scale(1.1)',
-              pointerEvents: 'none'
-            }}
-            allow="autoplay; encrypted-media"
-          />
-          {/* Video Overlay */}
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-        </div>
+        <img
+          src={heroBgImage}
+          alt="The Pressure Play Hero Background"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Hero Overlay */}
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
       </div>
 
       {/* Content */}
