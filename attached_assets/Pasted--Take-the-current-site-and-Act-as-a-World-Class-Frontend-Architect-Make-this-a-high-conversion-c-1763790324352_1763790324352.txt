@@ -1,0 +1,34 @@
+ "Take the current site and Act as a World-Class Frontend Architect. Make this  a high-conversion, cinematic media platform for a new podcast called 'The Pressure Play' hosted by Patrice Evra and Sayed Baharun.
+> The Vibe: High-performance, aggressive luxury, sports-meets-business. Think 'Nike Pro' meets 'Bloomberg Terminal.'
+> Color Palette: Deep Matte Black (#0a0a0a), Electric Gold (#FFD700) for primary CTAs, and Stark White for typography.
+> Tech Stack: Next.js (App Router), Tailwind CSS, Framer Motion (for heavy scroll animations), and Lucide React icons.
+> Page Structure (Single Page Scroll with Anchor Links):
+> 1. The 'Hook' Hero Section:
+>  * Visual: Full-screen video background (muted, dark overlay) playing slow-motion clips of intense sports moments and boardroom arguments.
+>  * Headline: Big, bold, uppercase font (like 'Oswald' or 'Tungsten'): "PRESSURE MAKES DIAMONDS."
+>  * Sub-headline: "Patrice Evra & Sayed Baharun decode the mindset of Champions and CEOs."
+>  * Primary CTA: 'Join the Inner Circle' (Gold Button).
+>  * Secondary CTA: 'Watch the Trailer' (Outline Button).
+> 2. The 'Bento Grid' Episode Vault:
+>  * Use a 'Bento Box' grid layout to show latest episodes.
+>  * Card 1 (Large): Latest Episode (Video Thumbnail) with a 'Breaking News' badge.
+>  * Card 2: Viral Clip of the Week (Vertical Video aspect ratio).
+>  * Card 3: 'Quote of the Week' (Typography based).
+> 3. The 'Whale' Social Proof (Sponsor Section):
+>  * Header: "TRUSTED BY THE ELITE."
+>  * A marquee slider of high-end logos (Rolex, 1xBet, Emirates, HSBC) – Use placeholders for now.
+> 4. The High-Ticket Funnel (The Mastermind):
+>  * Design: A distinct section with a 'Premium' card background (Glassmorphism).
+>  * Copy: "THE INNER CIRCLE. You’ve listened to the advice. Now apply it."
+>  * Features: Bullet points with checkmarks: 'Quarterly Networking', 'Direct Access to Hosts', 'Executive Blueprints'.
+>  * Input: 'Apply for Access' (Email capture field).
+> 5. The 'Affiliate' Gear Locker:
+>  * A carousel titled 'THE TOOLS WE USE.'
+>  * Product cards for: 'Whoop Band', 'TradingView', 'NordVPN'. (These will be affiliate links).
+> 6. Footer:
+>  * Links: 'Sponsorship Inquiries', 'Press Kit', 'Legal'.
+>  * Social Icons: TikTok, YouTube, Instagram (Make these large).
+> Technical Constraints:
+>  * Ensure the video background lazy loads to keep high performance.
+>  * Mobile view: The 'Bento Grid' must stack vertically.
+>  * Add a 'sticky' audio player at the bottom that persists as you scroll."
