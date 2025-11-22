@@ -4,14 +4,10 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
-import Guests from "@/pages/guests";
-import GuestDetail from "@/pages/guest-detail";
+import Episodes from "@/pages/episodes";
+import InnerCircle from "@/pages/inner-circle";
 import About from "@/pages/about";
 import Newsletter from "@/pages/newsletter";
-import Partners from "@/pages/partners";
-import Press from "@/pages/press";
-import Playbook from "@/pages/playbook";
-import Events from "@/pages/events";
 import Contact from "@/pages/contact";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
@@ -26,30 +22,17 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      {/* Redirect episode-related routes to newsletter */}
-      <Route path="/episodes" component={() => { window.location.href = "/newsletter"; return null; }} />
-      <Route path="/episodes/:slug" component={() => { window.location.href = "/newsletter"; return null; }} />
-      <Route path="/watch" component={() => { window.location.href = "/newsletter"; return null; }} />
-      <Route path="/listen" component={() => { window.location.href = "/newsletter"; return null; }} />
-      {/* Redirect guest-related routes to newsletter */}
-      <Route path="/guests" component={() => { window.location.href = "/newsletter"; return null; }} />
-      <Route path="/guests/:slug" component={() => { window.location.href = "/newsletter"; return null; }} />
+      <Route path="/episodes" component={Episodes} />
+      <Route path="/inner-circle" component={InnerCircle} />
       <Route path="/about" component={About} />
       <Route path="/newsletter" component={Newsletter} />
-      <Route path="/playbook" component={Playbook} />
-      {/* Redirect events route to newsletter */}
-      <Route path="/events" component={() => { window.location.href = "/newsletter"; return null; }} />
-      {/* Redirect partners route to newsletter */}
-      <Route path="/partners" component={() => { window.location.href = "/newsletter"; return null; }} />
-      {/* Redirect press route to newsletter */}
-      <Route path="/press" component={() => { window.location.href = "/newsletter"; return null; }} />
+      <Route path="/contact" component={Contact} />
       
       {/* Analytics page - hidden from navigation */}
       <Route path="/analytics" component={Analytics} />
       
       {/* Admin page - hidden from navigation */}
       <Route path="/admin" component={Admin} />
-      <Route path="/contact" component={Contact} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/cookies" component={Cookies} />
