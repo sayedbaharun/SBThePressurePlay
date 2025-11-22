@@ -77,85 +77,72 @@ const socialLinks = [
 
 export default function SiteFooter() {
   return (
-    <footer className="bg-card border-t border-border py-16">
-      <div className="container mx-auto px-4 lg:px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            {/* Brand Section */}
-            <div className="lg:col-span-2">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">P</span>
-                </div>
-                <span className="text-xl font-bold gradient-text font-display">THE PRESSURE PLAY</span>
+    <footer className="bg-black border-t border-primary/20 py-20">
+      <div className="container-max">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Brand Section */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/50 rounded-lg flex items-center justify-center">
+                <span className="text-black font-bold text-2xl">P</span>
               </div>
-              <p className="text-muted-foreground mb-6 max-w-md">
-                Where the locker room meets the boardroom — and the future. Championship mindset × Business mastery × AI innovation.
-              </p>
-              
-              {/* Enhanced Newsletter CTA */}
-              <div className="apple-card p-4 mb-6 bg-gradient-to-r from-primary/5 to-accent/5">
-                <h4 className="font-medium mb-2">Never Miss a Champion Moment</h4>
-                <p className="text-small text-muted-foreground mb-3">
-                  Join Elite Circle for weekly insights that separate good from great
-                </p>
-                <div className="flex gap-2 mb-2">
-                  <Input 
-                    type="email" 
-                    placeholder="Your email" 
-                    className="flex-1 text-small h-8"
-                    data-testid="footer-newsletter-input"
-                  />
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-3 py-2 rounded-lg text-small h-8">
-                    Subscribe Free
-                  </Button>
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  ✓ 50,000+ subscribers ✓ No spam ✓ Unsubscribe anytime
-                </p>
-              </div>
-              
-              <div className="flex space-x-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-col items-center p-3 bg-muted hover:bg-muted/80 rounded-lg transition-colors group"
-                    data-testid={`social-link-${social.name.toLowerCase()}`}
-                  >
-                    {social.icon}
-                    <span className="text-xs text-muted-foreground mt-1 group-hover:text-foreground transition-colors">{social.followers}</span>
-                    <span className="sr-only">{social.name}</span>
-                  </a>
-                ))}
-              </div>
+              <span className="text-2xl font-bold text-white font-display tracking-widest">PRESSURE PLAY</span>
             </div>
+            <p className="text-gray-400 mb-8 max-w-md leading-relaxed">
+              Where the locker room meets the boardroom. Championship mindset decoded for athletes, entrepreneurs, and leaders.
+            </p>
 
-            {/* Simplified Navigation */}
-            <div>
-              <h3 className="font-semibold mb-4">Navigation</h3>
-              <ul className="space-y-2">
-                <li><Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link></li>
-                <li><Link href="/newsletter" className="text-muted-foreground hover:text-foreground transition-colors">Newsletter</Link></li>
-                <li><Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link></li>
-              </ul>
+            {/* Large Social Icons */}
+            <div className="flex gap-4">
+              {socialLinks.slice(0, 4).map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-lg bg-primary/20 hover:bg-primary hover:text-black text-primary flex items-center justify-center transition-all duration-300 group"
+                  data-testid={`footer-social-${social.name.toLowerCase()}`}
+                  title={social.name}
+                >
+                  {social.icon}
+                </a>
+              ))}
             </div>
           </div>
 
+          {/* Links Column 1 */}
+          <div>
+            <h3 className="font-bold text-white mb-6 uppercase tracking-wider">Explore</h3>
+            <ul className="space-y-3">
+              <li><Link href="/about" className="text-gray-400 hover:text-primary transition-colors">About</Link></li>
+              <li><Link href="/newsletter" className="text-gray-400 hover:text-primary transition-colors">Newsletter</Link></li>
+              <li><Link href="/playbook" className="text-gray-400 hover:text-primary transition-colors">Playbook</Link></li>
+              <li><Link href="/contact" className="text-gray-400 hover:text-primary transition-colors">Contact</Link></li>
+            </ul>
+          </div>
 
-          {/* Bottom Bar */}
-          <Separator className="mb-8" />
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-muted-foreground text-sm mb-4 md:mb-0">
-              <p>© 2025 The Pressure Play. All rights reserved.</p>
-            </div>
-            <div className="flex space-x-6 text-sm">
-              <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms of Service</Link>
-              <Link href="/cookies" className="text-muted-foreground hover:text-foreground transition-colors">Cookie Policy</Link>
-            </div>
+          {/* Links Column 2 */}
+          <div>
+            <h3 className="font-bold text-white mb-6 uppercase tracking-wider">Business</h3>
+            <ul className="space-y-3">
+              <li><a href="mailto:partners@thepressureplay.com" className="text-gray-400 hover:text-primary transition-colors">Sponsorship</a></li>
+              <li><a href="mailto:press@thepressureplay.com" className="text-gray-400 hover:text-primary transition-colors">Press Kit</a></li>
+              <li><Link href="/privacy" className="text-gray-400 hover:text-primary transition-colors">Privacy</Link></li>
+              <li><Link href="/terms" className="text-gray-400 hover:text-primary transition-colors">Terms</Link></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <Separator className="bg-primary/20 mb-8" />
+
+        {/* Bottom Bar */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-gray-500 text-sm">
+            <p>© 2025 The Pressure Play. All rights reserved.</p>
+          </div>
+          <div className="text-gray-500 text-xs">
+            <p>Powered by champions, for champions.</p>
           </div>
         </div>
       </div>

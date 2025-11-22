@@ -1,4 +1,5 @@
 import { Play, Zap } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface Episode {
   id: string;
@@ -40,10 +41,15 @@ export default function BentoEpisodes() {
   return (
     <section id="episodes" className="section-padding bg-black" data-testid="bento-episodes">
       <div className="container-max">
-        <div className="mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-16"
+        >
           <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">EPISODE VAULT</h2>
           <p className="text-lg text-gray-400">Latest conversations decoded</p>
-        </div>
+        </motion.div>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px] md:auto-rows-[400px]">

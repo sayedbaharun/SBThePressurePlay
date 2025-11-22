@@ -1,4 +1,5 @@
 import { CheckCircle, Zap, Users, Book } from "lucide-react";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -29,7 +30,11 @@ export default function InnerCircle() {
       <div className="container-max">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
               THE INNER CIRCLE
             </h2>
@@ -57,10 +62,15 @@ export default function InnerCircle() {
             <button className="btn-gold text-lg" data-testid="apply-access-btn">
               Apply for Access
             </button>
-          </div>
+          </motion.div>
 
           {/* Right - Premium Card */}
-          <div className="glass p-8 rounded-2xl border-2 border-primary/50 hover:border-primary transition-colors">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="glass p-8 rounded-2xl border-2 border-primary/50 hover:border-primary transition-colors"
+          >
             <div className="mb-6">
               <div className="inline-block bg-primary/20 text-primary px-4 py-1 rounded-full text-sm font-bold uppercase mb-4">
                 Premium
@@ -85,7 +95,7 @@ export default function InnerCircle() {
             <p className="text-center text-xs text-gray-500">
               30-day money-back guarantee. Cancel anytime.
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

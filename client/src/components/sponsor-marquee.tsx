@@ -1,10 +1,19 @@
+import { motion } from "framer-motion";
+
 export default function SponsorMarquee() {
   const sponsors = ["ROLEX", "1XBET", "EMIRATES", "HSBC", "BLOOMBERG", "MASTERCLASS"];
 
   return (
     <section id="sponsors" className="section-padding bg-gradient-to-b from-black to-gray-900" data-testid="sponsor-marquee">
       <div className="container-max">
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-16">TRUSTED BY THE ELITE</h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl md:text-5xl font-bold text-center text-white mb-16"
+        >
+          TRUSTED BY THE ELITE
+        </motion.h2>
 
         {/* Marquee Container */}
         <div className="relative overflow-hidden rounded-lg bg-black/50 border border-primary/20 py-8">
