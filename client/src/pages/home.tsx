@@ -6,11 +6,15 @@ import SponsorMarquee from "@/components/sponsor-marquee";
 import InnerCircle from "@/components/inner-circle";
 import GearLocker from "@/components/gear-locker";
 import StickyAudioPlayer from "@/components/sticky-audio-player";
+import VibeShifter from "@/components/vibe-shifter";
+import SocialProofWall from "@/components/social-proof-wall";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-black">
       <StickyNav />
+      <VibeShifter />
+      <SocialProofWall />
       
       {/* 1. Hero Section */}
       <HeroSection />

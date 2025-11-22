@@ -1,5 +1,6 @@
 import { Play, Zap } from "lucide-react";
 import { motion } from "framer-motion";
+import InteractiveEpisodeCard from "./interactive-episode-card";
 
 interface Episode {
   id: string;
@@ -53,33 +54,18 @@ export default function BentoEpisodes() {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px] md:auto-rows-[400px]">
-          {/* Featured Large Card */}
+          {/* Featured Large Card - Interactive */}
           <div
-            className="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-lg bg-card hover:scale-105 transition-transform duration-300 cursor-pointer"
+            className="md:col-span-2 md:row-span-2"
             data-testid="featured-episode-card"
           >
-            <img
-              src={episodes[0].image}
-              alt={episodes[0].title}
-              className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+            <InteractiveEpisodeCard
+              title={episodes[0].title}
+              guest={episodes[0].guest}
+              duration={episodes[0].duration}
+              image={episodes[0].image}
+              featured
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
-            
-            {episodes[0].badge && (
-              <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 rounded text-xs font-bold uppercase tracking-wide">
-                {episodes[0].badge}
-              </div>
-            )}
-
-            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-              <h3 className="text-2xl md:text-3xl font-bold mb-2">{episodes[0].title}</h3>
-              <p className="text-sm text-gray-300 mb-4">{episodes[0].guest}</p>
-              <p className="text-xs text-gray-400">{episodes[0].duration}</p>
-            </div>
-
-            <button className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
-              <Play className="w-16 h-16 text-primary fill-primary" />
-            </button>
           </div>
 
           {/* Vertical Episode Card */}
