@@ -50,6 +50,11 @@ export const newsletterSubscribers = pgTable("newsletter_subscribers", {
   country: text("country"),
   subscribedAt: timestamp("subscribed_at").notNull().defaultNow(),
   confirmed: boolean("confirmed").default(false),
+  referralCode: text("referral_code").unique(),
+  referredBy: text("referred_by"),
+  tier: text("tier").default("insider"),
+  signupNumber: integer("signup_number"),
+  referralCount: integer("referral_count").default(0),
 });
 
 export const contactMessages = pgTable("contact_messages", {
@@ -99,6 +104,7 @@ export const insertNewsletterSubscriberSchema = createInsertSchema(newsletterSub
   name: true,
   phone: true,
   country: true,
+  referredBy: true,
 });
 
 export const insertContactMessageSchema = createInsertSchema(contactMessages).omit({

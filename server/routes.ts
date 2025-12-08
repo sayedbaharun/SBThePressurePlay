@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertNewsletterSubscriberSchema, insertContactMessageSchema, insertAbTestEventSchema } from "@shared/schema";
+import { generateReferralCode, getTierFromReferralCount } from "@shared/referral-utils";
 import { z } from "zod";
 import { getTikTokVideos, getTikTokProfile, getTikTokByHashtag, formatTikTokCount } from "./tiktok";
 
@@ -72,26 +73,118 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Newsletter subscription
+  // Newsletter subscription with referral system
   app.post("/api/newsletter/subscribe", async (req, res) => {
     try {
       const validatedData = insertNewsletterSubscriberSchema.parse(req.body);
-      
+
       // Check if email already exists
       const subscribers = await storage.getNewsletterSubscribers();
       const existingSubscriber = subscribers.find(sub => sub.email === validatedData.email);
-      
+
       if (existingSubscriber) {
         return res.status(400).json({ message: "Email already subscribed" });
       }
 
-      const subscriber = await storage.subscribeToNewsletter(validatedData);
-      res.json({ message: "Successfully subscribed to newsletter", subscriber });
+      // Generate unique referral code
+      let referralCode = generateReferralCode();
+      let isUnique = false;
+      while (!isUnique) {
+        const existingCode = await storage.getSubscriberByReferralCode(referralCode);
+        if (!existingCode) {
+          isUnique = true;
+        } else {
+          referralCode = generateReferralCode();
+        }
+      }
+
+      // Get current subscriber count for signup number
+      const signupNumber = (await storage.getNewsletterSubscriberCount()) + 1;
+
+      // Create the new subscriber with referral code
+      const subscriber = await storage.subscribeToNewsletter({
+        ...validatedData,
+        referralCode,
+        signupNumber,
+        tier: "insider",
+        referralCount: 0,
+      } as any);
+
+      // If they were referred by someone, credit the referrer
+      if (validatedData.referredBy) {
+        const referrer = await storage.getSubscriberByReferralCode(validatedData.referredBy);
+
+        if (referrer) {
+          const newReferralCount = (referrer.referralCount || 0) + 1;
+          const newTier = getTierFromReferralCount(newReferralCount);
+
+          await storage.updateSubscriberReferralStats(
+            referrer.id,
+            newReferralCount,
+            newTier
+          );
+        }
+      }
+
+      res.json({
+        message: "Successfully subscribed to newsletter",
+        subscriber: {
+          id: subscriber.id,
+          email: subscriber.email,
+          name: subscriber.name,
+          referralCode: subscriber.referralCode,
+          signupNumber: subscriber.signupNumber,
+          tier: subscriber.tier,
+          referralCount: subscriber.referralCount,
+        }
+      });
     } catch (error) {
       if (error instanceof z.ZodError) {
         return res.status(400).json({ message: "Invalid email format", errors: error.errors });
       }
+      console.error("Newsletter subscription error:", error);
       res.status(500).json({ message: "Failed to subscribe to newsletter" });
+    }
+  });
+
+  // Get newsletter subscriber count
+  app.get("/api/newsletter/stats", async (req, res) => {
+    try {
+      const count = await storage.getNewsletterSubscriberCount();
+      res.json({ totalSubscribers: count });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch newsletter stats" });
+    }
+  });
+
+  // Get simple subscriber count for hero section
+  app.get("/api/newsletter/count", async (req, res) => {
+    try {
+      const count = await storage.getNewsletterSubscriberCount();
+      res.json({ count });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch subscriber count" });
+    }
+  });
+
+  // Get referral stats for a specific code
+  app.get("/api/newsletter/referral/:code", async (req, res) => {
+    try {
+      const subscriber = await storage.getSubscriberByReferralCode(req.params.code);
+
+      if (!subscriber) {
+        return res.status(404).json({ message: "Referral code not found" });
+      }
+
+      res.json({
+        referralCode: subscriber.referralCode,
+        referralCount: subscriber.referralCount || 0,
+        tier: subscriber.tier || "insider",
+        signupNumber: subscriber.signupNumber,
+        name: subscriber.name,
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch referral stats" });
     }
   });
 
