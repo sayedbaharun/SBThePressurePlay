@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertNewsletterSubscriberSchema, insertContactMessageSchema, insertAbTestEventSchema } from "@shared/schema";
 import { z } from "zod";
+import { getTikTokVideos, getTikTokProfile, getTikTokByHashtag, formatTikTokCount } from "./tiktok";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Episodes routes
@@ -137,6 +138,68 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(events);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch analytics events" });
+    }
+  });
+
+  // TikTok API routes
+  app.get("/api/tiktok/videos", async (req, res) => {
+    try {
+      const username = (req.query.username as string) || "thepressureplay";
+      const count = parseInt(req.query.count as string) || 10;
+      const videos = await getTikTokVideos(username, count);
+      res.json({
+        videos,
+        formatted: videos.map(v => ({
+          ...v,
+          stats: {
+            ...v.stats,
+            diggCountFormatted: formatTikTokCount(v.stats.diggCount),
+            playCountFormatted: formatTikTokCount(v.stats.playCount),
+            shareCountFormatted: formatTikTokCount(v.stats.shareCount),
+            commentCountFormatted: formatTikTokCount(v.stats.commentCount),
+          }
+        }))
+      });
+    } catch (error) {
+      console.error("TikTok videos error:", error);
+      res.status(500).json({ message: "Failed to fetch TikTok videos" });
+    }
+  });
+
+  app.get("/api/tiktok/profile", async (req, res) => {
+    try {
+      const username = (req.query.username as string) || "thepressureplay";
+      const profile = await getTikTokProfile(username);
+      if (!profile) {
+        return res.status(404).json({ message: "TikTok profile not found" });
+      }
+      res.json(profile);
+    } catch (error) {
+      console.error("TikTok profile error:", error);
+      res.status(500).json({ message: "Failed to fetch TikTok profile" });
+    }
+  });
+
+  app.get("/api/tiktok/hashtag/:tag", async (req, res) => {
+    try {
+      const hashtag = req.params.tag;
+      const count = parseInt(req.query.count as string) || 10;
+      const videos = await getTikTokByHashtag(hashtag, count);
+      res.json({
+        hashtag,
+        videos,
+        formatted: videos.map(v => ({
+          ...v,
+          stats: {
+            ...v.stats,
+            diggCountFormatted: formatTikTokCount(v.stats.diggCount),
+            playCountFormatted: formatTikTokCount(v.stats.playCount),
+          }
+        }))
+      });
+    } catch (error) {
+      console.error("TikTok hashtag error:", error);
+      res.status(500).json({ message: "Failed to fetch TikTok hashtag videos" });
     }
   });
 
