@@ -11,11 +11,9 @@ import {
 import ThemeToggle from "./theme-toggle";
 import { Menu, X, ChevronDown, Users, BookOpen, Calendar, Mail, Info } from "lucide-react";
 
-// Central navigation - consistent everywhere
+// Central navigation - pre-launch essentials only
 const simpleNavigation = [
-  { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Elite Circle", href: "/newsletter" },
   { name: "Contact", href: "/contact" },
 ];
 

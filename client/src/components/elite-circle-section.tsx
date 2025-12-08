@@ -28,20 +28,8 @@ const newsletterBenefits = [
 
 const socialProof: { number: string; label: string }[] = [];
 
-const testimonials = [
-  {
-    quote: "Sayed's strategic framework combined with Patrice's championship insights transformed our entire leadership approach",
-    author: "Sarah Chen, Fortune 500 CEO"
-  },
-  {
-    quote: "Finally, a platform where world-class strategy meets authentic championship experience. Both Sayed and Patrice bring unique value", 
-    author: "Marcus Rodriguez, Premier League Manager"
-  },
-  {
-    quote: "The combination of Sayed's methodology and Patrice's real-world experience is unmatched",
-    author: "Jennifer Kumar, Venture Capitalist"
-  }
-];
+// Testimonials will be added as they come in from real subscribers
+const testimonials: { quote: string; author: string }[] = [];
 
 export default function EliteCircleSection() {
   return (
@@ -198,27 +186,29 @@ export default function EliteCircleSection() {
             </div>
           </div>
 
-          {/* Testimonials */}
-          <div className="mb-16">
-            <h3 className="text-headline font-display text-center mb-8">What Our Community Says</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="apple-card p-6">
-                  <div className="flex mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-primary text-primary" />
-                    ))}
+          {/* Testimonials - Will be displayed once we have real subscriber feedback */}
+          {testimonials.length > 0 && (
+            <div className="mb-16">
+              <h3 className="text-headline font-display text-center mb-8">What Our Community Says</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="apple-card p-6">
+                    <div className="flex mb-3">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                      ))}
+                    </div>
+                    <p className="text-body text-muted-foreground mb-4 italic">
+                      "{testimonial.quote}"
+                    </p>
+                    <p className="text-small font-medium">
+                      {testimonial.author}
+                    </p>
                   </div>
-                  <p className="text-body text-muted-foreground mb-4 italic">
-                    "{testimonial.quote}"
-                  </p>
-                  <p className="text-small font-medium">
-                    {testimonial.author}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Community Building Focus */}
           <div className="text-center">

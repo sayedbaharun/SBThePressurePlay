@@ -131,9 +131,9 @@ export default function InnerCircle() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h2 className="text-4xl font-bold text-white mb-4">Join 5,000+ Elite Members</h2>
+            <h2 className="text-4xl font-bold text-white mb-4">Join the Elite Circle</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Champions from 50+ countries trust The Pressure Play to elevate their performance.
+              Be among the first to join our exclusive community of champions, leaders, and innovators.
             </p>
           </motion.div>
         </div>

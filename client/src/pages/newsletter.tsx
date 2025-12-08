@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -8,12 +8,12 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { 
-  Mail, 
-  Users, 
-  TrendingUp, 
-  Calendar, 
-  CheckCircle, 
+import {
+  Mail,
+  Users,
+  TrendingUp,
+  Calendar,
+  CheckCircle,
   Star,
   Shield,
   Zap,
@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import type { NewsletterSubscriber } from "@shared/schema";
 import executiveImage from "@assets/generated_images/Executive_leadership_portrait_1a759e03.png";
+import ReferralShareModal from "@/components/referral-share-modal";
 
 const benefits = [
   {
@@ -71,8 +72,29 @@ export default function Newsletter() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
+  const [referralCode, setReferralCode] = useState<string | null>(null);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [subscriberData, setSubscriberData] = useState<any>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
+
+  // Check for referral code in URL on mount
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+
+    if (ref) {
+      // Store in localStorage for persistence
+      localStorage.setItem("tpp_referral_code", ref);
+      setReferralCode(ref);
+    } else {
+      // Check localStorage for existing referral code
+      const storedRef = localStorage.getItem("tpp_referral_code");
+      if (storedRef) {
+        setReferralCode(storedRef);
+      }
+    }
+  }, []);
 
   const { data: subscribers = [] } = useQuery<NewsletterSubscriber[]>({
     queryKey: ["/api/newsletter/subscribers"],
@@ -80,19 +102,21 @@ export default function Newsletter() {
   });
 
   const subscribeMutation = useMutation({
-    mutationFn: async (formData: { email: string; name: string; phone?: string; country?: string }) => {
+    mutationFn: async (formData: { email: string; name: string; phone?: string; country?: string; referredBy?: string }) => {
       const response = await apiRequest("POST", "/api/newsletter/subscribe", formData);
       return response.json();
     },
-    onSuccess: () => {
-      toast({
-        title: "Welcome to The Elite Circle! 🎉",
-        description: "Check your email to confirm your subscription and get your welcome bonus.",
-      });
+    onSuccess: (data) => {
+      setSubscriberData(data.subscriber);
+      setShowShareModal(true);
       setEmail("");
       setName("");
       setPhone("");
       setCountry("");
+
+      // Clear referral code from localStorage after successful signup
+      localStorage.removeItem("tpp_referral_code");
+
       queryClient.invalidateQueries({ queryKey: ["/api/newsletter"] });
     },
     onError: (error: any) => {
@@ -107,12 +131,19 @@ export default function Newsletter() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !name) return;
-    subscribeMutation.mutate({ 
-      email, 
-      name, 
-      phone: phone || undefined, 
-      country: country || undefined 
-    });
+
+    const subscriptionData: any = {
+      email,
+      name,
+      phone: phone || undefined,
+      country: country || undefined
+    };
+
+    if (referralCode) {
+      subscriptionData.referredBy = referralCode;
+    }
+
+    subscribeMutation.mutate(subscriptionData);
   };
 
   return (
@@ -128,25 +159,18 @@ export default function Newsletter() {
               The Elite Circle
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              Join 50,000+ high achievers who get exclusive insights, early episode access, 
+              Join our growing community of high achievers who get exclusive insights, early episode access,
               and performance strategies delivered to their inbox every week.
             </p>
-            
+
             {/* Stats */}
             <div className="flex justify-center space-x-8 mb-8">
               <div className="text-center">
                 <div className="flex items-center space-x-1 justify-center mb-1">
-                  <Users className="w-4 h-4 text-primary" />
-                  <span className="font-bold text-lg">50K+</span>
+                  <CheckCircle className="w-4 h-4 text-green-500" />
+                  <span className="font-bold text-lg">Free</span>
                 </div>
-                <span className="text-sm text-muted-foreground">Subscribers</span>
-              </div>
-              <div className="text-center">
-                <div className="flex items-center space-x-1 justify-center mb-1">
-                  <Star className="w-4 h-4 text-yellow-400" />
-                  <span className="font-bold text-lg">4.9</span>
-                </div>
-                <span className="text-sm text-muted-foreground">Rating</span>
+                <span className="text-sm text-muted-foreground">Forever</span>
               </div>
               <div className="text-center">
                 <div className="flex items-center space-x-1 justify-center mb-1">
@@ -154,6 +178,13 @@ export default function Newsletter() {
                   <span className="font-bold text-lg">Weekly</span>
                 </div>
                 <span className="text-sm text-muted-foreground">Delivery</span>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center space-x-1 justify-center mb-1">
+                  <Mail className="w-4 h-4 text-primary" />
+                  <span className="font-bold text-lg">No Spam</span>
+                </div>
+                <span className="text-sm text-muted-foreground">Unsubscribe Anytime</span>
               </div>
             </div>
           </div>
@@ -180,6 +211,15 @@ export default function Newsletter() {
                     Get started with exclusive content and insights from industry leaders.
                   </p>
                 </div>
+
+                {/* Referral Notice */}
+                {referralCode && (
+                  <div className="mb-4 p-4 bg-primary/10 border border-primary/30 rounded-xl max-w-lg mx-auto">
+                    <p className="text-sm text-foreground">
+                      You've been referred! Sign up to help your friend move up the tiers.
+                    </p>
+                  </div>
+                )}
                 
                 <div className="space-y-4 max-w-lg mx-auto">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -268,70 +308,19 @@ export default function Newsletter() {
           </div>
 
 
-          {/* Testimonials */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-8 text-center font-display">
-              What Subscribers Say
-            </h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              <Card className="border border-border">
-                <CardContent className="p-6">
-                  <div className="flex mb-4">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    "The weekly insights have transformed how I approach leadership challenges. 
-                    The content is always actionable and backed by real experience."
-                  </p>
-                  <div className="text-sm">
-                    <p className="font-semibold">Sarah Chen</p>
-                    <p className="text-muted-foreground">VP of Strategy, TechCorp</p>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card className="border border-border">
-                <CardContent className="p-6">
-                  <div className="flex mb-4">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    "Getting episodes early plus the exclusive content makes this newsletter 
-                    invaluable. Worth its weight in gold for any high performer."
-                  </p>
-                  <div className="text-sm">
-                    <p className="font-semibold">Marcus Rodriguez</p>
-                    <p className="text-muted-foreground">Olympic Coach</p>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card className="border border-border">
-                <CardContent className="p-6">
-                  <div className="flex mb-4">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    "The performance strategies and guest insights have been game-changing 
-                    for my business. Highly recommend to any serious entrepreneur."
-                  </p>
-                  <div className="text-sm">
-                    <p className="font-semibold">David Kim</p>
-                    <p className="text-muted-foreground">Founder & CEO</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+          {/* What You'll Get - Keep this valuable information without fake testimonials */}
 
         </div>
       </div>
+
+      {/* Referral Share Modal */}
+      {subscriberData && (
+        <ReferralShareModal
+          isOpen={showShareModal}
+          onClose={() => setShowShareModal(false)}
+          subscriber={subscriberData}
+        />
+      )}
     </div>
   );
 }

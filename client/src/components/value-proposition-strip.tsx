@@ -3,28 +3,28 @@ import aiTechImage from "@assets/generated_images/AI_technology_visualization_b1
 
 const stats = [
   {
-    icon: Download,
-    value: "2M+",
-    label: "Total Downloads",
-    description: "Trusted by millions"
-  },
-  {
     icon: Users,
-    value: "50+",
-    label: "Elite Guests",
-    description: "Industry leaders"
+    value: "Elite",
+    label: "Guest Speakers",
+    description: "Champions & Leaders"
   },
   {
     icon: Award,
-    value: "Top 1%",
-    label: "Business Podcasts",
-    description: "Apple Podcasts ranking"
+    value: "Premium",
+    label: "Content Quality",
+    description: "Championship insights"
   },
   {
     icon: TrendingUp,
-    value: "4.9★",
-    label: "Average Rating",
-    description: "Listener satisfaction"
+    value: "Growing",
+    label: "Community",
+    description: "Join early adopters"
+  },
+  {
+    icon: Download,
+    value: "Weekly",
+    label: "New Episodes",
+    description: "Fresh perspectives"
   }
 ];
 

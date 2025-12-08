@@ -33,6 +33,9 @@ export interface IStorage {
   // Newsletter
   subscribeToNewsletter(subscriber: InsertNewsletterSubscriber): Promise<NewsletterSubscriber>;
   getNewsletterSubscribers(): Promise<NewsletterSubscriber[]>;
+  getSubscriberByReferralCode(referralCode: string): Promise<NewsletterSubscriber | undefined>;
+  updateSubscriberReferralStats(id: string, referralCount: number, tier: string): Promise<void>;
+  getNewsletterSubscriberCount(): Promise<number>;
 
   // Contact
   createContactMessage(message: InsertContactMessage): Promise<ContactMessage>;
@@ -123,6 +126,22 @@ export class DatabaseStorage implements IStorage {
 
   async getNewsletterSubscribers(): Promise<NewsletterSubscriber[]> {
     return await db.select().from(newsletterSubscribers);
+  }
+
+  async getSubscriberByReferralCode(referralCode: string): Promise<NewsletterSubscriber | undefined> {
+    const [subscriber] = await db.select().from(newsletterSubscribers).where(eq(newsletterSubscribers.referralCode, referralCode));
+    return subscriber || undefined;
+  }
+
+  async updateSubscriberReferralStats(id: string, referralCount: number, tier: string): Promise<void> {
+    await db.update(newsletterSubscribers)
+      .set({ referralCount, tier })
+      .where(eq(newsletterSubscribers.id, id));
+  }
+
+  async getNewsletterSubscriberCount(): Promise<number> {
+    const subscribers = await db.select().from(newsletterSubscribers);
+    return subscribers.length;
   }
 
   // Contact methods

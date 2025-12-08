@@ -46,47 +46,32 @@ const brandAssets = [
   }
 ];
 
-const pressClips = [
-  {
-    publication: "Forbes",
-    title: "How The Pressure Play is Redefining Business Podcasting",
-    date: "Dec 10, 2024",
-    url: "https://forbes.com/pressure-play-business-podcasting",
-    excerpt: "With its unique blend of elite performance insights and strategic business thinking..."
-  },
-  {
-    publication: "TechCrunch",
-    title: "AI Leaders Share Insights on The Pressure Play Podcast",
-    date: "Nov 28, 2024", 
-    url: "https://techcrunch.com/pressure-play-ai-leaders",
-    excerpt: "The podcast has become a go-to resource for technology executives and innovators..."
-  },
-  {
-    publication: "Harvard Business Review",
-    title: "Performance Psychology: Lessons from Elite Athletes",
-    date: "Nov 15, 2024",
-    url: "https://hbr.org/pressure-play-performance-psychology",
-    excerpt: "The Pressure Play's interviews with Olympic champions reveal universal principles..."
-  }
-];
+// Press clips will be added as real media coverage comes in
+const pressClips: Array<{
+  publication: string;
+  title: string;
+  date: string;
+  url: string;
+  excerpt: string;
+}> = [];
 
 const keyStats = [
-  { label: "Total Downloads", value: "2M+", icon: <Play className="w-5 h-5" /> },
-  { label: "Monthly Listeners", value: "500K+", icon: <Users className="w-5 h-5" /> },
-  { label: "Countries Reached", value: "150+", icon: <Globe className="w-5 h-5" /> },
-  { label: "Episodes Published", value: "50+", icon: <FileText className="w-5 h-5" /> },
+  { label: "Content Format", value: "Podcast", icon: <Play className="w-5 h-5" /> },
+  { label: "Release Schedule", value: "Weekly", icon: <FileText className="w-5 h-5" /> },
+  { label: "Focus", value: "Elite Performance", icon: <Users className="w-5 h-5" /> },
+  { label: "Availability", value: "Worldwide", icon: <Globe className="w-5 h-5" /> },
 ];
 
 const hostInfo = {
-  name: "Alex Morrison",
-  title: "Host & Executive Producer",
-  bio: "Former Fortune 500 executive turned performance coach and podcaster. Alex has interviewed over 200 world-class performers across business, sports, and technology.",
+  name: "Sayed Baharun & Patrice Evra",
+  title: "Co-Hosts",
+  bio: "Sayed Baharun brings strategic business expertise and AI innovation insights, while Patrice Evra brings championship sports experience and elite performance mindset from his legendary football career.",
   headshot: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400",
   credentials: [
-    "MBA from Stanford Graduate School of Business",
-    "Former VP of Strategy at TechCorp",
-    "Certified Executive Coach (ICF)",
-    "Published author of 'The Performance Equation'"
+    "Unique blend of boardroom strategy and locker room championship mentality",
+    "Deep expertise in AI, business strategy, and elite performance",
+    "Champions League winner and business strategist collaboration",
+    "Weekly insights from the intersection of sports and business"
   ]
 };
 
@@ -290,43 +275,45 @@ export default function Press() {
             </CardContent>
           </Card>
 
-          {/* Recent Press Coverage */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-8 text-center font-display">
-              Recent Press Coverage
-            </h2>
-            <div className="space-y-6">
-              {pressClips.map((clip, index) => (
-                <Card key={index} className="border border-border">
-                  <CardContent className="p-6">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-3 mb-2">
-                          <Badge variant="outline">{clip.publication}</Badge>
-                          <span className="text-sm text-muted-foreground">{clip.date}</span>
+          {/* Recent Press Coverage - Will be displayed once real media coverage comes in */}
+          {pressClips.length > 0 && (
+            <div className="mb-16">
+              <h2 className="text-2xl font-bold mb-8 text-center font-display">
+                Recent Press Coverage
+              </h2>
+              <div className="space-y-6">
+                {pressClips.map((clip, index) => (
+                  <Card key={index} className="border border-border">
+                    <CardContent className="p-6">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-3 mb-2">
+                            <Badge variant="outline">{clip.publication}</Badge>
+                            <span className="text-sm text-muted-foreground">{clip.date}</span>
+                          </div>
+                          <h3 className="text-lg font-bold mb-2" data-testid={`press-clip-${index}`}>
+                            {clip.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {clip.excerpt}
+                          </p>
                         </div>
-                        <h3 className="text-lg font-bold mb-2" data-testid={`press-clip-${index}`}>
-                          {clip.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          {clip.excerpt}
-                        </p>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="mt-4 md:mt-0 md:ml-6"
+                          onClick={() => window.open(clip.url, '_blank')}
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          Read Article
+                        </Button>
                       </div>
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="mt-4 md:mt-0 md:ml-6"
-                        onClick={() => window.open(clip.url, '_blank')}
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Read Article
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Press Contact */}
           <Card className="bg-muted/30">

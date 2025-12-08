@@ -81,10 +81,10 @@ const partnershipTiers = [
 ];
 
 const audienceStats = [
-  { label: "Monthly Downloads", value: "500K+", icon: <Play className="w-6 h-6" /> },
-  { label: "Newsletter Subscribers", value: "50K+", icon: <Mail className="w-6 h-6" /> },
-  { label: "Social Media Reach", value: "2M+", icon: <Users className="w-6 h-6" /> },
-  { label: "Website Visitors", value: "100K+", icon: <Globe className="w-6 h-6" /> },
+  { label: "Growing Audience", value: "Fast", icon: <TrendingUp className="w-6 h-6" /> },
+  { label: "Engaged Community", value: "Active", icon: <Users className="w-6 h-6" /> },
+  { label: "Premium Focus", value: "Elite", icon: <Target className="w-6 h-6" /> },
+  { label: "Global Reach", value: "Worldwide", icon: <Globe className="w-6 h-6" /> },
 ];
 
 const audienceDemographics = [
