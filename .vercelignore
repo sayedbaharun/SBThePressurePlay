@@ -1,0 +1,8 @@
+.env
+.env.*
+*.md
+.kilo
+.replit
+hidden.md
+LAUNCH_SPRINT.md
+attached_assets
