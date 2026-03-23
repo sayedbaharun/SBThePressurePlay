@@ -90,7 +90,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createEpisode(insertEpisode: InsertEpisode): Promise<Episode> {
-    const [episode] = await db.insert(episodes).values(insertEpisode).returning();
+    const [episode] = await db.insert(episodes).values(insertEpisode as any).returning();
     return episode;
   }
 
@@ -111,7 +111,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createGuest(insertGuest: InsertGuest): Promise<Guest> {
-    const [guest] = await db.insert(guests).values(insertGuest).returning();
+    const [guest] = await db.insert(guests).values(insertGuest as any).returning();
     return guest;
   }
 
