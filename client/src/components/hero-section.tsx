@@ -35,15 +35,33 @@ const itemVariants = {
 
 export default function HeroSection() {
   const [email, setEmail] = useState("");
+  const [referralCode, setReferralCode] = useState<string | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
+  // Check for referral code in URL
+  useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+    if (ref) {
+      localStorage.setItem("tpp_referral_code", ref);
+      setReferralCode(ref);
+    } else {
+      const stored = localStorage.getItem("tpp_referral_code");
+      if (stored) setReferralCode(stored);
+    }
+  });
+
   const subscribeMutation = useMutation({
     mutationFn: async (email: string) => {
-      const response = await apiRequest("POST", "/api/newsletter/subscribe", {
+      const payload: any = {
         email,
         name: email.split("@")[0],
-      });
+      };
+      if (referralCode) {
+        payload.referredBy = referralCode;
+      }
+      const response = await apiRequest("POST", "/api/newsletter/subscribe", payload);
       return response.json();
     },
     onSuccess: () => {
@@ -52,6 +70,8 @@ export default function HeroSection() {
         description: "We'll notify you when Episode 1 drops. Check your email to confirm.",
       });
       setEmail("");
+      setReferralCode(null);
+      localStorage.removeItem("tpp_referral_code");
     },
     onError: (error: any) => {
       toast({
@@ -179,21 +199,18 @@ export default function HeroSection() {
           >
             <motion.div variants={itemVariants}>
               <div className="text-center p-6 brand-card">
-                <div className="text-2xl mb-2">💎</div>
                 <h3 className="text-white font-semibold mb-2">The Parallel</h3>
                 <p className="text-pp-slate text-small">Same pressure, different arena</p>
               </div>
             </motion.div>
             <motion.div variants={itemVariants}>
               <div className="text-center p-6 brand-card">
-                <div className="text-2xl mb-2">⚡</div>
                 <h3 className="text-white font-semibold mb-2">Technology Edge</h3>
                 <p className="text-pp-slate text-small">AI, blockchain, and the unfair advantage</p>
               </div>
             </motion.div>
             <motion.div variants={itemVariants}>
               <div className="text-center p-6 brand-card">
-                <div className="text-2xl mb-2">🧠</div>
                 <h3 className="text-white font-semibold mb-2">Peak Performance</h3>
                 <p className="text-pp-slate text-small">Biohacking, recovery, cognition</p>
               </div>
