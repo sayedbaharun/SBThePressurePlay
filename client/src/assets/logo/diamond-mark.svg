@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="diamond-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A84FF"/>
+      <stop offset="100%" stop-color="#00D4AA"/>
+    </linearGradient>
+  </defs>
+  <!-- Diamond shape -->
+  <path d="M16 2L28 16L16 30L4 16Z" fill="url(#diamond-grad)" opacity="0.9"/>
+  <!-- Play triangle -->
+  <path d="M13 11L22 16L13 21Z" fill="white" opacity="0.95"/>
+</svg>

@@ -52,54 +52,52 @@ const platforms = [
 
 export default function SocialProofSection() {
   return (
-    <section className="relative py-20 md:py-32">
+    <section className="relative py-20 md:py-32 bg-pp-deep-black">
       <div className="container-max">
         <ScrollReveal>
           <div className="text-center mb-16">
-            <h2 className="text-display-2 font-display text-white mb-4">
-              WHAT PEOPLE ARE SAYING
+            <h2 className="text-display-2 text-white mb-4">
+              What People Are Saying
             </h2>
-            <p className="text-body-large text-white/60 max-w-xl mx-auto">
-              Early listeners and industry leaders on The Pressure Play.
+            <p className="text-body-large text-pp-slate max-w-xl mx-auto">
+              Early listeners and industry leaders on Pressure Play.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Testimonials */}
         <div className="grid md:grid-cols-3 gap-6 mb-16">
           {testimonials.map((t, index) => (
             <ScrollReveal key={t.author} delay={index * 0.1}>
               <motion.div
-                className="apple-card p-8 h-full flex flex-col"
+                className="brand-card p-8 h-full flex flex-col"
                 whileHover={{ y: -4 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <Quote className="w-8 h-8 text-primary/30 mb-4 flex-shrink-0" />
-                <p className="text-body text-white/70 leading-relaxed flex-1 mb-6">
-                  "{t.quote}"
+                <Quote className="w-8 h-8 text-pp-blue/30 mb-4 flex-shrink-0" />
+                <p className="text-body text-pp-slate leading-relaxed flex-1 mb-6">
+                  &ldquo;{t.quote}&rdquo;
                 </p>
                 <div>
                   <p className="text-caption text-white font-semibold">
                     {t.author}
                   </p>
-                  <p className="text-small text-white/40">{t.title}</p>
+                  <p className="text-small text-pp-slate">{t.title}</p>
                 </div>
               </motion.div>
             </ScrollReveal>
           ))}
         </div>
 
-        {/* Platform Logos */}
         <ScrollReveal delay={0.2}>
           <div className="text-center">
-            <p className="text-caption text-white/40 uppercase tracking-wider mb-6">
+            <p className="text-caption text-pp-slate uppercase tracking-wider mb-6">
               Listen on
             </p>
             <div className="flex justify-center gap-8">
               {platforms.map((platform) => (
                 <motion.div
                   key={platform.name}
-                  className="text-white/30 hover:text-primary transition-colors duration-300"
+                  className="text-pp-slate hover:text-pp-blue transition-colors duration-300"
                   whileHover={{ scale: 1.15 }}
                   transition={{ type: "spring", stiffness: 400, damping: 15 }}
                 >

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 40" fill="none">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A84FF"/>
+      <stop offset="100%" stop-color="#00D4AA"/>
+    </linearGradient>
+  </defs>
+  <!-- Diamond mark -->
+  <path d="M20 2L36 20L20 38L4 20Z" fill="url(#grad)" opacity="0.9"/>
+  <path d="M17 13L27 20L17 27Z" fill="white" opacity="0.95"/>
+  <!-- Wordmark -->
+  <text x="48" y="26" font-family="Inter, sans-serif" font-size="18" font-weight="500" fill="white" letter-spacing="0.9">PRESSURE PLAY</text>
+</svg>

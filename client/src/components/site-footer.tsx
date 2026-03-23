@@ -94,16 +94,26 @@ const socialLinks = [
 
 export default function SiteFooter() {
   return (
-    <footer className="bg-black border-t border-primary/20 py-20">
+    <footer className="bg-pp-deep-black border-t border-white/10 py-20">
       <div className="container-max">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <div className="mb-6">
-              <span className="text-2xl font-bold text-white font-display tracking-[0.15em]">THE PRESSURE PLAY</span>
+            <div className="flex items-center gap-3 mb-6">
+              <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none">
+                <defs>
+                  <linearGradient id="footer-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#0A84FF"/>
+                    <stop offset="100%" stopColor="#00D4AA"/>
+                  </linearGradient>
+                </defs>
+                <path d="M16 2L28 16L16 30L4 16Z" fill="url(#footer-grad)" opacity="0.9"/>
+                <path d="M13 11L22 16L13 21Z" fill="white" opacity="0.95"/>
+              </svg>
+              <span className="text-xl font-semibold tracking-[0.03em] text-white">PRESSURE PLAY</span>
             </div>
-            <p className="text-gray-400 mb-8 max-w-md leading-relaxed">
-              Where the locker room meets the boardroom. Championship mindset decoded for athletes, entrepreneurs, and leaders.
+            <p className="text-pp-slate mb-8 max-w-md leading-relaxed">
+              Where the boardroom meets the field. Performance decoded for athletes, entrepreneurs, and titans.
             </p>
 
             {/* Large Social Icons */}
@@ -114,7 +124,7 @@ export default function SiteFooter() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-lg bg-primary/20 hover:bg-primary hover:text-black text-primary flex items-center justify-center transition-all duration-300 group"
+                  className="w-12 h-12 rounded-lg bg-pp-blue/20 hover:bg-pp-blue hover:text-white text-pp-blue flex items-center justify-center transition-all duration-300 group"
                   data-testid={`footer-social-${social.name.toLowerCase()}`}
                   title={social.name}
                 >
@@ -126,35 +136,34 @@ export default function SiteFooter() {
 
           {/* Links Column 1 */}
           <div>
-            <h3 className="font-bold text-white mb-6 uppercase tracking-wider">Navigation</h3>
+            <h3 className="font-semibold text-white mb-6 uppercase text-small tracking-wider">Navigation</h3>
             <ul className="space-y-3">
-              <li><Link href="/" className="text-gray-400 hover:text-primary transition-colors">Home</Link></li>
-              <li><Link href="/about" className="text-gray-400 hover:text-primary transition-colors">About</Link></li>
-              <li><Link href="/episodes" className="text-gray-400 hover:text-primary transition-colors">Episodes</Link></li>
-              <li><Link href="/contact" className="text-gray-400 hover:text-primary transition-colors">Contact</Link></li>
+              <li><Link href="/" className="text-pp-slate hover:text-pp-blue transition-colors">Home</Link></li>
+              <li><Link href="/about" className="text-pp-slate hover:text-pp-blue transition-colors">About</Link></li>
+              <li><Link href="/episodes" className="text-pp-slate hover:text-pp-blue transition-colors">Episodes</Link></li>
+              <li><Link href="/contact" className="text-pp-slate hover:text-pp-blue transition-colors">Contact</Link></li>
             </ul>
           </div>
 
           {/* Links Column 2 */}
           <div>
-            <h3 className="font-bold text-white mb-6 uppercase tracking-wider">Legal</h3>
+            <h3 className="font-semibold text-white mb-6 uppercase text-small tracking-wider">Legal</h3>
             <ul className="space-y-3">
-              <li><Link href="/privacy" className="text-gray-400 hover:text-primary transition-colors">Privacy</Link></li>
-              <li><Link href="/terms" className="text-gray-400 hover:text-primary transition-colors">Terms</Link></li>
+              <li><Link href="/privacy" className="text-pp-slate hover:text-pp-blue transition-colors">Privacy</Link></li>
+              <li><Link href="/terms" className="text-pp-slate hover:text-pp-blue transition-colors">Terms</Link></li>
             </ul>
           </div>
         </div>
 
         {/* Divider */}
-        <Separator className="bg-primary/20 mb-8" />
+        <Separator className="bg-white/10 mb-8" />
 
-        {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-gray-500 text-sm">
-            <p>© 2026 The Pressure Play. thepressureplay.com</p>
+          <div className="text-pp-slate text-small">
+            <p>© 2026 Pressure Play. thepressureplay.com</p>
           </div>
-          <div className="text-gray-500 text-xs">
-            <p>Powered by champions, for champions.</p>
+          <div className="text-pp-slate text-small">
+            <p>Where the boardroom meets the field.</p>
           </div>
         </div>
       </div>

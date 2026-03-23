@@ -20,9 +20,19 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-md">
       <div className="container mx-auto px-5">
         <div className="flex items-center justify-between h-20">
-          {/* Premium Wordmark */}
-          <Link href="/" className="flex items-center">
-            <span className="text-xl md:text-2xl font-display font-bold tracking-[0.15em] brand-text">THE PRESSURE PLAY</span>
+          {/* Diamond Logo + Wordmark */}
+          <Link href="/" className="flex items-center gap-3">
+            <svg className="w-8 h-8" viewBox="0 0 32 32" fill="none">
+              <defs>
+                <linearGradient id="header-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#0A84FF"/>
+                  <stop offset="100%" stopColor="#00D4AA"/>
+                </linearGradient>
+              </defs>
+              <path d="M16 2L28 16L16 30L4 16Z" fill="url(#header-grad)" opacity="0.9"/>
+              <path d="M13 11L22 16L13 21Z" fill="white" opacity="0.95"/>
+            </svg>
+            <span className="text-lg md:text-xl font-semibold tracking-[0.03em] text-white">PRESSURE PLAY</span>
           </Link>
 
           {/* Push navigation to the right with spacer */}

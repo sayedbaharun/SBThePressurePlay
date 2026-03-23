@@ -1,39 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* The Pressure Play — Unified Brand Tokens */
-  --pp-black: hsl(0, 0%, 4%);
-  --pp-gold: hsl(51, 100%, 50%);
-  --pp-white: hsl(0, 0%, 100%);
+  /* The Pressure Play — Brand Tokens (per brand guide) */
+  --pp-blue: hsl(213, 100%, 50%);       /* Electric Blue #0A84FF */
+  --pp-teal: hsl(167, 100%, 42%);       /* Signal Teal #00D4AA */
+  --pp-amber: hsl(36, 100%, 47%);       /* Amber #F0A500 — CTAs only */
+  --pp-slate: hsl(215, 14%, 50%);       /* Slate #8B949E */
+  --pp-deep-black: hsl(210, 50%, 2%);   /* Deep Black #010409 */
+  --pp-midnight: hsl(210, 17%, 7%);     /* Midnight #0D1117 */
+  --pp-clean-white: hsl(210, 17%, 97%); /* Clean White #F8F9FA */
+  --pp-soft-gray: hsl(215, 21%, 11%);   /* Soft Gray #161B22 */
 
-  /* Light Theme */
-  --background: hsl(0, 0%, 98%);
-  --foreground: hsl(0, 0%, 8%);
-  --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(0, 0%, 8%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(0, 0%, 8%);
-  --primary: hsl(51, 100%, 50%);
-  --primary-foreground: hsl(0, 0%, 4%);
-  --secondary: hsl(0, 0%, 90%);
-  --secondary-foreground: hsl(51, 100%, 50%);
-  --muted: hsl(0, 0%, 85%);
-  --muted-foreground: hsl(0, 0%, 30%);
-  --accent: hsl(51, 100%, 50%);
-  --accent-foreground: hsl(0, 0%, 4%);
+  /* Theme — Dark First (default) */
+  --background: hsl(210, 17%, 7%);      /* Midnight */
+  --foreground: hsl(210, 17%, 97%);     /* Clean White */
+  --card: hsl(215, 21%, 11%);           /* Soft Gray */
+  --card-foreground: hsl(210, 17%, 97%);
+  --popover: hsl(215, 21%, 11%);
+  --popover-foreground: hsl(210, 17%, 97%);
+  --primary: hsl(213, 100%, 50%);       /* Electric Blue */
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(167, 100%, 42%);     /* Signal Teal */
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(215, 21%, 16%);          /* Darker Soft Gray */
+  --muted-foreground: hsl(215, 14%, 50%); /* Slate */
+  --accent: hsl(213, 100%, 50%);        /* Electric Blue */
+  --accent-foreground: hsl(0, 0%, 100%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --border: hsl(0, 0%, 90%);
-  --input: hsl(0, 0%, 95%);
-  --ring: hsl(51, 100%, 50%);
+  --border: hsl(215, 21%, 18%);
+  --input: hsl(215, 21%, 14%);
+  --ring: hsl(213, 100%, 50%);          /* Electric Blue */
   --radius: 0.5rem;
 
-  /* Typography */
-  --font-display: "Oswald", "Inter", sans-serif;
-  --font-sans: "Inter", "Open Sans", sans-serif;
+  /* Typography — Inter only (per brand guide) */
+  --font-display: "Inter", sans-serif;
+  --font-sans: "Inter", sans-serif;
   --font-mono: "JetBrains Mono", "Menlo", monospace;
 
   /* Fluid Typography Scale */
@@ -43,28 +48,6 @@
   --text-body: 1rem;
   --text-caption: 0.875rem;
   --text-small: 0.75rem;
-}
-
-.dark {
-  --background: hsl(0, 0%, 4%);
-  --foreground: hsl(0, 0%, 100%);
-  --card: hsl(0, 0%, 8%);
-  --card-foreground: hsl(0, 0%, 100%);
-  --popover: hsl(0, 0%, 8%);
-  --popover-foreground: hsl(0, 0%, 100%);
-  --primary: hsl(51, 100%, 50%);
-  --primary-foreground: hsl(0, 0%, 4%);
-  --secondary: hsl(0, 0%, 20%);
-  --secondary-foreground: hsl(51, 100%, 50%);
-  --muted: hsl(0, 0%, 15%);
-  --muted-foreground: hsl(0, 0%, 70%);
-  --accent: hsl(51, 100%, 50%);
-  --accent-foreground: hsl(0, 0%, 4%);
-  --destructive: hsl(0, 84%, 60%);
-  --destructive-foreground: hsl(0, 0%, 98%);
-  --border: hsl(0, 0%, 20%);
-  --input: hsl(0, 0%, 15%);
-  --ring: hsl(51, 100%, 50%);
 }
 
 /* ========================
@@ -80,11 +63,18 @@
     font-family: var(--font-sans);
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
+  h1, h2, h3 {
+    font-family: var(--font-sans);
+    text-transform: none;
+    letter-spacing: 0.015em;
+    font-weight: 600;
+  }
+
+  h4, h5, h6 {
+    font-family: var(--font-sans);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 700;
+    letter-spacing: 0.03em;
+    font-weight: 500;
   }
 
   .font-display {
@@ -97,7 +87,7 @@
 
   /* Focus visible for accessibility */
   :focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--pp-blue);
     outline-offset: 2px;
   }
 
@@ -116,57 +106,57 @@
    ======================== */
 @layer components {
 
-  /* ── Typography Scale ── */
+  /* ── Typography Scale (Inter, Title Case, per brand guide) ── */
   .text-display-1 {
-    font-family: var(--font-display);
+    font-family: var(--font-sans);
     font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.05;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
+    letter-spacing: 0.015em;
+    text-transform: none;
   }
 
   .text-display-2 {
-    font-family: var(--font-display);
+    font-family: var(--font-sans);
     font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.1;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
+    letter-spacing: 0.015em;
+    text-transform: none;
   }
 
   .text-display-3 {
-    font-family: var(--font-display);
+    font-family: var(--font-sans);
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     font-weight: 600;
     line-height: 1.15;
-    text-transform: uppercase;
+    text-transform: none;
   }
 
   .text-headline {
-    font-family: var(--font-display);
+    font-family: var(--font-sans);
     font-size: clamp(1.5rem, 3vw, 2.5rem);
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.2;
-    text-transform: uppercase;
+    text-transform: none;
   }
 
   .text-body-large {
     font-family: var(--font-sans);
     font-size: clamp(1.125rem, 1.5vw, 1.375rem);
-    line-height: 1.65;
+    line-height: 1.75;
   }
 
   .text-body {
     font-family: var(--font-sans);
     font-size: var(--text-body);
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
   .text-caption {
     font-family: var(--font-sans);
     font-size: var(--text-caption);
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.5;
   }
 
@@ -176,30 +166,58 @@
     line-height: 1.4;
   }
 
-  /* ── Brand Text ── */
+  /* ── Stat Styles (JetBrains Mono per brand guide) ── */
+  .stat-large {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+  }
+
+  .stat-medium {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.1;
+  }
+
+  .stat-small {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.2;
+  }
+
+  /* ── Brand Text (Blue → Teal gradient, per brand guide) ── */
   .brand-text {
-    background: linear-gradient(135deg, var(--pp-gold) 0%, var(--pp-white) 100%);
+    background: linear-gradient(135deg, var(--pp-blue) 0%, var(--pp-teal) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, var(--pp-gold) 0%, var(--pp-white) 100%);
+    background: linear-gradient(135deg, var(--pp-blue) 0%, var(--pp-teal) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* ── Apple-Style Glass Card ── */
-  .apple-card {
-    @apply rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm;
+  /* ── Card (Soft Gray background, per brand guide) ── */
+  .brand-card {
+    @apply rounded-lg border bg-card text-card-foreground;
+    border-color: hsl(215, 21%, 18%);
     @apply transition-all duration-300;
   }
 
-  .apple-card:hover {
-    border-color: hsl(51 100% 50% / 0.3);
-    background: hsl(0 0% 100% / 0.07);
+  .brand-card:hover {
+    border-color: hsl(213, 100%, 50%);
+    background: hsl(215, 21%, 13%);
+  }
+
+  /* Legacy alias */
+  .apple-card {
+    @apply brand-card;
   }
 
   /* ── Hero Section ── */
@@ -217,22 +235,22 @@
   }
 
   .btn-primary-enhanced {
-    @apply bg-primary text-primary-foreground font-semibold;
+    @apply bg-primary text-white font-semibold;
     transition: all 0.2s;
   }
   .btn-primary-enhanced:hover {
-    background: hsl(51 100% 50% / 0.9);
-    box-shadow: 0 10px 15px -3px hsl(51 100% 50% / 0.2);
+    background: hsl(213, 100%, 45%);
+    box-shadow: 0 10px 15px -3px hsl(213, 100% 50% / 0.25);
   }
 
   .btn-outline-enhanced {
     @apply border-2 text-primary;
-    border-color: hsl(51 100% 50% / 0.5);
+    border-color: hsl(213, 100% 50% / 0.5);
     transition: all 0.2s;
   }
   .btn-outline-enhanced:hover {
-    background: hsl(51 100% 50% / 0.1);
-    border-color: hsl(51 100% 50% / 1);
+    background: hsl(213, 100% 50% / 0.1);
+    border-color: hsl(213, 100% 50% / 1);
   }
 
   .btn-ghost-enhanced {
@@ -247,16 +265,51 @@
     transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  /* ── Gold CTA Button (legacy) ── */
-  .btn-gold {
-    @apply bg-primary text-primary-foreground px-8 py-4 rounded font-bold tracking-wide uppercase;
+  /* ── CTA Button (Blue → Teal gradient, per brand guide) ── */
+  .btn-cta {
+    @apply px-8 py-4 rounded-lg font-semibold tracking-wide;
+    background: linear-gradient(135deg, var(--pp-blue) 0%, var(--pp-teal) 100%);
+    color: white;
     transition: all 0.3s;
-    box-shadow: 0 0 30px hsl(51 100% 50% / 0.3);
+    box-shadow: 0 0 20px hsl(213 100% 50% / 0.2);
   }
 
-  .btn-gold:hover {
-    background: hsl(51 100% 50% / 0.9);
-    box-shadow: 0 0 50px hsl(51 100% 50% / 0.6);
+  .btn-cta:hover {
+    box-shadow: 0 0 40px hsl(213 100% 50% / 0.35);
+    transform: translateY(-1px);
+  }
+
+  /* Legacy alias */
+  .btn-gold {
+    @apply btn-cta;
+  }
+
+  /* ── Diamond Motif (per brand guide) ── */
+  .diamond-bg {
+    position: relative;
+  }
+
+  .diamond-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        hsl(213, 100%, 50%) 40px,
+        hsl(213, 100%, 50%) 41px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        hsl(213, 100%, 50%) 40px,
+        hsl(213, 100%, 50%) 41px
+      );
+    pointer-events: none;
   }
 }
 

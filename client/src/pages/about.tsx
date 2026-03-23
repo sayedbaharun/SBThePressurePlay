@@ -43,16 +43,16 @@ const tagVariants = {
 
 export default function About() {
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
+    <div className="min-h-screen bg-pp-midnight">
+      {/* Hero */}
       <ScrollReveal>
         <section className="content-section-large hero-section">
           <div className="container mx-auto text-center">
-            <h1 className="text-display-2 font-display mb-6">
+            <h1 className="text-display-2 mb-6">
               <span className="brand-text">Meet Your Co-Hosts</span>
             </h1>
-            <p className="text-body-large text-muted-foreground max-w-2xl mx-auto">
-              Two champions from different worlds, united by a shared mission to unlock human potential.
+            <p className="text-body-large text-pp-slate max-w-2xl mx-auto">
+              Two titans from different worlds, united by a shared mission to unlock human potential.
             </p>
             <div className="mt-8">
               <p className="text-headline font-medium brand-text">
@@ -73,7 +73,7 @@ export default function About() {
                   {/* Image */}
                   <div className="mb-8">
                     <motion.div
-                      className="aspect-[3/4] presenter-image overflow-hidden rounded-xl"
+                      className="aspect-[3/4] overflow-hidden rounded-lg"
                       whileHover={{ scale: 1.02 }}
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     >
@@ -90,7 +90,7 @@ export default function About() {
                   {/* Content */}
                   <div className="space-y-6">
                     <div className="space-y-2">
-                      <h2 className="text-display-2 font-display" data-testid={`text-presenter-name-${presenter.name.toLowerCase().replace(' ', '-')}`}>
+                      <h2 className="text-display-2" data-testid={`text-presenter-name-${presenter.name.toLowerCase().replace(' ', '-')}`}>
                         {presenter.name}
                       </h2>
                       <p className="text-headline brand-text" data-testid={`text-presenter-role-${presenter.name.toLowerCase().replace(' ', '-')}`}>
@@ -98,7 +98,7 @@ export default function About() {
                       </p>
                     </div>
 
-                    <p className="text-body-large text-muted-foreground leading-relaxed" data-testid={`text-presenter-bio-${presenter.name.toLowerCase().replace(' ', '-')}`}>
+                    <p className="text-body-large text-pp-slate leading-relaxed" data-testid={`text-presenter-bio-${presenter.name.toLowerCase().replace(' ', '-')}`}>
                       {presenter.bio}
                     </p>
 
@@ -155,13 +155,13 @@ export default function About() {
 
       {/* Partnership Story */}
       <ScrollReveal>
-        <section className="content-section bg-muted/30">
+        <section className="content-section bg-pp-deep-black">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
-              <h2 className="text-display-2 font-display mb-6">
+              <h2 className="text-display-2 mb-6">
                 <span className="brand-text">The Partnership That Changed Everything</span>
               </h2>
-              <p className="text-body-large text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              <p className="text-body-large text-pp-slate max-w-4xl mx-auto leading-relaxed">
                 When performance architect Sayed Baharun met Manchester United legend Patrice Evra, 
                 they discovered something extraordinary: the same principles that create champions on the 
                 pitch also drive breakthrough success in business and AI innovation.
@@ -170,21 +170,21 @@ export default function About() {
             
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               {[
-                { icon: "🧠", title: "Sayed's Vision", desc: "The strategic architect who saw the opportunity to revolutionize how we think about performance" },
+                { icon: "💎", title: "Sayed's Vision", desc: "The strategic architect who saw the opportunity to revolutionize how we think about performance" },
                 { icon: "⚡", title: "Shared Mission", desc: "Decode pressure performance and make championship-level thinking accessible to everyone" },
-                { icon: "🏆", title: "Patrice's Platform", desc: "The champion's credibility and global reach to amplify these insights worldwide" },
+                { icon: "💎", title: "Patrice's Platform", desc: "The champion's credibility and global reach to amplify these insights worldwide" },
               ].map((item, i) => (
                 <ScrollReveal key={item.title} delay={i * 0.1}>
                   <motion.div
-                    className="apple-card p-8 text-center h-full"
+                    className="brand-card p-8 text-center h-full"
                     whileHover={{ y: -4 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   >
-                    <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                    <div className="w-16 h-16 mx-auto mb-6 rounded-lg bg-gradient-to-br from-pp-blue/20 to-pp-teal/20 flex items-center justify-center">
                       <span className="text-2xl">{item.icon}</span>
                     </div>
-                    <h3 className="text-headline font-display mb-4">{item.title}</h3>
-                    <p className="text-body text-muted-foreground">{item.desc}</p>
+                    <h3 className="text-headline mb-4">{item.title}</h3>
+                    <p className="text-body text-pp-slate">{item.desc}</p>
                   </motion.div>
                 </ScrollReveal>
               ))}
@@ -200,11 +200,11 @@ export default function About() {
             <img src={podcastStudioImage} alt="" className="w-full h-full object-cover" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/70"></div>
           </div>
-          <div className="container mx-auto text-center max-w-4xl relative z-10">
-            <h2 className="text-display-2 font-display mb-8">
+            <div className="container mx-auto text-center max-w-4xl relative z-10">
+            <h2 className="text-display-2 mb-8">
               <span className="brand-text">Our Mission</span>
             </h2>
-            <p className="text-body-large text-muted-foreground leading-relaxed">
+            <p className="text-body-large text-pp-slate leading-relaxed">
               Sayed Baharun and Patrice Evra decode the mindset, strategies, and systems that separate good from great. 
               Together, we bring you exclusive conversations combining elite sports psychology, cutting-edge business strategy, 
               and AI innovation to unlock championship-level performance in any field.

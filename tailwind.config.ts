@@ -44,6 +44,12 @@ export default {
         border: "var(--border)",
         input: "var(--input)",
         ring: "var(--ring)",
+        "pp-blue": "var(--pp-blue)",
+        "pp-teal": "var(--pp-teal)",
+        "pp-amber": "var(--pp-amber)",
+        "pp-slate": "var(--pp-slate)",
+        "pp-midnight": "var(--pp-midnight)",
+        "pp-deep-black": "var(--pp-deep-black)",
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
