@@ -84,7 +84,7 @@ export const generateShareUrls = (title: string, url: string) => {
   const encodedUrl = encodeURIComponent(url);
   
   return {
-    twitter: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+    x: `https://x.com/intent/post?text=${encodedTitle}&url=${encodedUrl}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
     email: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`

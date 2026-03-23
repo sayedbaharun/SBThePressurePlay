@@ -4,17 +4,54 @@
 @tailwind utilities;
 
 :root {
-  /* The Pressure Play — Brand Tokens (per brand guide) */
+  /* Brand Tokens (unchanged between themes) */
   --pp-blue: hsl(213, 100%, 50%);       /* Electric Blue #0A84FF */
   --pp-teal: hsl(167, 100%, 42%);       /* Signal Teal #00D4AA */
-  --pp-amber: hsl(36, 100%, 47%);       /* Amber #F0A500 — CTAs only */
+  --pp-amber: hsl(36, 100%, 47%);       /* Amber #F0A500 */
   --pp-slate: hsl(215, 14%, 50%);       /* Slate #8B949E */
   --pp-deep-black: hsl(210, 50%, 2%);   /* Deep Black #010409 */
   --pp-midnight: hsl(210, 17%, 7%);     /* Midnight #0D1117 */
   --pp-clean-white: hsl(210, 17%, 97%); /* Clean White #F8F9FA */
   --pp-soft-gray: hsl(215, 21%, 11%);   /* Soft Gray #161B22 */
 
-  /* Theme — Dark First (default) */
+  /* Theme — Light (default, brand-aligned) */
+  --background: hsl(210, 17%, 97%);     /* Clean White */
+  --foreground: hsl(210, 17%, 7%);      /* Midnight */
+  --card: hsl(0, 0%, 100%);             /* White */
+  --card-foreground: hsl(210, 17%, 7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(210, 17%, 7%);
+  --primary: hsl(213, 100%, 45%);       /* Electric Blue (darker for contrast) */
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(167, 100%, 38%);     /* Signal Teal (darker for contrast) */
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(210, 17%, 92%);          /* Light gray */
+  --muted-foreground: hsl(215, 14%, 45%);
+  --accent: hsl(213, 100%, 45%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 84%, 50%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(210, 17%, 85%);
+  --input: hsl(210, 17%, 92%);
+  --ring: hsl(213, 100%, 45%);
+  --radius: 0.5rem;
+
+  /* Typography */
+  --font-display: "Inter", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", "Menlo", monospace;
+
+  /* Fluid Typography Scale */
+  --text-display: clamp(2.5rem, 6vw, 8rem);
+  --text-headline: clamp(2rem, 4vw, 4rem);
+  --text-body-lg: clamp(1.125rem, 1.5vw, 1.375rem);
+  --text-body: 1rem;
+  --text-caption: 0.875rem;
+  --text-small: 0.75rem;
+}
+
+/* Dark theme override */
+.dark {
   --background: hsl(210, 17%, 7%);      /* Midnight */
   --foreground: hsl(210, 17%, 97%);     /* Clean White */
   --card: hsl(215, 21%, 11%);           /* Soft Gray */
@@ -27,27 +64,13 @@
   --secondary-foreground: hsl(0, 0%, 100%);
   --muted: hsl(215, 21%, 16%);          /* Darker Soft Gray */
   --muted-foreground: hsl(215, 14%, 50%); /* Slate */
-  --accent: hsl(213, 100%, 50%);        /* Electric Blue */
+  --accent: hsl(213, 100%, 50%);
   --accent-foreground: hsl(0, 0%, 100%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 98%);
   --border: hsl(215, 21%, 18%);
   --input: hsl(215, 21%, 14%);
-  --ring: hsl(213, 100%, 50%);          /* Electric Blue */
-  --radius: 0.5rem;
-
-  /* Typography — Inter only (per brand guide) */
-  --font-display: "Inter", sans-serif;
-  --font-sans: "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", "Menlo", monospace;
-
-  /* Fluid Typography Scale */
-  --text-display: clamp(2.5rem, 6vw, 8rem);
-  --text-headline: clamp(2rem, 4vw, 4rem);
-  --text-body-lg: clamp(1.125rem, 1.5vw, 1.375rem);
-  --text-body: 1rem;
-  --text-caption: 0.875rem;
-  --text-small: 0.75rem;
+  --ring: hsl(213, 100%, 50%);
 }
 
 /* ========================

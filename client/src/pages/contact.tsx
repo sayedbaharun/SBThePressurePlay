@@ -571,7 +571,7 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
                               <FormLabel>Social Media Links (Optional)</FormLabel>
                               <FormControl>
                                 <Textarea 
-                                  placeholder="Share your LinkedIn, Twitter, or other relevant social media profiles..."
+                                  placeholder="Share your LinkedIn, X, or other relevant social media profiles..."
                                   className="min-h-[80px]"
                                   {...field}
                                   data-testid="booking-social-media-input"

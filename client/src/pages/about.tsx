@@ -14,7 +14,7 @@ const presenters = [
     expertise: ["Elite Sports Psychology", "High-Pressure Leadership", "Global Platform & Credibility", "Performance Under Pressure", "Elite Sports Validation"],
     socials: {
       linkedin: "https://linkedin.com/in/patrice-evra",
-      twitter: "https://twitter.com/patrice_evra",
+      x: "https://x.com/patrice_evra",
       instagram: "https://instagram.com/patrice_evra"
     }
   },
@@ -26,7 +26,7 @@ const presenters = [
     expertise: ["Visionary Architect of The Pressure Play", "Champion's Framework Methodology", "High-Performance Business Strategy", "Entrepreneurship & Startups", "Neuroscience-Based Performance"],
     socials: {
       linkedin: "https://linkedin.com/in/sayed-baharun",
-      twitter: "https://twitter.com/sayed_baharun", 
+      x: "https://x.com/sayed_baharun", 
       instagram: "https://instagram.com/sayed_baharun"
     }
   }

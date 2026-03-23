@@ -1,50 +1,46 @@
 import { useState, useEffect } from "react";
 import { Sparkles } from "lucide-react";
 
-type Theme = "luxury" | "neon" | "minimal";
+type Theme = "midnight" | "arctic" | "cinematic";
 
 interface ThemeConfig {
   name: string;
   colors: {
     primary: string;
     secondary: string;
-    gradient: string;
   };
 }
 
 const themes: Record<Theme, ThemeConfig> = {
-  luxury: {
-    name: "Luxury Dark",
+  midnight: {
+    name: "Midnight",
     colors: {
-      primary: "hsl(51, 100%, 50%)",
-      secondary: "hsl(0, 0%, 20%)",
-      gradient: "from-black via-gray-900 to-black",
+      primary: "hsl(213, 100%, 50%)",     // Electric Blue
+      secondary: "hsl(167, 100%, 42%)",   // Signal Teal
     },
   },
-  neon: {
-    name: "Neon Championship",
+  arctic: {
+    name: "Arctic",
     colors: {
-      primary: "hsl(51, 100%, 60%)",
-      secondary: "hsl(0, 0%, 15%)",
-      gradient: "from-black via-purple-900/20 to-black",
+      primary: "hsl(210, 100%, 60%)",     // Lighter Blue
+      secondary: "hsl(180, 70%, 50%)",    // Cyan
     },
   },
-  minimal: {
-    name: "Minimal Elite",
+  cinematic: {
+    name: "Cinematic",
     colors: {
-      primary: "hsl(51, 80%, 55%)",
-      secondary: "hsl(0, 0%, 25%)",
-      gradient: "from-gray-950 via-gray-900 to-gray-950",
+      primary: "hsl(270, 70%, 55%)",      // Purple
+      secondary: "hsl(213, 100%, 50%)",   // Blue
     },
   },
 };
 
 export default function VibeShifter() {
-  const [currentTheme, setCurrentTheme] = useState<Theme>("luxury");
+  const [currentTheme, setCurrentTheme] = useState<Theme>("midnight");
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("pressure-play-theme") as Theme;
+    const saved = localStorage.getItem("pp-vibe-theme") as Theme;
     if (saved && themes[saved]) {
       setCurrentTheme(saved);
       applyTheme(saved);
@@ -56,7 +52,8 @@ export default function VibeShifter() {
     const root = document.documentElement;
     root.style.setProperty("--primary", config.colors.primary);
     root.style.setProperty("--secondary", config.colors.secondary);
-    localStorage.setItem("pressure-play-theme", theme);
+    root.style.setProperty("--ring", config.colors.primary);
+    localStorage.setItem("pp-vibe-theme", theme);
   };
 
   const handleThemeChange = (theme: Theme) => {
@@ -67,27 +64,25 @@ export default function VibeShifter() {
 
   return (
     <div className="fixed bottom-8 right-8 z-40">
-      {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-primary/20 hover:bg-primary/40 border border-primary/50 rounded-full p-3 transition-all duration-300 group"
+        className="bg-pp-blue/20 hover:bg-pp-blue/40 border border-pp-blue/50 rounded-full p-3 transition-all duration-300 group"
         data-testid="vibe-shifter-toggle"
         title="Shift the vibe"
       >
-        <Sparkles className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+        <Sparkles className="w-5 h-5 text-pp-blue group-hover:scale-110 transition-transform" />
       </button>
 
-      {/* Theme Menu */}
       {isOpen && (
-        <div className="absolute bottom-16 right-0 bg-black/95 backdrop-blur-xl border border-primary/30 rounded-xl p-3 space-y-2 min-w-max shadow-2xl">
+        <div className="absolute bottom-16 right-0 bg-pp-midnight/95 backdrop-blur-xl border border-pp-blue/30 rounded-lg p-3 space-y-2 min-w-max shadow-2xl">
           {(Object.entries(themes) as [Theme, ThemeConfig][]).map(([key, config]) => (
             <button
               key={key}
               onClick={() => handleThemeChange(key)}
-              className={`block w-full text-left px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+              className={`block w-full text-left px-4 py-2 rounded-lg text-small font-medium transition-all duration-200 ${
                 currentTheme === key
-                  ? "bg-primary/30 text-white border-l-2 border-primary"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
+                  ? "bg-pp-blue/30 text-white border-l-2 border-pp-blue"
+                  : "text-pp-slate hover:text-white hover:bg-white/5"
               }`}
               data-testid={`theme-option-${key}`}
             >

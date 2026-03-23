@@ -1,45 +1,56 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Monitor } from "lucide-react";
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [theme, setTheme] = useState<"light" | "dark" | "system">("dark");
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' || 'dark';
-    setTheme(savedTheme);
-    updateTheme(savedTheme);
+    const saved = localStorage.getItem("theme") as "light" | "dark" | "system" | null;
+    const initial = saved || "dark";
+    setTheme(initial);
+    applyTheme(initial);
   }, []);
 
-  const updateTheme = (newTheme: 'light' | 'dark') => {
+  const applyTheme = (newTheme: "light" | "dark" | "system") => {
     const root = document.documentElement;
-    root.classList.remove('dark');
-    
-    if (newTheme === 'dark') {
-      root.classList.add('dark');
+    root.classList.remove("dark");
+
+    if (newTheme === "dark") {
+      root.classList.add("dark");
+    } else if (newTheme === "system") {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (prefersDark) root.classList.add("dark");
     }
+    // light = no class needed (default)
   };
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateTheme(newTheme);
+  const cycleTheme = () => {
+    const order: Array<"dark" | "light" | "system"> = ["dark", "light", "system"];
+    const next = order[(order.indexOf(theme) + 1) % order.length];
+    setTheme(next);
+    localStorage.setItem("theme", next);
+    applyTheme(next);
   };
+
+  const icon = theme === "light" ? (
+    <Sun className="h-5 w-5" />
+  ) : theme === "dark" ? (
+    <Moon className="h-5 w-5" />
+  ) : (
+    <Monitor className="h-5 w-5" />
+  );
 
   return (
     <Button
       variant="ghost"
       size="sm"
-      onClick={toggleTheme}
+      onClick={cycleTheme}
       className="p-2 rounded-lg hover:bg-muted transition-colors"
       data-testid="theme-toggle"
+      title={`Theme: ${theme}`}
     >
-      {theme === 'light' ? (
-        <Moon className="h-5 w-5" />
-      ) : (
-        <Sun className="h-5 w-5" />
-      )}
+      {icon}
       <span className="sr-only">Toggle theme</span>
     </Button>
   );

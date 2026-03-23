@@ -45,9 +45,9 @@ export default function ReferralShareModal({
     }
   };
 
-  const shareOnTwitter = () => {
+  const shareOnX = () => {
     const text = `I just joined the waitlist for @ThePressurePlay - a new podcast bridging locker room champions and boardroom leaders. Join me:`;
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(referralUrl)}`;
+    const url = `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(referralUrl)}`;
     window.open(url, "_blank", "width=550,height=420");
   };
 
@@ -187,12 +187,12 @@ export default function ReferralShareModal({
             <p className="text-sm font-medium text-center">Share on Social Media</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <Button
-                onClick={shareOnTwitter}
+                onClick={shareOnX}
                 variant="outline"
                 className="w-full flex items-center justify-center gap-2"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                Twitter
+                X
               </Button>
               <Button
                 onClick={shareOnLinkedIn}
