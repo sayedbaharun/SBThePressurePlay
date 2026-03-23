@@ -1,13 +1,20 @@
 import HeroSection from "@/components/hero-section";
 import VibeShifter from "@/components/vibe-shifter";
+import LatestEpisodeSection from "@/components/latest-episode-section";
+import GuestSpotlightSection from "@/components/guest-spotlight-section";
+import CountdownSection from "@/components/countdown-section";
+import SocialProofSection from "@/components/social-proof-section";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-black">
       <VibeShifter />
 
-      {/* Hero Section - Pre-launch focused */}
       <HeroSection />
+      <LatestEpisodeSection />
+      <GuestSpotlightSection />
+      <CountdownSection />
+      <SocialProofSection />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -15,6 +16,22 @@ const topics = [
   "Mental Resilience",
   "Building Empires from Zero",
 ];
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.08 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 200, damping: 25 },
+  },
+};
 
 export default function HeroSection() {
   const [email, setEmail] = useState("");
@@ -52,10 +69,9 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section id="hero-email" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Dark gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
-        {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, rgba(207, 159, 71, 0.15) 1px, transparent 0)`,
           backgroundSize: '40px 40px'
@@ -66,49 +82,59 @@ export default function HeroSection() {
       <div className="relative z-10 container mx-auto px-5 py-20">
         <div className="max-w-5xl mx-auto">
           {/* Host Images */}
-          <div className="flex justify-center items-center gap-6 md:gap-12 mb-12 md:mb-16">
-            {/* Sayed Image */}
-            <div className="relative w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-2xl overflow-hidden border-4 border-primary/30 shadow-2xl hover:border-primary/60 transition-all duration-300 transform hover:scale-105">
-              <img
-                src={sayedImage}
-                alt="Sayed Baharun - Performance Architect & Entrepreneur"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-              <div className="absolute bottom-2 left-0 right-0 text-center">
-                <p className="text-white text-xs md:text-sm font-semibold">Sayed Baharun</p>
-                <p className="text-primary text-xs hidden md:block">Entrepreneur & Performance Architect</p>
+          <motion.div
+            className="flex justify-center items-center gap-6 md:gap-12 mb-12 md:mb-16"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div variants={itemVariants}>
+              <div className="relative w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-2xl overflow-hidden border-4 border-primary/30 shadow-2xl hover:border-primary/60 transition-all duration-300 transform hover:scale-105">
+                <img
+                  src={sayedImage}
+                  alt="Sayed Baharun - Performance Architect & Entrepreneur"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div className="absolute bottom-2 left-0 right-0 text-center">
+                  <p className="text-white text-xs md:text-sm font-semibold">Sayed Baharun</p>
+                  <p className="text-primary text-xs hidden md:block">Entrepreneur & Performance Architect</p>
+                </div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Collaboration Divider */}
-            <div className="flex flex-col items-center">
+            <motion.div variants={itemVariants} className="flex flex-col items-center">
               <span className="text-white/50 text-2xl md:text-4xl font-light">&times;</span>
-            </div>
+            </motion.div>
 
-            {/* Patrice Image */}
-            <div className="relative w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-2xl overflow-hidden border-4 border-primary/30 shadow-2xl hover:border-primary/60 transition-all duration-300 transform hover:scale-105">
-              <img
-                src={patriceImage}
-                alt="Patrice Evra - 5x Premier League Champion"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-              <div className="absolute bottom-2 left-0 right-0 text-center">
-                <p className="text-white text-xs md:text-sm font-semibold">Patrice Evra</p>
-                <p className="text-primary text-xs hidden md:block">Global Champion</p>
+            <motion.div variants={itemVariants}>
+              <div className="relative w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-2xl overflow-hidden border-4 border-primary/30 shadow-2xl hover:border-primary/60 transition-all duration-300 transform hover:scale-105">
+                <img
+                  src={patriceImage}
+                  alt="Patrice Evra - 5x Premier League Champion"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div className="absolute bottom-2 left-0 right-0 text-center">
+                  <p className="text-white text-xs md:text-sm font-semibold">Patrice Evra</p>
+                  <p className="text-primary text-xs hidden md:block">Global Champion</p>
+                </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Headline */}
-          <div className="text-center mb-8 md:mb-12">
+          <motion.div
+            className="text-center mb-8 md:mb-12"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, type: "spring", stiffness: 200, damping: 25 }}
+          >
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12 leading-tight max-w-4xl mx-auto">
               What do a <span className="text-primary">5x Premier League Champion</span> and a{" "}
               <span className="text-primary">Performance Architect & Entrepreneur</span> argue about every week?
             </h1>
 
-            {/* Brand */}
             <div className="mb-6">
               <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold gradient-text mb-3">
                 THE PRESSURE PLAY
@@ -117,10 +143,15 @@ export default function HeroSection() {
                 Where the locker room meets the boardroom
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Email Capture Form */}
-          <div className="max-w-2xl mx-auto mb-8">
+          <motion.div
+            className="max-w-2xl mx-auto mb-8"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 25 }}
+          >
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 md:gap-4">
               <Input
                 type="email"
@@ -141,43 +172,70 @@ export default function HeroSection() {
                 {subscribeMutation.isPending ? "Joining..." : "Join the Waitlist"}
               </Button>
             </form>
-          </div>
+          </motion.div>
 
           {/* Value Props */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="text-center p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:bg-white/10 transition-all">
-              <div className="text-2xl mb-2">🏆</div>
-              <h3 className="text-white font-semibold mb-2">Elite Performance</h3>
-              <p className="text-white/70 text-sm">Same pressure, different arena</p>
-            </div>
-            <div className="text-center p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:bg-white/10 transition-all">
-              <div className="text-2xl mb-2">💡</div>
-              <h3 className="text-white font-semibold mb-2">Raw Conversations</h3>
-              <p className="text-white/70 text-sm">Unfiltered debates from two worlds</p>
-            </div>
-            <div className="text-center p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:bg-white/10 transition-all">
-              <div className="text-2xl mb-2">⚡</div>
-              <h3 className="text-white font-semibold mb-2">Early Access</h3>
-              <p className="text-white/70 text-sm">Be first to hear Episode 1</p>
-            </div>
-          </div>
+          <motion.div
+            className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <motion.div variants={itemVariants}>
+              <div className="text-center p-6 apple-card hover:bg-white/10">
+                <div className="text-2xl mb-2">🏆</div>
+                <h3 className="text-white font-semibold mb-2">Elite Performance</h3>
+                <p className="text-white/70 text-sm">Same pressure, different arena</p>
+              </div>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <div className="text-center p-6 apple-card hover:bg-white/10">
+                <div className="text-2xl mb-2">💡</div>
+                <h3 className="text-white font-semibold mb-2">Raw Conversations</h3>
+                <p className="text-white/70 text-sm">Unfiltered debates from two worlds</p>
+              </div>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <div className="text-center p-6 apple-card hover:bg-white/10">
+                <div className="text-2xl mb-2">⚡</div>
+                <h3 className="text-white font-semibold mb-2">Early Access</h3>
+                <p className="text-white/70 text-sm">Be first to hear Episode 1</p>
+              </div>
+            </motion.div>
+          </motion.div>
 
           {/* What We Talk About */}
-          <div className="mt-20 max-w-4xl mx-auto">
+          <motion.div
+            className="mt-20 max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ type: "spring", stiffness: 200, damping: 25 }}
+          >
             <h3 className="text-center text-2xl md:text-3xl font-display font-bold text-white mb-10 tracking-wide">
               WHAT WE TALK ABOUT
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <motion.div
+              className="grid grid-cols-2 md:grid-cols-3 gap-4"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
               {topics.map((topic) => (
-                <div
+                <motion.div
                   key={topic}
-                  className="text-center p-5 bg-white/5 backdrop-blur-sm border border-primary/20 rounded-xl hover:border-primary/50 hover:bg-white/10 transition-all duration-300"
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.04, borderColor: "hsl(51 100% 50% / 0.5)" }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="text-center p-5 apple-card cursor-default"
                 >
                   <p className="text-white font-medium text-sm md:text-base">{topic}</p>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

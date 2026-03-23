@@ -2,14 +2,8 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import ThemeToggle from "./theme-toggle";
-import { Menu, X, ChevronDown, Users, BookOpen, Calendar, Mail, Info } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const simpleNavigation = [
   { name: "Home", href: "/" },

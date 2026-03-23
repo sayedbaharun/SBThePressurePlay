@@ -4,14 +4,12 @@
 @tailwind utilities;
 
 :root {
-  /* The Pressure Play - Luxury Sports Edition */
-  --pp-black: hsl(0, 0%, 4%); /* Deep Matte Black #0a0a0a */
-  --pp-gold: hsl(51, 100%, 50%); /* Electric Gold #FFD700 */
-  --pp-white: hsl(0, 0%, 100%); /* Stark White */
-  --pp-grey: hsl(0, 0%, 20%); /* Dark Grey for cards */
-  --pp-accent: hsl(0, 0%, 40%); /* Medium Grey for accents */
+  /* The Pressure Play — Unified Brand Tokens */
+  --pp-black: hsl(0, 0%, 4%);
+  --pp-gold: hsl(51, 100%, 50%);
+  --pp-white: hsl(0, 0%, 100%);
 
-  /* Light Theme (Default) */
+  /* Light Theme */
   --background: hsl(0, 0%, 98%);
   --foreground: hsl(0, 0%, 8%);
   --card: hsl(0, 0%, 100%);
@@ -31,11 +29,6 @@
   --border: hsl(0, 0%, 90%);
   --input: hsl(0, 0%, 95%);
   --ring: hsl(51, 100%, 50%);
-  --chart-1: hsl(51, 100%, 50%);
-  --chart-2: hsl(0, 0%, 50%);
-  --chart-3: hsl(0, 0%, 70%);
-  --chart-4: hsl(0, 0%, 30%);
-  --chart-5: hsl(0, 0%, 60%);
   --radius: 0.5rem;
 
   /* Typography */
@@ -43,25 +36,16 @@
   --font-sans: "Inter", "Open Sans", sans-serif;
   --font-mono: "JetBrains Mono", "Menlo", monospace;
 
-  /* Spacing */
-  --space-1: 0.125rem;
-  --space-2: 0.25rem;
-  --space-3: 0.5rem;
-  --space-4: 0.75rem;
-  --space-5: 1rem;
-  --space-6: 1.25rem;
-  --space-7: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
-  --space-32: 8rem;
+  /* Fluid Typography Scale */
+  --text-display: clamp(2.5rem, 6vw, 8rem);
+  --text-headline: clamp(2rem, 4vw, 4rem);
+  --text-body-lg: clamp(1.125rem, 1.5vw, 1.375rem);
+  --text-body: 1rem;
+  --text-caption: 0.875rem;
+  --text-small: 0.75rem;
 }
 
 .dark {
-  /* Dark Theme */
   --background: hsl(0, 0%, 4%);
   --foreground: hsl(0, 0%, 100%);
   --card: hsl(0, 0%, 8%);
@@ -83,6 +67,9 @@
   --ring: hsl(51, 100%, 50%);
 }
 
+/* ========================
+   BASE LAYER
+   ======================== */
 @layer base {
   * {
     @apply border-border;
@@ -107,88 +94,175 @@
   .font-mono {
     font-family: var(--font-mono);
   }
+
+  /* Focus visible for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
+/* ========================
+   COMPONENT LAYER
+   ======================== */
 @layer components {
-  /* Hero Headline */
-  .headline {
-    @apply text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter;
+
+  /* ── Typography Scale ── */
+  .text-display-1 {
     font-family: var(--font-display);
-    text-transform: uppercase;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.05;
     letter-spacing: -0.02em;
+    text-transform: uppercase;
   }
 
-  /* Gold CTA Button */
-  .btn-gold {
-    @apply bg-primary text-primary-foreground px-8 py-4 rounded font-bold tracking-wide uppercase hover:bg-opacity-90 transition-all duration-300;
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  .text-display-2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
   }
 
-  .btn-gold:hover {
-    box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+  .text-display-3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.15;
+    text-transform: uppercase;
   }
 
-  /* Outline Button */
-  .btn-outline-gold {
-    @apply border-2 border-primary text-primary px-8 py-4 rounded font-bold tracking-wide uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300;
+  .text-headline {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+    text-transform: uppercase;
   }
 
-  /* Glassmorphism */
-  .glass {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-lg;
+  .text-body-large {
+    font-family: var(--font-sans);
+    font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+    line-height: 1.65;
   }
 
-  /* Gradient Text */
-  .gradient-text {
-    background: linear-gradient(135deg, #FFD700 0%, #FFFFFF 100%);
+  .text-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.6;
+  }
+
+  .text-caption {
+    font-family: var(--font-sans);
+    font-size: var(--text-caption);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .text-small {
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    line-height: 1.4;
+  }
+
+  /* ── Brand Text ── */
+  .brand-text {
+    background: linear-gradient(135deg, var(--pp-gold) 0%, var(--pp-white) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Video Background Container */
-  .video-bg {
-    @apply relative w-full h-screen overflow-hidden;
+  .gradient-text {
+    background: linear-gradient(135deg, var(--pp-gold) 0%, var(--pp-white) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .video-bg video {
-    @apply absolute inset-0 w-full h-full object-cover;
+  /* ── Apple-Style Glass Card ── */
+  .apple-card {
+    @apply rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm;
+    @apply transition-all duration-300;
   }
 
-  .video-overlay {
-    @apply absolute inset-0 bg-black/60;
+  .apple-card:hover {
+    border-color: hsl(51 100% 50% / 0.3);
+    background: hsl(0 0% 100% / 0.07);
   }
 
-  /* Bento Grid */
-  .bento-grid {
-    @apply grid auto-rows-[350px] gap-4;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* ── Hero Section ── */
+  .hero-section {
+    @apply relative overflow-hidden;
   }
 
-  .bento-item {
-    @apply relative overflow-hidden rounded-lg bg-card hover:scale-105 transition-transform duration-300 cursor-pointer;
+  /* ── Button Enhancements ── */
+  .btn-enhanced {
+    @apply transition-all duration-200;
   }
 
-  .bento-item.large {
-    @apply md:col-span-2 md:row-span-2;
+  .btn-enhanced:active {
+    transform: scale(0.97);
   }
 
-  /* Marquee Animation */
-  @keyframes marquee {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
+  .btn-primary-enhanced {
+    @apply bg-primary text-primary-foreground font-semibold;
+    transition: all 0.2s;
+  }
+  .btn-primary-enhanced:hover {
+    background: hsl(51 100% 50% / 0.9);
+    box-shadow: 0 10px 15px -3px hsl(51 100% 50% / 0.2);
   }
 
-  .marquee {
-    animation: marquee 20s linear infinite;
+  .btn-outline-enhanced {
+    @apply border-2 text-primary;
+    border-color: hsl(51 100% 50% / 0.5);
+    transition: all 0.2s;
+  }
+  .btn-outline-enhanced:hover {
+    background: hsl(51 100% 50% / 0.1);
+    border-color: hsl(51 100% 50% / 1);
   }
 
-  .marquee:hover {
-    animation-play-state: paused;
+  .btn-ghost-enhanced {
+    transition: background 0.2s;
+  }
+  .btn-ghost-enhanced:hover {
+    background: hsl(0 0% 100% / 0.1);
+  }
+
+  .btn-magnetic {
+    @apply hover:scale-105;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* ── Gold CTA Button (legacy) ── */
+  .btn-gold {
+    @apply bg-primary text-primary-foreground px-8 py-4 rounded font-bold tracking-wide uppercase;
+    transition: all 0.3s;
+    box-shadow: 0 0 30px hsl(51 100% 50% / 0.3);
+  }
+
+  .btn-gold:hover {
+    background: hsl(51 100% 50% / 0.9);
+    box-shadow: 0 0 50px hsl(51 100% 50% / 0.6);
   }
 }
 
-/* Utility Classes */
+/* ========================
+   UTILITY CLASSES
+   ======================== */
 .container-max {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
@@ -197,6 +271,10 @@
   @apply py-20 md:py-32 lg:py-40;
 }
 
-.sticky-audio {
-  @apply fixed bottom-0 left-0 right-0 z-40 bg-black/95 backdrop-blur border-t border-white/10;
+.content-section {
+  @apply py-16 md:py-24;
+}
+
+.content-section-large {
+  @apply py-20 md:py-32;
 }
