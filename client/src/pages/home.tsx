@@ -1,5 +1,4 @@
 import HeroSection from "@/components/hero-section";
-import NewsletterSection from "@/components/newsletter-section";
 import VibeShifter from "@/components/vibe-shifter";
 
 export default function Home() {
@@ -9,9 +8,6 @@ export default function Home() {
 
       {/* Hero Section - Pre-launch focused */}
       <HeroSection />
-
-      {/* Email Capture - The main pre-launch CTA */}
-      <NewsletterSection />
     </div>
   );
 }

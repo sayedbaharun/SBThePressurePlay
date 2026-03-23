@@ -99,11 +99,8 @@ export default function SiteFooter() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/50 rounded-lg flex items-center justify-center">
-                <span className="text-black font-bold text-2xl">P</span>
-              </div>
-              <span className="text-2xl font-bold text-white font-display tracking-widest">PRESSURE PLAY</span>
+            <div className="mb-6">
+              <span className="text-2xl font-bold text-white font-display tracking-[0.15em]">THE PRESSURE PLAY</span>
             </div>
             <p className="text-gray-400 mb-8 max-w-md leading-relaxed">
               Where the locker room meets the boardroom. Championship mindset decoded for athletes, entrepreneurs, and leaders.
@@ -131,7 +128,9 @@ export default function SiteFooter() {
           <div>
             <h3 className="font-bold text-white mb-6 uppercase tracking-wider">Navigation</h3>
             <ul className="space-y-3">
+              <li><Link href="/" className="text-gray-400 hover:text-primary transition-colors">Home</Link></li>
               <li><Link href="/about" className="text-gray-400 hover:text-primary transition-colors">About</Link></li>
+              <li><Link href="/episodes" className="text-gray-400 hover:text-primary transition-colors">Episodes</Link></li>
               <li><Link href="/contact" className="text-gray-400 hover:text-primary transition-colors">Contact</Link></li>
             </ul>
           </div>
@@ -152,7 +151,7 @@ export default function SiteFooter() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-gray-500 text-sm">
-            <p>© 2025 The Pressure Play. All rights reserved.</p>
+            <p>© 2026 The Pressure Play. thepressureplay.com</p>
           </div>
           <div className="text-gray-500 text-xs">
             <p>Powered by champions, for champions.</p>

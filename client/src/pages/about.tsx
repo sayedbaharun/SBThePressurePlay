@@ -6,10 +6,10 @@ import businessTeamImage from "@assets/generated_images/Business_team_strategy_s
 const presenters = [
   {
     name: "Patrice Evra",
-    role: "Co-Founder & Champion Validator",
+    role: "Co-Host & Champion Validator",
     image: patriceImage,
     bio: "🏆 5x Premier League Champion and Manchester United Captain with 14M+ global social following. First elite athlete bridging sports excellence with business strategy and AI innovation. From Old Trafford to Silicon Valley, Patrice brings the championship credibility and global platform to amplify these insights to millions worldwide.",
-    expertise: ["Championship Psychology", "High-Pressure Leadership", "Global Platform & Credibility", "Performance Under Pressure", "Elite Sports Validation"],
+    expertise: ["Elite Sports Psychology", "High-Pressure Leadership", "Global Platform & Credibility", "Performance Under Pressure", "Elite Sports Validation"],
     socials: {
       linkedin: "https://linkedin.com/in/patrice-evra",
       twitter: "https://twitter.com/patrice_evra",
@@ -18,10 +18,10 @@ const presenters = [
   },
   {
     name: "Sayed Baharun",
-    role: "Co-Founder & Performance Architect",
+    role: "Co-Host & Performance Architect",
     image: sayedImage,
     bio: "🚀 Visionary behind The Pressure Play concept. Pioneer of the Champion's Framework methodology combining neuroscience, business strategy, and AI innovation. 15+ years optimizing Fortune 500 C-suite performance and championship teams. Trusted advisor to elite performers across industries who saw the opportunity to bridge three worlds that had never been connected at this level.",
-    expertise: ["Visionary Architect of The Pressure Play", "Champion's Framework Methodology", "AI Strategy Expert for Elite Performers", "C-Suite Transformation", "Neuroscience-Based Performance"],
+    expertise: ["Visionary Architect of The Pressure Play", "Champion's Framework Methodology", "High-Performance Business Strategy", "Entrepreneurship & Startups", "Neuroscience-Based Performance"],
     socials: {
       linkedin: "https://linkedin.com/in/sayed-baharun",
       twitter: "https://twitter.com/sayed_baharun", 
@@ -37,7 +37,7 @@ export default function About() {
       <section className="content-section-large hero-section">
         <div className="container mx-auto text-center">
           <h1 className="text-display-2 font-display mb-6">
-            <span className="brand-text">Meet Your Co-Founders</span>
+            <span className="brand-text">Meet Your Co-Hosts</span>
           </h1>
           <p className="text-body-large text-muted-foreground max-w-2xl mx-auto">
             Two champions from different worlds, united by a shared mission to unlock human potential.

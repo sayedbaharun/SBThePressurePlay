@@ -11,9 +11,10 @@ import {
 import ThemeToggle from "./theme-toggle";
 import { Menu, X, ChevronDown, Users, BookOpen, Calendar, Mail, Info } from "lucide-react";
 
-// Central navigation - pre-launch essentials only
 const simpleNavigation = [
+  { name: "Home", href: "/" },
   { name: "About", href: "/about" },
+  { name: "Episodes", href: "/episodes" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -25,12 +26,9 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-md">
       <div className="container mx-auto px-5">
         <div className="flex items-center justify-between h-20">
-          {/* Refined Logo */}
-          <Link href="/" className="flex items-center space-x-4">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">P</span>
-            </div>
-            <span className="text-headline font-display brand-text">THE PRESSURE PLAY</span>
+          {/* Premium Wordmark */}
+          <Link href="/" className="flex items-center">
+            <span className="text-xl md:text-2xl font-display font-bold tracking-[0.15em] brand-text">THE PRESSURE PLAY</span>
           </Link>
 
           {/* Push navigation to the right with spacer */}
@@ -43,7 +41,7 @@ export default function SiteHeader() {
                 key={item.name}
                 href={item.href}
                 className={`text-caption font-medium transition-colors duration-200 ${
-                  location === item.href ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  location === item.href ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"
                 }`}
                 data-testid={`nav-link-${item.name.toLowerCase()}`}
               >

@@ -393,7 +393,7 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
                       Apply to be a Guest
                     </h3>
                     <p className="text-muted-foreground">
-                      Interested in sharing your expertise on The Pressure Play? We'd love to hear from you.
+                      We only feature guests who have operated at the highest level — in sport, business, or both.
                       Our team reviews applications within 3-5 business days.
                     </p>
                   </div>
