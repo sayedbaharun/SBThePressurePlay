@@ -5,6 +5,8 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
+import Episodes from "@/pages/episodes";
+import InnerCircle from "@/pages/inner-circle";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import Privacy from "@/pages/privacy";

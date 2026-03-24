@@ -6,7 +6,7 @@ import { generateReferralCode, getTierFromReferralCount } from "../shared/referr
 import { z } from "zod";
 import { getTikTokVideos, getTikTokProfile, getTikTokByHashtag, formatTikTokCount } from "./tiktok";
 
-export async function registerRoutes(app: Express): Promise<Server> {
+export function registerRoutes(app: Express): Server {
   // Episodes routes
   app.get("/api/episodes", async (req, res) => {
     try {
