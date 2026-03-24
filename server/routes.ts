@@ -143,7 +143,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid email format", errors: error.errors });
       }
       console.error("Newsletter subscription error:", error);
-      res.status(500).json({ message: "Failed to subscribe to newsletter" });
+      const errMsg = error instanceof Error ? error.message : String(error);
+      res.status(500).json({ message: "Failed to subscribe to newsletter", debug: errMsg });
     }
   });
 
