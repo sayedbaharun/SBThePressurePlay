@@ -12,6 +12,8 @@ import Terms from "@/pages/terms";
 import Cookies from "@/pages/cookies";
 import Analytics from "@/pages/analytics";
 import Admin from "@/pages/admin";
+import EpisodeDetail from "@/pages/episode-detail";
+import GuestDetail from "@/pages/guest-detail";
 import NotFound from "@/pages/not-found";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
@@ -36,6 +38,8 @@ function Router() {
     <AnimatePresence mode="wait">
       <Switch location={location} key={location}>
         <Route path="/" component={() => <AnimatedRoute component={Home} />} />
+        <Route path="/episodes" component={() => <AnimatedRoute component={Episodes} />} />
+        <Route path="/inner-circle" component={() => <AnimatedRoute component={InnerCircle} />} />
         <Route path="/about" component={() => <AnimatedRoute component={About} />} />
         <Route path="/contact" component={() => <AnimatedRoute component={Contact} />} />
         <Route path="/analytics" component={() => <AnimatedRoute component={Analytics} />} />
