@@ -7,7 +7,7 @@ import {
   type Topic, type InsertTopic,
   type AbTestEvent, type InsertAbTestEvent,
   users, episodes, guests, newsletterSubscribers, contactMessages, topics, abTestEvents
-} from "@shared/schema";
+} from "../shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 

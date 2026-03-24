@@ -23,13 +23,8 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
   );
 }
 
-function getTargetDate() {
-  const now = new Date();
-  const target = new Date(now);
-  target.setDate(target.getDate() + 14);
-  target.setHours(0, 0, 0, 0);
-  return target;
-}
+// Real launch date — September 15, 2026 at midnight UTC
+const LAUNCH_DATE = new Date("2026-09-15T00:00:00Z");
 
 export default function CountdownSection() {
   const [timeLeft, setTimeLeft] = useState({
@@ -40,10 +35,9 @@ export default function CountdownSection() {
   });
 
   useEffect(() => {
-    const target = getTargetDate();
     const update = () => {
       const now = Date.now();
-      const diff = Math.max(0, target.getTime() - now);
+      const diff = Math.max(0, LAUNCH_DATE.getTime() - now);
       setTimeLeft({
         days: Math.floor(diff / (1000 * 60 * 60 * 24)),
         hours: Math.floor((diff / (1000 * 60 * 60)) % 24),

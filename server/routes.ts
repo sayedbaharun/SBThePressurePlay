@@ -1,8 +1,8 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertNewsletterSubscriberSchema, insertContactMessageSchema, insertAbTestEventSchema } from "@shared/schema";
-import { generateReferralCode, getTierFromReferralCount } from "@shared/referral-utils";
+import { insertNewsletterSubscriberSchema, insertContactMessageSchema, insertAbTestEventSchema } from "../shared/schema";
+import { generateReferralCode, getTierFromReferralCount } from "../shared/referral-utils";
 import { z } from "zod";
 import { getTikTokVideos, getTikTokProfile, getTikTokByHashtag, formatTikTokCount } from "./tiktok";
 

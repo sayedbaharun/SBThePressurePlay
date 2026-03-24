@@ -1,5 +1,5 @@
 import ScrollReveal from "@/components/scroll-reveal";
-import { Play, Clock, Radio } from "lucide-react";
+import { Clock, Radio } from "lucide-react";
 
 export default function LatestEpisodeSection() {
   return (
@@ -53,13 +53,15 @@ export default function LatestEpisodeSection() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 items-center md:items-start">
-                  <button className="btn-cta flex items-center gap-3 text-base rounded-lg">
-                    <Play className="w-5 h-5" />
-                    Listen Now
-                  </button>
+                  <a
+                    href="#hero-email"
+                    className="btn-cta flex items-center gap-3 text-base rounded-lg"
+                  >
+                    Get Notified When It Drops
+                  </a>
                   <div className="flex items-center gap-2 text-pp-slate text-caption">
                     <Clock className="w-4 h-4" />
-                    <span className="stat-small">45 min</span>
+                    <span className="stat-small">~45 min</span>
                   </div>
                 </div>
               </div>

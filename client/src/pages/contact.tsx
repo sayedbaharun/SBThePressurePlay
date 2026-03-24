@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,138 +5,74 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Clock, 
-  Send, 
-  MessageSquare,
-  Mic,
-  Calendar,
-  Users,
-  Building,
-  Globe,
-  CheckCircle
-} from "lucide-react";
-import workspaceImage from "@assets/generated_images/Professional_workspace_analytics_setup_8664576a.png";
+import { Send, Mail, Building, Globe, Mic } from "lucide-react";
+import { Link } from "wouter";
+import ScrollReveal from "@/components/scroll-reveal";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
-  phone: z.string().optional(),
-  country: z.string().optional(),
   subject: z.string().min(1, "Please select a subject"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
-const bookingSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().optional(),
-  country: z.string().optional(),
-  company: z.string().optional(),
-  role: z.string().min(1, "Please enter your role or title"),
-  expertise: z.string().min(1, "Please describe your area of expertise"),
-  achievements: z.string().min(10, "Please describe your notable achievements"),
-  topics: z.string().min(10, "Please describe potential topics you could discuss"),
-  previousMedia: z.string().optional(),
-  socialMedia: z.string().optional(),
-  additionalInfo: z.string().optional(),
-});
-
 type ContactFormData = z.infer<typeof contactSchema>;
-type BookingFormData = z.infer<typeof bookingSchema>;
 
 const contactSubjects = [
   { value: "general", label: "General Inquiry" },
   { value: "media", label: "Media & Press" },
   { value: "partnership", label: "Partnership Opportunity" },
-  { value: "technical", label: "Technical Support" },
   { value: "feedback", label: "Feedback & Suggestions" },
   { value: "other", label: "Other" },
 ];
 
 const contactInfo = [
   {
-    icon: <Mail className="w-6 h-6" />,
-    label: "Email",
+    icon: <Mail className="w-5 h-5" />,
+    label: "General",
     value: "hello@thepressureplay.com",
-    description: "General inquiries and support"
   },
   {
-    icon: <Building className="w-6 h-6" />,
+    icon: <Building className="w-5 h-5" />,
     label: "Partnerships",
     value: "partners@thepressureplay.com",
-    description: "Sponsorship and collaboration"
   },
   {
-    icon: <Globe className="w-6 h-6" />,
+    icon: <Globe className="w-5 h-5" />,
     label: "Press",
     value: "press@thepressureplay.com",
-    description: "Media inquiries and interviews"
   },
 ];
-
-const responseTime = {
-  general: "24-48 hours",
-  booking: "3-5 business days",
-  partnership: "1-2 business days",
-  press: "24 hours"
-};
 
 export default function Contact() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const contactForm = useForm<ContactFormData>({
+  const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
       name: "",
       email: "",
-      phone: "",
-      country: "",
       subject: "",
       message: "",
     },
   });
 
-  const bookingForm = useForm<BookingFormData>({
-    resolver: zodResolver(bookingSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      country: "",
-      company: "",
-      role: "",
-      expertise: "",
-      achievements: "",
-      topics: "",
-      previousMedia: "",
-      socialMedia: "",
-      additionalInfo: "",
-    },
-  });
-
-  const contactMutation = useMutation({
+  const mutation = useMutation({
     mutationFn: async (data: ContactFormData) => {
       const response = await apiRequest("POST", "/api/contact", data);
       return response.json();
     },
     onSuccess: () => {
       toast({
-        title: "Message sent successfully!",
+        title: "Message sent!",
         description: "We'll get back to you within 24-48 hours.",
       });
-      contactForm.reset();
+      form.reset();
       queryClient.invalidateQueries({ queryKey: ["/api/contact"] });
     },
     onError: (error: any) => {
@@ -149,176 +84,56 @@ export default function Contact() {
     },
   });
 
-  const bookingMutation = useMutation({
-    mutationFn: async (data: BookingFormData) => {
-      const response = await apiRequest("POST", "/api/contact", {
-        ...data,
-        subject: "Guest Booking Application",
-        message: `Guest Application from ${data.name}
-        
-Phone: ${data.phone || "N/A"}
-Country: ${data.country || "N/A"}
-Company: ${data.company || "N/A"}
-Role: ${data.role}
-Expertise: ${data.expertise}
-Achievements: ${data.achievements}
-Potential Topics: ${data.topics}
-Previous Media: ${data.previousMedia || "N/A"}
-Social Media: ${data.socialMedia || "N/A"}
-Additional Info: ${data.additionalInfo || "N/A"}`,
-      });
-      return response.json();
-    },
-    onSuccess: () => {
-      toast({
-        title: "Guest application submitted!",
-        description: "Our team will review your application and get back to you within 3-5 business days.",
-      });
-      bookingForm.reset();
-      queryClient.invalidateQueries({ queryKey: ["/api/contact"] });
-    },
-    onError: (error: any) => {
-      toast({
-        title: "Failed to submit application",
-        description: error.message || "Please try again later.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const onContactSubmit = (data: ContactFormData) => {
-    contactMutation.mutate(data);
-  };
-
-  const onBookingSubmit = (data: BookingFormData) => {
-    bookingMutation.mutate(data);
+  const onSubmit = (data: ContactFormData) => {
+    mutation.mutate(data);
   };
 
   return (
-    <div className="min-h-screen bg-background py-20">
-      <div className="container mx-auto px-4 lg:px-6">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16 relative overflow-hidden">
-            {/* Background Image */}
-            <div className="absolute inset-0 opacity-10 -z-10">
-              <img
-                src={workspaceImage}
-                alt=""
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/80"></div>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text font-display">
-              Get In Touch
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-              Have a question, want to be a guest, or interested in partnering with us? 
-              We'd love to hear from you. Choose the best way to reach our team.
-            </p>
-            <div className="flex justify-center space-x-4">
-              <Badge variant="secondary" className="px-4 py-2">
-                <Clock className="w-4 h-4 mr-2" />
-                24hr Response Time
-              </Badge>
-            </div>
-          </div>
+    <div className="min-h-screen bg-pp-midnight">
+      <ScrollReveal>
+        <section className="content-section-large">
+          <div className="container mx-auto">
+            <div className="max-w-4xl mx-auto">
+              {/* Header */}
+              <div className="text-center mb-16">
+                <h1 className="text-display-2 mb-4">
+                  <span className="brand-text">Get In Touch</span>
+                </h1>
+                <p className="text-body-large text-pp-slate max-w-2xl mx-auto">
+                  Have a question or want to partner with us? We'd love to hear from you.
+                </p>
+              </div>
 
-          {/* Contact Methods */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-8 text-center font-display">
-              Contact Information
-            </h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {contactInfo.map((info) => (
-                <Card key={info.label} className="text-center">
-                  <CardContent className="p-6">
-                    <div className="text-primary mb-4 flex justify-center">
-                      {info.icon}
-                    </div>
-                    <h3 className="font-bold mb-2">{info.label}</h3>
-                    <a 
-                      href={`mailto:${info.value}`}
-                      className="text-sm text-primary hover:underline mb-2 block"
-                      data-testid={`contact-${info.label.toLowerCase().replace(' ', '-')}`}
-                    >
-                      {info.value}
-                    </a>
-                    <p className="text-xs text-muted-foreground">{info.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
+              <div className="grid lg:grid-cols-5 gap-12">
+                {/* Contact Form — 3 cols */}
+                <div className="lg:col-span-3">
+                  <div className="brand-card p-8 md:p-10">
+                    <h2 className="text-headline text-white mb-6">Send Us a Message</h2>
 
-          {/* Contact Forms */}
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Form Content */}
-            <div className="lg:col-span-2 space-y-12">
-              {/* General Contact Form */}
-              <Card>
-                <CardContent className="p-8">
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-bold mb-2 font-display">Send Us a Message</h3>
-                    <p className="text-muted-foreground">
-                      We typically respond to general inquiries within 24-48 hours.
-                    </p>
-                  </div>
-
-                    <Form {...contactForm}>
-                      <form onSubmit={contactForm.handleSubmit(onContactSubmit)} className="space-y-6">
+                    <Form {...form}>
+                      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
                         <div className="grid md:grid-cols-2 gap-4">
                           <FormField
-                            control={contactForm.control}
+                            control={form.control}
                             name="name"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>Name *</FormLabel>
+                                <FormLabel className="text-pp-slate">Name</FormLabel>
                                 <FormControl>
-                                  <Input placeholder="Your name" {...field} data-testid="contact-name-input" />
+                                  <Input placeholder="Your name" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-pp-slate" data-testid="contact-name-input" />
                                 </FormControl>
                                 <FormMessage />
                               </FormItem>
                             )}
                           />
                           <FormField
-                            control={contactForm.control}
+                            control={form.control}
                             name="email"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>Email *</FormLabel>
+                                <FormLabel className="text-pp-slate">Email</FormLabel>
                                 <FormControl>
-                                  <Input type="email" placeholder="your@email.com" {...field} data-testid="contact-email-input" />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </div>
-
-                        <div className="grid md:grid-cols-2 gap-4">
-                          <FormField
-                            control={contactForm.control}
-                            name="phone"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Phone (Optional)</FormLabel>
-                                <FormControl>
-                                  <Input type="tel" placeholder="Your phone number" {...field} data-testid="contact-phone-input" />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                          <FormField
-                            control={contactForm.control}
-                            name="country"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Country (Optional)</FormLabel>
-                                <FormControl>
-                                  <Input placeholder="Your country" {...field} data-testid="contact-country-input" />
+                                  <Input type="email" placeholder="your@email.com" {...field} className="bg-white/10 border-white/20 text-white placeholder:text-pp-slate" data-testid="contact-email-input" />
                                 </FormControl>
                                 <FormMessage />
                               </FormItem>
@@ -327,21 +142,21 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
                         </div>
 
                         <FormField
-                          control={contactForm.control}
+                          control={form.control}
                           name="subject"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Subject *</FormLabel>
+                              <FormLabel className="text-pp-slate">Subject</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
-                                  <SelectTrigger data-testid="contact-subject-select">
+                                  <SelectTrigger className="bg-white/10 border-white/20 text-white" data-testid="contact-subject-select">
                                     <SelectValue placeholder="Select a subject" />
                                   </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                  {contactSubjects.map((subject) => (
-                                    <SelectItem key={subject.value} value={subject.value}>
-                                      {subject.label}
+                                  {contactSubjects.map((s) => (
+                                    <SelectItem key={s.value} value={s.value}>
+                                      {s.label}
                                     </SelectItem>
                                   ))}
                                 </SelectContent>
@@ -352,15 +167,15 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
                         />
 
                         <FormField
-                          control={contactForm.control}
+                          control={form.control}
                           name="message"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Message *</FormLabel>
+                              <FormLabel className="text-pp-slate">Message</FormLabel>
                               <FormControl>
-                                <Textarea 
-                                  placeholder="Tell us how we can help you..."
-                                  className="min-h-[150px]"
+                                <Textarea
+                                  placeholder="Tell us how we can help..."
+                                  className="bg-white/10 border-white/20 text-white placeholder:text-pp-slate min-h-[120px]"
                                   {...field}
                                   data-testid="contact-message-input"
                                 />
@@ -370,314 +185,91 @@ Additional Info: ${data.additionalInfo || "N/A"}`,
                           )}
                         />
 
-                        <Button 
-                          type="submit" 
-                          className="w-full" 
-                          disabled={contactMutation.isPending}
+                        <Button
+                          type="submit"
+                          className="btn-cta w-full py-6 rounded-lg"
+                          disabled={mutation.isPending}
                           data-testid="contact-submit-button"
                         >
                           <Send className="w-5 h-5 mr-2" />
-                          {contactMutation.isPending ? "Sending..." : "Send Message"}
+                          {mutation.isPending ? "Sending..." : "Send Message"}
                         </Button>
                       </form>
                     </Form>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
 
-              {/* Guest Booking Form */}
-              <Card>
-                <CardContent className="p-8">
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-bold mb-2 font-display flex items-center gap-2">
-                      <Mic className="w-6 h-6 text-primary" />
-                      Apply to be a Guest
+                {/* Sidebar — 2 cols */}
+                <div className="lg:col-span-2 space-y-6">
+                  {/* Contact emails */}
+                  <div className="brand-card p-6">
+                    <h3 className="text-caption text-pp-blue font-semibold uppercase tracking-wider mb-5">
+                      Direct Contact
                     </h3>
-                    <p className="text-muted-foreground">
-                      We only feature guests who have operated at the highest level — in sport, business, or both.
-                      Our team reviews applications within 3-5 business days.
+                    <div className="space-y-4">
+                      {contactInfo.map((info) => (
+                        <div key={info.label} className="flex items-start gap-3">
+                          <span className="text-pp-blue mt-0.5">{info.icon}</span>
+                          <div>
+                            <p className="text-white text-caption font-medium">{info.label}</p>
+                            <a
+                              href={`mailto:${info.value}`}
+                              className="text-pp-slate text-small hover:text-pp-blue transition-colors"
+                              data-testid={`contact-${info.label.toLowerCase()}`}
+                            >
+                              {info.value}
+                            </a>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Guest CTA */}
+                  <div className="brand-card p-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Mic className="w-5 h-5 text-pp-teal" />
+                      <h3 className="text-caption text-pp-teal font-semibold uppercase tracking-wider">
+                        Be a Guest
+                      </h3>
+                    </div>
+                    <p className="text-pp-slate text-body mb-4">
+                      Operated at the highest level in sport, business, or both? We want to hear your story.
                     </p>
+                    <Link
+                      href="/apply"
+                      className="btn-cta inline-flex items-center gap-2 text-sm rounded-lg"
+                    >
+                      Apply to Be a Guest
+                    </Link>
                   </div>
 
-                  <Form {...bookingForm}>
-                    <form onSubmit={bookingForm.handleSubmit(onBookingSubmit)} className="space-y-6">
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <FormField
-                          control={bookingForm.control}
-                          name="name"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Name *</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Your name" {...field} data-testid="booking-name-input" />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={bookingForm.control}
-                          name="email"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Email *</FormLabel>
-                              <FormControl>
-                                <Input type="email" placeholder="your@email.com" {...field} data-testid="booking-email-input" />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                  {/* Response time */}
+                  <div className="brand-card p-6">
+                    <h3 className="text-caption text-pp-blue font-semibold uppercase tracking-wider mb-3">
+                      Response Times
+                    </h3>
+                    <div className="space-y-2 text-small">
+                      <div className="flex justify-between text-pp-slate">
+                        <span>General inquiries</span>
+                        <span>24-48 hours</span>
                       </div>
-
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <FormField
-                          control={bookingForm.control}
-                          name="phone"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Phone (Optional)</FormLabel>
-                              <FormControl>
-                                <Input type="tel" placeholder="Your phone number" {...field} data-testid="booking-phone-input" />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={bookingForm.control}
-                          name="country"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Country (Optional)</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Your country" {...field} data-testid="booking-country-input" />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                      <div className="flex justify-between text-pp-slate">
+                        <span>Partnerships</span>
+                        <span>1-2 business days</span>
                       </div>
-
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <FormField
-                          control={bookingForm.control}
-                          name="company"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Company (Optional)</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Your company" {...field} data-testid="booking-company-input" />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={bookingForm.control}
-                          name="role"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Role/Title *</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Your role or title" {...field} data-testid="booking-role-input" />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                      <div className="flex justify-between text-pp-slate">
+                        <span>Press</span>
+                        <span>24 hours</span>
                       </div>
-
-                      <FormField
-                        control={bookingForm.control}
-                        name="expertise"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Area of Expertise *</FormLabel>
-                            <FormControl>
-                              <Textarea 
-                                placeholder="Describe your main area of expertise..."
-                                className="min-h-[100px]"
-                                {...field}
-                                data-testid="booking-expertise-input"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={bookingForm.control}
-                        name="achievements"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Notable Achievements *</FormLabel>
-                            <FormControl>
-                              <Textarea 
-                                placeholder="Share your key accomplishments and achievements..."
-                                className="min-h-[100px]"
-                                {...field}
-                                data-testid="booking-achievements-input"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={bookingForm.control}
-                        name="topics"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Potential Discussion Topics *</FormLabel>
-                            <FormControl>
-                              <Textarea 
-                                placeholder="What topics would you like to discuss on the show?"
-                                className="min-h-[100px]"
-                                {...field}
-                                data-testid="booking-topics-input"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <FormField
-                          control={bookingForm.control}
-                          name="previousMedia"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Previous Media Appearances (Optional)</FormLabel>
-                              <FormControl>
-                                <Textarea 
-                                  placeholder="List any previous podcasts, interviews, or media appearances..."
-                                  className="min-h-[80px]"
-                                  {...field}
-                                  data-testid="booking-previous-media-input"
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={bookingForm.control}
-                          name="socialMedia"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Social Media Links (Optional)</FormLabel>
-                              <FormControl>
-                                <Textarea 
-                                  placeholder="Share your LinkedIn, X, or other relevant social media profiles..."
-                                  className="min-h-[80px]"
-                                  {...field}
-                                  data-testid="booking-social-media-input"
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <FormField
-                        control={bookingForm.control}
-                        name="additionalInfo"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Additional Information (Optional)</FormLabel>
-                            <FormControl>
-                              <Textarea 
-                                placeholder="Anything else you'd like us to know..."
-                                className="min-h-[100px]"
-                                {...field}
-                                data-testid="booking-additional-info-input"
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <Button 
-                        type="submit" 
-                        className="w-full" 
-                        disabled={bookingMutation.isPending}
-                        data-testid="booking-submit-button"
-                      >
-                        <Send className="w-5 h-5 mr-2" />
-                        {bookingMutation.isPending ? "Submitting Application..." : "Submit Guest Application"}
-                      </Button>
-                    </form>
-                  </Form>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Sidebar */}
-            <div className="space-y-6">
-              {/* Response Times */}
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-bold mb-4 font-display">Response Times</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <MessageSquare className="w-4 h-4 text-primary" />
-                        <span className="text-sm">General Inquiries</span>
-                      </div>
-                      <span className="text-sm text-muted-foreground">{responseTime.general}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <Building className="w-4 h-4 text-primary" />
-                        <span className="text-sm">Partnership</span>
-                      </div>
-                      <span className="text-sm text-muted-foreground">{responseTime.partnership}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <Globe className="w-4 h-4 text-primary" />
-                        <span className="text-sm">Press Inquiries</span>
-                      </div>
-                      <span className="text-sm text-muted-foreground">{responseTime.press}</span>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-
-
-              {/* FAQ */}
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-bold mb-4 font-display">
-                    Frequently Asked Questions
-                  </h3>
-                  <div className="space-y-4 text-sm">
-                    <div>
-                      <h4 className="font-semibold mb-1">How long are episodes?</h4>
-                      <p className="text-muted-foreground">
-                        Episodes typically run 45-75 minutes, depending on the conversation flow.
-                      </p>
-                    </div>
-                    <Separator />
-                    <div>
-                      <h4 className="font-semibold mb-1">Do you record remotely?</h4>
-                      <p className="text-muted-foreground">
-                        Yes, most interviews are conducted via high-quality video call with professional recording.
-                      </p>
-                    </div>
-                    <Separator />
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </ScrollReveal>
     </div>
   );
 }

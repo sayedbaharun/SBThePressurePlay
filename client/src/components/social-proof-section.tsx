@@ -1,27 +1,5 @@
 import ScrollReveal from "@/components/scroll-reveal";
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
-
-const testimonials = [
-  {
-    quote:
-      "The crossover between elite sport psychology and business leadership is something nobody else is talking about at this level. This podcast fills a massive gap.",
-    author: "Marcus Chen",
-    title: "CEO, Apex Ventures",
-  },
-  {
-    quote:
-      "Patrice brings the credibility of someone who's performed at the highest level. Sayed brings the strategic framework. Together they're creating something genuinely new.",
-    author: "Dr. Sarah Williams",
-    title: "Performance Psychologist",
-  },
-  {
-    quote:
-      "I've listened to hundreds of business podcasts. This is the first one that actually made me rethink how I handle pressure in the boardroom.",
-    author: "James Okonkwo",
-    title: "Managing Director, Meridian Capital",
-  },
-];
 
 const platforms = [
   {
@@ -33,7 +11,7 @@ const platforms = [
     ),
   },
   {
-    name: "Apple",
+    name: "Apple Podcasts",
     icon: (
       <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
         <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
@@ -50,6 +28,12 @@ const platforms = [
   },
 ];
 
+const signals = [
+  { label: "Elite Athlete Host", detail: "Patrice Evra — 5x Premier League Champion, 14M+ following" },
+  { label: "Performance Architect", detail: "Sayed Baharun — 15+ years optimizing Fortune 500 performance" },
+  { label: "The Intersection", detail: "First podcast bridging elite sport, business strategy, and AI" },
+];
+
 export default function SocialProofSection() {
   return (
     <section className="relative py-20 md:py-32 bg-pp-deep-black">
@@ -57,32 +41,28 @@ export default function SocialProofSection() {
         <ScrollReveal>
           <div className="text-center mb-16">
             <h2 className="text-display-2 text-white mb-4">
-              What People Are Saying
+              Why This Matters
             </h2>
             <p className="text-body-large text-pp-slate max-w-xl mx-auto">
-              Early listeners and industry leaders on Pressure Play.
+              A conversation that's never existed at this level — until now.
             </p>
           </div>
         </ScrollReveal>
 
         <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {testimonials.map((t, index) => (
-            <ScrollReveal key={t.author} delay={index * 0.1}>
+          {signals.map((s, index) => (
+            <ScrollReveal key={s.label} delay={index * 0.1}>
               <motion.div
                 className="brand-card p-8 h-full flex flex-col"
                 whileHover={{ y: -4 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <Quote className="w-8 h-8 text-pp-blue/30 mb-4 flex-shrink-0" />
-                <p className="text-body text-pp-slate leading-relaxed flex-1 mb-6">
-                  &ldquo;{t.quote}&rdquo;
+                <p className="text-caption text-pp-blue font-semibold uppercase tracking-wider mb-3">
+                  {s.label}
                 </p>
-                <div>
-                  <p className="text-caption text-white font-semibold">
-                    {t.author}
-                  </p>
-                  <p className="text-small text-pp-slate">{t.title}</p>
-                </div>
+                <p className="text-body text-pp-slate leading-relaxed flex-1">
+                  {s.detail}
+                </p>
               </motion.div>
             </ScrollReveal>
           ))}
@@ -91,7 +71,7 @@ export default function SocialProofSection() {
         <ScrollReveal delay={0.2}>
           <div className="text-center">
             <p className="text-caption text-pp-slate uppercase tracking-wider mb-6">
-              Listen on
+              Available on
             </p>
             <div className="flex justify-center gap-8">
               {platforms.map((platform) => (
@@ -100,6 +80,7 @@ export default function SocialProofSection() {
                   className="text-pp-slate hover:text-pp-blue transition-colors duration-300"
                   whileHover={{ scale: 1.15 }}
                   transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  title={platform.name}
                 >
                   {platform.icon}
                 </motion.div>

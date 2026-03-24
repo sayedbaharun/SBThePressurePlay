@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import EpisodeCard from "@/components/episode-card";
 import { Search, Filter } from "lucide-react";
+import ScrollReveal from "@/components/scroll-reveal";
 import type { Episode, Guest } from "@shared/schema";
 
 const topicFilters = [
@@ -31,11 +30,11 @@ export default function Episodes() {
   });
 
   const filteredEpisodes = episodes.filter(episode => {
-    const matchesSearch = searchTerm === "" || 
+    const matchesSearch = searchTerm === "" ||
       episode.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       episode.description.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesFilter = activeFilter === "all" || 
+
+    const matchesFilter = activeFilter === "all" ||
       episode.topics?.includes(activeFilter);
 
     return matchesSearch && matchesFilter;
@@ -44,44 +43,44 @@ export default function Episodes() {
   const isLoading = episodesLoading || guestsLoading;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-pp-midnight">
       <div className="container mx-auto px-5">
         <div className="max-w-6xl mx-auto">
-          {/* Clean Header */}
-          <section className="content-section-large text-center">
-            <h1 className="text-display-1 font-display mb-6">
-              <span className="brand-text">Episodes</span>
-            </h1>
-            <p className="text-body-large text-muted-foreground max-w-2xl mx-auto">
-              Deep conversations with elite performers, industry leaders, and visionary thinkers.
-            </p>
-          </section>
+          {/* Header */}
+          <ScrollReveal>
+            <section className="content-section-large text-center">
+              <h1 className="text-display-1 mb-6">
+                <span className="brand-text">Episodes</span>
+              </h1>
+              <p className="text-body-large text-pp-slate max-w-2xl mx-auto">
+                Deep conversations with elite performers, industry leaders, and visionary thinkers.
+              </p>
+            </section>
+          </ScrollReveal>
 
-          {/* Refined Search and Filters */}
+          {/* Search and Filters */}
           <section className="content-section space-y-8">
-            {/* Clean Search */}
             <div className="relative max-w-lg mx-auto">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-pp-slate w-5 h-5" />
               <Input
                 type="text"
                 placeholder="Search episodes..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-12 py-4 rounded-2xl border-border bg-background text-caption font-medium"
+                className="pl-12 py-4 rounded-lg bg-white/10 border-white/20 text-white placeholder:text-pp-slate text-caption font-medium"
                 data-testid="episodes-search-input"
               />
             </div>
 
-            {/* Simplified Filter Pills */}
             <div className="flex flex-wrap justify-center gap-3">
               {topicFilters.map((filter) => (
                 <button
                   key={filter.value}
                   onClick={() => setActiveFilter(filter.value)}
-                  className={`apple-card px-6 py-3 text-caption font-medium transition-all duration-200 ${
+                  className={`brand-card px-5 py-2.5 text-caption font-medium transition-all duration-200 ${
                     activeFilter === filter.value
-                      ? "bg-primary text-primary-foreground"
-                      : ""
+                      ? "!bg-pp-blue/20 !border-pp-blue/40 text-pp-blue"
+                      : "text-pp-slate hover:text-white"
                   }`}
                   data-testid={`episodes-filter-${filter.value}`}
                 >
@@ -91,11 +90,11 @@ export default function Episodes() {
             </div>
           </section>
 
-          {/* Clean Results Display */}
+          {/* Results */}
           <section className="content-section">
             {!isLoading && (
               <div className="mb-8">
-                <p className="text-caption text-muted-foreground text-center">
+                <p className="text-caption text-pp-slate text-center">
                   {filteredEpisodes.length} episode{filteredEpisodes.length !== 1 ? 's' : ''}
                   {searchTerm && ` matching "${searchTerm}"`}
                   {activeFilter !== "all" && ` in ${topicFilters.find(f => f.value === activeFilter)?.label}`}
@@ -103,16 +102,15 @@ export default function Episodes() {
               </div>
             )}
 
-            {/* Episodes Grid */}
             {isLoading ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="apple-card p-0 overflow-hidden">
-                    <Skeleton className="aspect-square w-full" />
+                  <div key={i} className="brand-card p-0 overflow-hidden">
+                    <Skeleton className="aspect-square w-full bg-white/5" />
                     <div className="p-6">
-                      <Skeleton className="h-6 w-3/4 mb-3" />
-                      <Skeleton className="h-4 w-full mb-2" />
-                      <Skeleton className="h-4 w-1/2" />
+                      <Skeleton className="h-6 w-3/4 mb-3 bg-white/5" />
+                      <Skeleton className="h-4 w-full mb-2 bg-white/5" />
+                      <Skeleton className="h-4 w-1/2 bg-white/5" />
                     </div>
                   </div>
                 ))}
@@ -120,9 +118,9 @@ export default function Episodes() {
             ) : filteredEpisodes.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredEpisodes.map((episode) => (
-                  <EpisodeCard 
-                    key={episode.id} 
-                    episode={episode} 
+                  <EpisodeCard
+                    key={episode.id}
+                    episode={episode}
                     guests={guests}
                   />
                 ))}
@@ -130,15 +128,15 @@ export default function Episodes() {
             ) : (
               <div className="text-center py-20">
                 <div className="max-w-sm mx-auto">
-                  <div className="w-16 h-16 bg-muted/50 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Filter className="w-7 h-7 text-muted-foreground" />
+                  <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Filter className="w-7 h-7 text-pp-slate" />
                   </div>
-                  <h3 className="text-headline mb-3">No episodes found</h3>
-                  <p className="text-caption text-muted-foreground mb-8">
+                  <h3 className="text-headline text-white mb-3">No episodes found</h3>
+                  <p className="text-caption text-pp-slate mb-8">
                     Try adjusting your search or filter criteria.
                   </p>
-                  <button 
-                    className="apple-card px-6 py-3 text-caption font-medium"
+                  <button
+                    className="brand-card px-6 py-3 text-caption font-medium text-pp-slate hover:text-white transition-colors"
                     onClick={() => {
                       setSearchTerm("");
                       setActiveFilter("all");
