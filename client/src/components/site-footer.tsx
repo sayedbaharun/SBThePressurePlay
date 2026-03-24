@@ -138,7 +138,6 @@ export default function SiteFooter() {
             <ul className="space-y-3">
               <li><Link href="/" className="text-pp-slate hover:text-pp-blue transition-colors">Home</Link></li>
               <li><Link href="/about" className="text-pp-slate hover:text-pp-blue transition-colors">About</Link></li>
-              <li><Link href="/episodes" className="text-pp-slate hover:text-pp-blue transition-colors">Episodes</Link></li>
               <li><Link href="/contact" className="text-pp-slate hover:text-pp-blue transition-colors">Contact</Link></li>
             </ul>
           </div>
